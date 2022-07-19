@@ -5,25 +5,30 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UserSecretsId>8676dfa2-1d27-4132-b17b-4042fde4d504</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="Activation\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\SW.MB.BL\SW.MB.BL.csproj" />
+    <ProjectReference Include="..\SW.MB.DA.Backuped\SW.MB.DA.Backuped.csproj" />
+    <ProjectReference Include="..\SW.MB.DA.MySql\SW.MB.DA.MySql.csproj" />
+    <ProjectReference Include="..\SW.MB.DA.Sqlite\SW.MB.DA.Sqlite.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Desktop\SW.MB.UI.WPF.Desktop.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

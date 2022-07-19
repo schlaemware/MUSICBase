@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SW.MB.UI.WPF.Views.Windows {
+namespace SW.MB.UI.WPF.Desktop.Views.Windows {
   /// <summary>
   /// Interaction logic for AppWindow.xaml
   /// </summary>

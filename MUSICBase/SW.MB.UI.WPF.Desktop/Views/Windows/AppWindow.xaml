@@ -1,0 +1,17 @@
+﻿<Window x:Class="SW.MB.UI.WPF.Desktop.Views.Windows.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:SW.MB.UI.WPF.Desktop.Properties"
+        xmlns:local="clr-namespace:SW.MB.UI.WPF.Desktop.Views.Windows"
+        xmlns:vms="clr-namespace:SW.MB.UI.WPF.Desktop.ViewModels"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.AppTitle}"
+        Height="900" Width="1600"
+        d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
+
+  <Grid>
+    
+  </Grid>
+</Window>
