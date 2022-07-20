@@ -36,7 +36,7 @@ namespace SW.MB.UI.WPF {
       System.Diagnostics.Debug.WriteLine("OnStartup - START");
       base.OnStartup(e);
 
-      MainWindow = _Host.Services.GetRequiredService<AppWindow>();
+      MainWindow = _Host.Services.GetRequiredService<Window>();
       MainWindow.Show();
 
       System.Diagnostics.Debug.WriteLine("OnStartup - END");

@@ -1,12 +1,22 @@
 ﻿using SW.Framework.WPF.ViewModels;
-using SW.MB.BL.Contracts.Services;
 
 namespace SW.MB.UI.WPF.Desktop.ViewModels {
   public class AppViewModel : ViewModelBase {
-    private readonly ICompositionsDataService _CompositionsDataService;
+    private bool _IsNavigationPanelReduced = Properties.Settings.Default.IsNavigationPanelReduced;
 
-    public AppViewModel(ICompositionsDataService compositionsDataService) {
-      _CompositionsDataService = compositionsDataService;
+    public ViewModelBase? CurrentModuleModel { get; }
+
+    public bool IsNavigationPanelReduced {
+      get => _IsNavigationPanelReduced;
+      set {
+        if (SetProperty(ref _IsNavigationPanelReduced, value)) {
+          Properties.Settings.Default.IsNavigationPanelReduced = value;
+        }
+      }
+    }
+
+    public AppViewModel() {
+      
     }
   }
 }

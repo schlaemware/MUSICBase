@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,7 +47,7 @@ namespace SW.MB.UI.WPF.HostBuilder {
       services.AddSingleton<AppViewModel>();
 
       // Views
-      services.AddSingleton(s => new AppWindow() { DataContext = s.GetRequiredService<AppViewModel>() });
+      services.AddSingleton<Window>(s => new AppWindow() { DataContext = s.GetRequiredService<AppViewModel>() });
     });
   }
 }
