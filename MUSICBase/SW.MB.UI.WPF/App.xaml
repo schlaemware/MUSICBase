@@ -3,6 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Application.Resources>
-
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <!-- THEMES -->
+        <!-- Definitions -->
+        <ResourceDictionary Source="Themes/Definitions.xaml" />
+        
+        <!-- Themes -->
+        <ResourceDictionary Source="Themes/GreenDarkTheme.xaml" />
+        <!--<ResourceDictionary Source="Themes/GreenLightTheme.xaml" />-->
+        
+        <!-- Orchestration -->
+        <ResourceDictionary Source="Themes/Orchestration.xaml" />
+        
+        <!-- STYLES -->
+        <!-- Definitions -->
+        <ResourceDictionary Source="Styles/Definitions.xaml" />
+        
+        <!-- BaseStyle -->
+        <ResourceDictionary Source="Styles/Controls.xaml" />
+        
+        <!-- Styles -->
+        <ResourceDictionary Source="Styles/Labels.xaml" />
+        
+        <!-- Orchestration -->
+        <ResourceDictionary Source="Styles/Orchestration.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </Application.Resources>
 </Application>

@@ -20,15 +20,7 @@ namespace SW.MB.UI.WPF.HostBuilder {
       .Build();
 
     private static IHostBuilder ConfigureMyAppConfiguration(this IHostBuilder builder) => builder.ConfigureAppConfiguration((context, configuration) => {
-      //configuration.Sources.Clear();
-
-      //IHostEnvironment env = context.HostingEnvironment;
-
-      //configuration
-      //  .AddJsonFile("appsettings.json", true, true)
-      //  .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true, true);
-
-      configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+      configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true, true);
     });
 
     private static IHostBuilder ConfigureMyServices(this IHostBuilder builder) => builder.ConfigureServices((context, services) => {

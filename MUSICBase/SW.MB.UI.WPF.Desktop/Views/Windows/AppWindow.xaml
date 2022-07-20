@@ -9,9 +9,16 @@
         mc:Ignorable="d"
         Title="{x:Static p:Resources.AppTitle}"
         Height="900" Width="1600"
+        WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
+  <Window.Resources>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabelStyle}">
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+  </Window.Resources>
+
   <Grid>
-    
+    <Label Content="Willkommen!" />
   </Grid>
 </Window>
