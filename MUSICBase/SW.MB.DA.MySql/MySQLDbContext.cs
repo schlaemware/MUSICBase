@@ -13,7 +13,7 @@ namespace SW.MB.DA.MySql {
     private readonly string _ConnectionString;
 
     public MySQLDbContext(IConfiguration appConfig) {
-      _ConnectionString = appConfig[CONNECTION_STRING_KEY];
+      _ConnectionString = appConfig.GetConnectionString(CONNECTION_STRING_KEY);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

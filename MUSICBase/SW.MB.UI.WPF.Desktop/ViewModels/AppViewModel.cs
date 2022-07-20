@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SW.Framework.WPF.ViewModels;
+using SW.MB.BL.Contracts.Services;
 
 namespace SW.MB.UI.WPF.Desktop.ViewModels {
-  public class AppViewModel {
+  public class AppViewModel : ViewModelBase {
+    private readonly ICompositionsDataService _CompositionsDataService;
 
+    public AppViewModel(ICompositionsDataService compositionsDataService) {
+      _CompositionsDataService = compositionsDataService;
+    }
   }
 }
