@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,7 @@ using SW.MB.DA.Contracts.Repositories;
 using SW.MB.DA.Contracts.Storages;
 using SW.MB.DA.MySql;
 using SW.MB.DA.Sqlite;
+using SW.MB.UI.WPF.Compositions.ViewModels;
 using SW.MB.UI.WPF.Desktop.ViewModels;
 using SW.MB.UI.WPF.Desktop.Views.Windows;
 
@@ -21,6 +24,10 @@ namespace SW.MB.UI.WPF.HostBuilder {
       .Build();
 
     private static IHostBuilder ConfigureMyAppConfiguration(this IHostBuilder builder) => builder.ConfigureAppConfiguration((context, configuration) => {
+      configuration.AddInMemoryCollection(new Dictionary<string, string>() {
+        { typeof(Version).FullName ?? "Version", (Assembly.GetExecutingAssembly().GetName().Version ?? new Version()).ToString() }
+      });
+
       configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true, true);
     });
 
@@ -31,11 +38,11 @@ namespace SW.MB.UI.WPF.HostBuilder {
       services.AddDbContext<ILocalStorage, SQLiteDbContext>();
 
       /// Storage
-      services.AddSingleton<IStorage, BackupedStorage>();
+      services.AddSingleton<BackupedStorage>();
 
       /// Repositories
-      services.AddSingleton<ICompositionsRepository>(s => s.GetRequiredService<IStorage>());
-      services.AddSingleton<IMusiciansRepository>(s => s.GetRequiredService<IStorage>());
+      services.AddSingleton<ICompositionsRepository>(s => s.GetRequiredService<BackupedStorage>());
+      services.AddSingleton<IMusiciansRepository>(s => s.GetRequiredService<BackupedStorage>());
 
       // BUSINESS LOGIC LAYER
       /// Services
@@ -44,6 +51,7 @@ namespace SW.MB.UI.WPF.HostBuilder {
 
       // PRESENTATION LAYER
       // ViewModels
+      services.AddSingleton<CompositionsViewModel>();
       services.AddSingleton<AppViewModel>();
 
       // Views

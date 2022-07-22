@@ -23,11 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF.Desktop", "SW.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.DA.Backuped", "SW.MB.DA.Backuped\SW.MB.DA.Backuped.csproj", "{41F23214-D1C6-46FD-9447-A221D02008EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF.Dashboard", "SW.MB.UI.WPF.Dashboard\SW.MB.UI.WPF.Dashboard.csproj", "{ABD7CC52-248B-46E2-8BBD-6BC8100E2A70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF.Dashboard", "SW.MB.UI.WPF.Dashboard\SW.MB.UI.WPF.Dashboard.csproj", "{ABD7CC52-248B-46E2-8BBD-6BC8100E2A70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF.Compositions", "SW.MB.UI.WPF.Compositions\SW.MB.UI.WPF.Compositions.csproj", "{FEFD6F84-FAF6-491A-90FA-289587FE76DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF.Compositions", "SW.MB.UI.WPF.Compositions\SW.MB.UI.WPF.Compositions.csproj", "{FEFD6F84-FAF6-491A-90FA-289587FE76DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF.Musicians", "SW.MB.UI.WPF.Musicians\SW.MB.UI.WPF.Musicians.csproj", "{15D4BBBE-3549-4A14-B528-85DB11E5D5B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF.Musicians", "SW.MB.UI.WPF.Musicians\SW.MB.UI.WPF.Musicians.csproj", "{15D4BBBE-3549-4A14-B528-85DB11E5D5B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevConsole", "DevConsole\DevConsole.csproj", "{3F263725-681B-4EE2-B4C8-5BAF7C480500}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{15D4BBBE-3549-4A14-B528-85DB11E5D5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15D4BBBE-3549-4A14-B528-85DB11E5D5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15D4BBBE-3549-4A14-B528-85DB11E5D5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F263725-681B-4EE2-B4C8-5BAF7C480500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F263725-681B-4EE2-B4C8-5BAF7C480500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F263725-681B-4EE2-B4C8-5BAF7C480500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F263725-681B-4EE2-B4C8-5BAF7C480500}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

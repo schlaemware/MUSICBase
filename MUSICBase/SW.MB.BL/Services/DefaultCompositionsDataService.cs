@@ -11,5 +11,9 @@ namespace SW.MB.BL.Services {
     public DefaultCompositionsDataService(ICompositionsRepository compositionsRepository) {
       _CompositionsRepository = compositionsRepository;
     }
+
+    public void Dispose() {
+      System.Diagnostics.Debug.WriteLine($"{GetType().Name} disposed...");
+    }
   }
 }

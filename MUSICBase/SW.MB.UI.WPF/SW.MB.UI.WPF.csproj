@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Activation\" />
-    <Folder Include="Assets\" />
+    <Compile Remove="Activation\**" />
+    <Compile Remove="Assets\**" />
+    <EmbeddedResource Remove="Activation\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <None Remove="Activation\**" />
+    <None Remove="Assets\**" />
+    <Page Remove="Activation\**" />
+    <Page Remove="Assets\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +29,7 @@
     <ProjectReference Include="..\SW.MB.DA.Backuped\SW.MB.DA.Backuped.csproj" />
     <ProjectReference Include="..\SW.MB.DA.MySql\SW.MB.DA.MySql.csproj" />
     <ProjectReference Include="..\SW.MB.DA.Sqlite\SW.MB.DA.Sqlite.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Compositions\SW.MB.UI.WPF.Compositions.csproj" />
     <ProjectReference Include="..\SW.MB.UI.WPF.Desktop\SW.MB.UI.WPF.Desktop.csproj" />
   </ItemGroup>
 

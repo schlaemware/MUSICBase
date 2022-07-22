@@ -1,10 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
+using SW.MB.DA.Contracts.Repositories;
 using SW.MB.DA.Contracts.Storages;
 
-[assembly: InternalsVisibleTo("SW.MB.UI.WPF")]
-
 namespace SW.MB.DA.Backuped {
-  internal class BackupedStorage : IStorage {
+  internal class BackupedStorage : ICompositionsRepository, IMusiciansRepository {
     private readonly IRemoteStorage _RemoteStorage;
     private readonly ILocalStorage _LocalStorage;
 
