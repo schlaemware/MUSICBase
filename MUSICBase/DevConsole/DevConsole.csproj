@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SW.MB.DA.MySql\SW.MB.DA.MySql.csproj" />
     <ProjectReference Include="..\SW.MB.DA.Sqlite\SW.MB.DA.Sqlite.csproj" />
   </ItemGroup>
 

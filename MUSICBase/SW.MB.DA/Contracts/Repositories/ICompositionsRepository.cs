@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SW.MB.DA.Models.Records;
 
 namespace SW.MB.DA.Contracts.Repositories {
-  public interface ICompositionsRepository {
-
-  }
+    public interface ICompositionsRepository {
+        public List<CompositionRecord> GetAll();
+    }
 }

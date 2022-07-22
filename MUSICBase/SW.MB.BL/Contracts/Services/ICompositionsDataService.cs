@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SW.MB.DA.Models.Records;
 
 namespace SW.MB.BL.Contracts.Services {
-  public interface ICompositionsDataService : IDisposable {
-
-  }
+    public interface ICompositionsDataService : IDisposable {
+        public List<CompositionRecord> GetAll();
+    }
 }

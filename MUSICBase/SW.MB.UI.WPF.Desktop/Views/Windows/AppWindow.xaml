@@ -12,13 +12,14 @@
         WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
-  <Window.Resources>
-    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabelStyle}">
-      <Setter Property="HorizontalContentAlignment" Value="Center" />
-    </Style>
-  </Window.Resources>
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
 
-  <Grid>
-    <Label Content="Willkommen!" />
-  </Grid>
+    <DockPanel LastChildFill="True">
+        <Label DockPanel.Dock="Top" Content="Willkommen!" Margin="20" />
+        <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Compositions}" />
+    </DockPanel>
 </Window>
