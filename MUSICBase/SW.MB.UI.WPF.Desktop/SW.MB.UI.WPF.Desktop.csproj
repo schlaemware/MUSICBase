@@ -7,18 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Contracts\**" />
-    <EmbeddedResource Remove="Contracts\**" />
-    <None Remove="Contracts\**" />
-    <Page Remove="Contracts\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="SW.Framework.WPF" Version="0.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Local.Framework.WPF\Local.Framework.WPF.csproj" />
     <ProjectReference Include="..\SW.MB.BL\SW.MB.BL.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Core\SW.MB.UI.WPF.Core.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Dashboard\SW.MB.UI.WPF.Dashboard.csproj" />
   </ItemGroup>
 
   <ItemGroup>

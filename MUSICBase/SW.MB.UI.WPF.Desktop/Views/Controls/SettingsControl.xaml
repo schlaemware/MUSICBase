@@ -10,6 +10,6 @@
              d:DataContext="{d:DesignInstance vms:SettingsViewModel, IsDesignTimeCreatable=False}">
 
   <Grid>
-    
+    <Label Content="SettingsControl" HorizontalAlignment="Center" />
   </Grid>
 </UserControl>

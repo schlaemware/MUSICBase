@@ -8,7 +8,11 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Local.Framework.WPF\Local.Framework.WPF.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Core\SW.MB.UI.WPF.Core.csproj" />
   </ItemGroup>
 
 </Project>

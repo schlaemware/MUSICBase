@@ -12,14 +12,37 @@
         WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
-    <Window.Resources>
-        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabelStyle}">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-        </Style>
-    </Window.Resources>
+  <Window.Resources>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabelStyle}">
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+  </Window.Resources>
 
-    <DockPanel LastChildFill="True">
-        <Label DockPanel.Dock="Top" Content="Willkommen!" Margin="20" />
-        <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Compositions}" />
-    </DockPanel>
+  <DockPanel LastChildFill="True">
+    <Label DockPanel.Dock="Top" Content="Willkommen!" Margin="20" />
+
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+      <Button Content="Dashboard" Margin="8" Padding="20,8" Command="{Binding NavigateDashboardCommand}" />
+      <Button Content="Compositions" Margin="8" Padding="20,8" Command="{Binding NavigateCompositionsCommand}" />
+      <Button Content="Musicians" Margin="8" Padding="20,8" Command="{Binding NavigateMusiciansCommand}" />
+      <Button Content="Members" Margin="8" Padding="20,8" Command="{Binding NavigateMembersCommand}" />
+      <Button Content="Settings" Margin="8" Padding="20,8" Command="{Binding NavigateSettingsCommand}" />
+      <Button Content="Updates" Margin="8" Padding="20,8" Command="{Binding NavigateUpdatesCommand}" />
+    </StackPanel>
+
+    <TabControl ItemsSource="{Binding ModulesCollectionViewSource}" BorderThickness="0">
+      <TabControl.Resources>
+        <Style TargetType="{x:Type TabItem}">
+          <Setter Property="Visibility" Value="Collapsed" />
+          <Setter Property="Header" Value="{Binding Title}" />
+          <Setter Property="IsSelected" Value="{Binding IsActive, Mode=OneWay}" />
+        </Style>
+      </TabControl.Resources>
+      <TabControl.ContentTemplate>
+        <DataTemplate>
+          <ContentControl Content="{Binding Content}" />
+        </DataTemplate>
+      </TabControl.ContentTemplate>
+    </TabControl>
+  </DockPanel>
 </Window>

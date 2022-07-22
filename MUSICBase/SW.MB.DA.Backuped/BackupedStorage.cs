@@ -4,7 +4,7 @@ using SW.MB.DA.Contracts.Storages;
 using SW.MB.DA.Models.Records;
 
 namespace SW.MB.DA.Backuped {
-    internal class BackupedStorage : ICompositionsRepository, IMusiciansRepository {
+    internal class BackupedStorage : IStorage {
         private readonly IRemoteStorage _RemoteStorage;
         private readonly ILocalStorage _LocalStorage;
 

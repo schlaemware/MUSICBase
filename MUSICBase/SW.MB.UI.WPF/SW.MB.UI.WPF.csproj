@@ -8,14 +8,18 @@
     <UserSecretsId>8676dfa2-1d27-4132-b17b-4042fde4d504</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);LOCAL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants);LOCAL</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Remove="Activation\**" />
     <Compile Remove="Assets\**" />
-    <EmbeddedResource Remove="Activation\**" />
     <EmbeddedResource Remove="Assets\**" />
-    <None Remove="Activation\**" />
     <None Remove="Assets\**" />
-    <Page Remove="Activation\**" />
     <Page Remove="Assets\**" />
   </ItemGroup>
 
@@ -31,6 +35,8 @@
     <ProjectReference Include="..\SW.MB.DA.Sqlite\SW.MB.DA.Sqlite.csproj" />
     <ProjectReference Include="..\SW.MB.UI.WPF.Compositions\SW.MB.UI.WPF.Compositions.csproj" />
     <ProjectReference Include="..\SW.MB.UI.WPF.Desktop\SW.MB.UI.WPF.Desktop.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Members\SW.MB.UI.WPF.Members.csproj" />
+    <ProjectReference Include="..\SW.MB.UI.WPF.Musicians\SW.MB.UI.WPF.Musicians.csproj" />
   </ItemGroup>
 
   <ItemGroup>
