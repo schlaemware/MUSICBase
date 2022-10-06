@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Local.Framework.WPF;
 
 namespace SW.MB.UI.WPF.ViewModels {
-  public class AppViewModel {
+  public class AppViewModel : ViewModel {
 
   }
 }

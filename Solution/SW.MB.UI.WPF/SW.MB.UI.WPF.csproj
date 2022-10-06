@@ -16,8 +16,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Local.Framework.WPF\Local.Framework.WPF.csproj" />
     <ProjectReference Include="..\SW.MB.Data\SW.MB.Data.csproj" />
     <ProjectReference Include="..\SW.MB.Domain\SW.MB.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
