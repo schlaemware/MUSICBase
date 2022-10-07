@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.Data", "SW.MB.Data\SW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF", "SW.MB.UI.WPF\SW.MB.UI.WPF.csproj", "{2A475C9B-0380-4BC0-833A-6FC760BD390B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.Framework.WPF", "SW.Framework.WPF\SW.Framework.WPF.csproj", "{84375C84-136E-4BC2-924F-37BE7187C207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.Framework.WPF", "SW.Framework.WPF\SW.Framework.WPF.csproj", "{84375C84-136E-4BC2-924F-37BE7187C207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

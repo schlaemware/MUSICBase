@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
-using SW.Framework.Extensions;
+using Microsoft.Extensions.Logging;
 using SW.Framework.WPF;
 using SW.MB.Domain.Contracts;
 using SW.MB.Domain.Models.Records;

@@ -5,6 +5,8 @@ namespace SW.MB.Domain.Implementations.Abstracts {
   internal abstract class ServiceBase {
     private static IServiceProvider? _ServiceProvider;
 
+    protected Serilog.ILogger Logger => Serilog.Log.Logger;
+
     protected IServiceProvider ServiceProvider => _ServiceProvider
       ?? throw new ApplicationException($"{nameof(_ServiceProvider)} not instantiated!");
 

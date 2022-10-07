@@ -3,6 +3,7 @@ using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using SW.MB.Data;
 using SW.MB.Domain;
 using SW.MB.UI.WPF.Services;
@@ -20,12 +21,21 @@ namespace SW.MB.UI.WPF {
       AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
       AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+      Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .WriteTo.Debug(Serilog.Events.LogEventLevel.Debug)
+        .WriteTo.File("logs/mb.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)
+        .CreateLogger();
+
+      Log.Logger.Debug("Logger instantieted");
+
       ServiceCollection services = new();
       ConfigureServices(services);
       _ServiceProvider = services.BuildServiceProvider();
     }
 
     protected override void OnStartup(StartupEventArgs e) {
+      Log.Logger.Information("Startup application...");
       base.OnStartup(e);
 
       SplashWindow splash = new();
@@ -41,10 +51,13 @@ namespace SW.MB.UI.WPF {
     }
 
     protected override void OnExit(ExitEventArgs e) {
+      Log.Logger.Information("Exit application...");
       base.OnExit(e);
     }
 
     private void ConfigureServices(ServiceCollection services) {
+      services.AddSingleton(s => Log.Logger);
+
       DataFactory.Instance.ConfigureServices(services);
       DomainFactory.Instance.ConfigureServices(services);
 
@@ -67,11 +80,11 @@ namespace SW.MB.UI.WPF {
 
     #region CALLBACKS
     private void CurrentDomain_FirstChanceException(object? sender, FirstChanceExceptionEventArgs e) {
-      // TODO Logging...
+      Log.Logger.Error(e.Exception, $"FirstChangeException from {sender}");
     }
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
-      // TODO Logging...
+      Log.Logger.Fatal(e.ExceptionObject as Exception, $"UnhandledException from {sender}");
       DialogService.ShowUnhandledExceptionDialog(e.IsTerminating);
     }
     #endregion CALLBACKS

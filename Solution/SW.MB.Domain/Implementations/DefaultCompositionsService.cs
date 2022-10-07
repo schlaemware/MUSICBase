@@ -1,7 +1,5 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Data.Contracts;
-using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts;
 using SW.MB.Domain.Extensions;
 using SW.MB.Domain.Implementations.Abstracts;
@@ -11,7 +9,7 @@ namespace SW.MB.Domain.Implementations {
   internal class DefaultCompositionsService: ServiceBase, ICompositionsService {
     #region CONSTRUCTORS
     public DefaultCompositionsService(IServiceProvider serviceProvider) : base(serviceProvider) {
-      System.Diagnostics.Debug.WriteLine($"{GetType().Name} created...");
+      // empty...
     }
     #endregion CONSTRUCTORS
 
