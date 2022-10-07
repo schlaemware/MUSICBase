@@ -32,7 +32,7 @@ namespace SW.MB.Data {
     }
     #endregion CONSTRUCTORS
 
-    public void ConfigureServices(ServiceCollection services) {
+    public void ConfigureServices(IServiceCollection services) {
       if (HasLicense) {
         // Umsetzung als SQLite-Datenbank.
         services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseSqlite("Data Source = C:\\Temporary\\MUSICBase.db"));

@@ -28,7 +28,7 @@ namespace SW.MB.Domain {
     }
     #endregion CONSTRUCTORS
 
-    public void ConfigureServices(ServiceCollection services) {
+    public void ConfigureServices(IServiceCollection services) {
       services.AddTransient<ICompositionsService, DefaultCompositionsService>();
       services.AddTransient<IMandatorsService, DefaultMandatorsService>();
     }
