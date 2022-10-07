@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Data.Contracts;
 using SW.MB.Data.Implementations;
@@ -23,6 +24,8 @@ namespace SW.MB.Data {
       }
     }
 
+    public bool HasLicense { get; } = true;
+
     #region CONSTRUCTORS
     private DataFactory() {
       // empty...
@@ -30,7 +33,14 @@ namespace SW.MB.Data {
     #endregion CONSTRUCTORS
 
     public void ConfigureServices(ServiceCollection services) {
-      services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseSqlite("Data Source = C:\\Temporary\\MUSICBase.db"));
+      if (HasLicense) {
+        // Umsetzung als SQLite-Datenbank.
+        services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseSqlite("Data Source = C:\\Temporary\\MUSICBase.db"));
+      } else {
+        // Der In-Memory-Provider speichert keine Daten. Zusätzlich werden initial Musterdaten geladen.
+        services.AddDbContext<IUnitOfWork, DemoUnitOfWorkDbContext>(options => options.UseInMemoryDatabase("DemoDB")
+          .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
+      }
     }
   }
 }

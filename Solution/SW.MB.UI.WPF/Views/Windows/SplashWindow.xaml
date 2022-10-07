@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
         mc:Ignorable="d"
-        Title="SplashWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="SplashWindow" Height="450" Width="800"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="SPLASH WINDOW" VerticalAlignment="Center" TextAlignment="Center" FontSize="40" />
+    <TextBlock Grid.Row="1" x:Name="StatusTextBlock" Text="[..STATUTS..]" VerticalAlignment="Center" TextAlignment="Center" />
+  </Grid>
 </Window>

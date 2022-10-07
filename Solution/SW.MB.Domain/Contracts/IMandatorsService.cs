@@ -2,4 +2,12 @@
   public interface IMandatorsService {
 
   }
+
+  public interface IMembersService {
+    
+  }
+
+  public interface IMusiciansService {
+
+  }
 }

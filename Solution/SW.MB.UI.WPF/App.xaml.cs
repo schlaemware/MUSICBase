@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.ExceptionServices;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Data;
@@ -27,9 +28,16 @@ namespace SW.MB.UI.WPF {
     protected override void OnStartup(StartupEventArgs e) {
       base.OnStartup(e);
 
-      MainWindow = _ServiceProvider.GetRequiredService<AppWindow>();
-      MainWindow.DataContext = _ServiceProvider.GetRequiredService<AppViewModel>();
-      MainWindow.Show();
+      SplashWindow splash = new();
+      splash.Show();
+
+      Task.Factory.StartNew(() => {
+        LoadApplication(status => Dispatcher.Invoke(() => splash.Update(status)));
+        Dispatcher.Invoke(() => {
+          StartMainApplication();
+          splash.Close();
+        });
+      });
     }
 
     protected override void OnExit(ExitEventArgs e) {
@@ -43,6 +51,19 @@ namespace SW.MB.UI.WPF {
       services.AddSingleton<AppViewModel>();
       services.AddSingleton<AppWindow>();
     }
+
+    private void LoadApplication(Action<string> printStatus) {
+      for (int n = 0; n <= 100; n++) {
+        printStatus($"Loading data {n:###} %...");
+        Task.Delay(10).Wait();
+      }
+    }
+
+    private void StartMainApplication() {
+      MainWindow = _ServiceProvider.GetRequiredService<AppWindow>();
+      MainWindow.DataContext = _ServiceProvider.GetRequiredService<AppViewModel>();
+      MainWindow.Show();
+    } 
 
     #region CALLBACKS
     private void CurrentDomain_FirstChanceException(object? sender, FirstChanceExceptionEventArgs e) {
