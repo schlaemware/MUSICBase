@@ -1,7 +1,7 @@
 ﻿using SW.MB.Data.Contracts;
 
 namespace SW.MB.Data.Models.Entities.Abstracts {
-  internal abstract class Entity: IEntity {
+  public abstract class Entity: IEntity {
     public int ID { get; set; }
     public DateTime Created { get; set; }
     public int CreatedBy { get; set; }

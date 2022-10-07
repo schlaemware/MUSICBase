@@ -1,6 +1,6 @@
 ﻿using SW.MB.Data.Contracts;
 
-namespace SW.MB.Data.Models.Records.Abstracts {
+namespace SW.MB.Domain.Models.Records.Abstracts {
   public abstract record class EntityRecord : IEntity {
     public int ID { get; init; }
     public DateTime Created { get; init; } = DateTime.Now;

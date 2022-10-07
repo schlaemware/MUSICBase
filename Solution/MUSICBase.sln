@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.Data", "SW.MB.Data\SW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF", "SW.MB.UI.WPF\SW.MB.UI.WPF.csproj", "{2A475C9B-0380-4BC0-833A-6FC760BD390B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Local.Framework.WPF", "Local.Framework.WPF\Local.Framework.WPF.csproj", "{815DCD43-5209-408D-BC1E-E0DDDE9764B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.Framework.WPF", "SW.Framework.WPF\SW.Framework.WPF.csproj", "{84375C84-136E-4BC2-924F-37BE7187C207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{2A475C9B-0380-4BC0-833A-6FC760BD390B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A475C9B-0380-4BC0-833A-6FC760BD390B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A475C9B-0380-4BC0-833A-6FC760BD390B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{815DCD43-5209-408D-BC1E-E0DDDE9764B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{815DCD43-5209-408D-BC1E-E0DDDE9764B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{815DCD43-5209-408D-BC1E-E0DDDE9764B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{815DCD43-5209-408D-BC1E-E0DDDE9764B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84375C84-136E-4BC2-924F-37BE7187C207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84375C84-136E-4BC2-924F-37BE7187C207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84375C84-136E-4BC2-924F-37BE7187C207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84375C84-136E-4BC2-924F-37BE7187C207}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

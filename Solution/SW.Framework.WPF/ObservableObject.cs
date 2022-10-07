@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Local.Framework.WPF {
+namespace SW.Framework.WPF {
   /// <summary>
   /// Abstract base class for all observable classes.
   /// </summary>

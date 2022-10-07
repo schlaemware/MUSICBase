@@ -1,6 +1,6 @@
-﻿using SW.MB.Data.Models.Records.Abstracts;
+﻿using SW.MB.Domain.Models.Records.Abstracts;
 
-namespace SW.MB.Data.Models.Records {
+namespace SW.MB.Domain.Models.Records {
   public record class CompositionRecord : EntityRecord {
     public string? Title { get; init; }
   }

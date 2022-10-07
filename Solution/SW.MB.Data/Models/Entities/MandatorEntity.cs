@@ -1,7 +1,7 @@
 ﻿using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-  public class CompositionEntity : Entity {
-    public string? Title { get; set; }
+  public class MandatorEntity: Entity {
+    public string? Name { get; set; }
   }
 }

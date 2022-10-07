@@ -4,11 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
+        xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
         mc:Ignorable="d"
         Title="MUSICBase" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="2*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>    
     <TextBlock Text="MUSICBase" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <DataGrid Grid.Row="1" ItemsSource="{Binding Compositions}" AutoGenerateColumns="True" />
+    <Button Grid.Row="2" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,8"
+            Command="{Binding StoreCommand}" />
   </Grid>
 </Window>

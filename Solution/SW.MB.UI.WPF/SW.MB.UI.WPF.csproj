@@ -16,8 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Local.Framework.WPF\Local.Framework.WPF.csproj" />
-    <ProjectReference Include="..\SW.MB.Data\SW.MB.Data.csproj" />
+    <PackageReference Include="SW.Framework" Version="0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SW.Framework.WPF\SW.Framework.WPF.csproj" />
     <ProjectReference Include="..\SW.MB.Domain\SW.MB.Domain.csproj" />
   </ItemGroup>
 
