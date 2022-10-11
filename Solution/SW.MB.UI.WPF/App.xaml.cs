@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using SW.MB.UI.WPF.HostBuilder;
+using SW.MB.UI.WPF.Models.ConfigurationObjects;
 using SW.MB.UI.WPF.Services;
 using SW.MB.UI.WPF.ViewModels;
 using SW.MB.UI.WPF.Views.Windows;
@@ -78,6 +79,7 @@ namespace SW.MB.UI.WPF {
     private void StartAppCenter() {
       if (_Host.Services.GetService<IConfiguration>() is IConfiguration configuration) {
         string appSecretString = configuration.GetValue<string>("AppCenter:AppSecret");
+        
         if (Guid.TryParse(appSecretString, out Guid appSecret)) {
           AppCenter.SetCountryCode(RegionInfo.CurrentRegion.TwoLetterISORegionName);
           AppCenter.Start(appSecret.ToString(), typeof(Analytics), typeof(Crashes));
