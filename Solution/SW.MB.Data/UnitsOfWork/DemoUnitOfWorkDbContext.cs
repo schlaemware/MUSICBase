@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SW.MB.Data.Contracts;
-using SW.MB.Data.Implementations.Abstractions;
+using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
+using SW.MB.Data.UnitsOfWork.Abstractions;
 
-namespace SW.MB.Data.Implementations {
-  internal class DemoUnitOfWorkDbContext: BaseDbContext, IUnitOfWork {
+namespace SW.MB.Data.UnitsOfWork
+{
+    internal class DemoUnitOfWorkDbContext: BaseDbContext, IUnitOfWork {
     public DbSet<CompositionEntity>? Compositions { get; set; }
     public DbSet<MandatorEntity>? Mandators { get; set; }
     public DbSet<MemberEntity>? Members { get; set; }

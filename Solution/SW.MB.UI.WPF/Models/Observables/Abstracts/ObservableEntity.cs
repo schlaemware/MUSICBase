@@ -1,9 +1,10 @@
 ﻿using System;
 using SW.Framework.WPF;
-using SW.MB.Data.Contracts;
+using SW.MB.Data.Contracts.Models;
 
-namespace SW.MB.UI.WPF.Models.Observables.Abstracts {
-  public abstract class ObservableEntity: ObservableObject, IEntity {
+namespace SW.MB.UI.WPF.Models.Observables.Abstracts
+{
+    public abstract class ObservableEntity: ObservableObject, IEntity {
     public int ID { get; }
 
     public DateTime Created { get; }

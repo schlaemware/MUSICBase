@@ -2,13 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
-using SW.MB.Data.Contracts;
-using SW.MB.Data.Implementations;
+using SW.MB.Data.Contracts.UnitsOfWork;
+using SW.MB.Data.UnitsOfWork;
 
 [assembly: InternalsVisibleTo("DevConsole")]
 
-namespace SW.MB.Data {
-  public sealed class DataFactory {
+namespace SW.MB.Data
+{
+    public sealed class DataFactory {
     private static readonly object _LockObject = new();
     private static DataFactory? _Instance;
 

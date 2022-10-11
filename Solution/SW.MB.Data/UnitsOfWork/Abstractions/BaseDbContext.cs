@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SW.MB.Data.Implementations.Abstractions {
+namespace SW.MB.Data.UnitsOfWork.Abstractions {
   internal abstract class BaseDbContext : DbContext {
     protected Serilog.ILogger Logger => Serilog.Log.Logger;
 

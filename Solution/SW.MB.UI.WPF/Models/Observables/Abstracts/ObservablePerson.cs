@@ -1,8 +1,9 @@
 ﻿using System;
-using SW.MB.Data.Contracts;
+using SW.MB.Data.Contracts.Models;
 
-namespace SW.MB.UI.WPF.Models.Observables.Abstracts {
-  public abstract class ObservablePerson: ObservableEntity {
+namespace SW.MB.UI.WPF.Models.Observables.Abstracts
+{
+    public abstract class ObservablePerson: ObservableEntity {
     public string Firstname { get; set; } = string.Empty;
 
     public string Lastname { get; set; } = string.Empty;

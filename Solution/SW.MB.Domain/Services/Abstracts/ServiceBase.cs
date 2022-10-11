@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using SW.MB.Data.Models.Entities.Abstracts;
 
-namespace SW.MB.Domain.Implementations.Abstracts {
+namespace SW.MB.Domain.Services.Abstracts {
   internal abstract class ServiceBase {
     private static IServiceProvider? _ServiceProvider;
 

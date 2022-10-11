@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SW.MB.Data.Models.Entities;
 
-namespace SW.MB.Data.Contracts {
+namespace SW.MB.Data.Contracts.UnitsOfWork {
   public interface IUnitOfWork {
     public DbSet<CompositionEntity> Compositions { get; }
     public DbSet<MandatorEntity> Mandators { get; }

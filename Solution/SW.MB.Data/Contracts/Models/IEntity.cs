@@ -1,4 +1,4 @@
-﻿namespace SW.MB.Data.Contracts {
+﻿namespace SW.MB.Data.Contracts.Models {
   public interface IEntity {
     public int ID { get; }
     public DateTime Created { get; }

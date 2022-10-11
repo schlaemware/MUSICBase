@@ -1,11 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using Microsoft.Extensions.DependencyInjection;
-using SW.MB.Domain.Contracts;
-using SW.MB.Domain.Implementations;
+using SW.MB.Domain.Contracts.Services;
+using SW.MB.Domain.Services;
 
 [assembly: InternalsVisibleTo("DevConsole")]
 
-namespace SW.MB.Domain {
+namespace SW.MB.Domain
+{
   public sealed class DomainFactory {
     private static readonly object _LockObject = new();
     private static DomainFactory? _Instance;
