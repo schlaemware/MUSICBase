@@ -1,13 +1,7 @@
-﻿namespace SW.MB.Domain.Contracts {
+﻿using SW.MB.Domain.Models.Records;
+
+namespace SW.MB.Domain.Contracts {
   public interface IMandatorsService {
-
-  }
-
-  public interface IMembersService {
-    
-  }
-
-  public interface IMusiciansService {
-
+    public IEnumerable<MandatorRecord> GetAll();
   }
 }

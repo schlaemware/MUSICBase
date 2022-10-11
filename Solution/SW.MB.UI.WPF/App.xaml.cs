@@ -36,11 +36,13 @@ namespace SW.MB.UI.WPF {
       CreateLogger();
       StartAppCenter();
 
-      SplashWindow splash = new();
-      splash.Show();
-
+      SplashWindow? splash = null;
+#if !DEBUG
+      splash = new();
+      splash?.Show();
+#endif
       Task.Factory.StartNew(() => {
-        LoadApplication(status => Dispatcher.Invoke(() => splash.Update(status)));
+        LoadApplication(status => Dispatcher.Invoke(() => splash?.Update(status)));
 
         Log.Logger.Information("Start application...");
         Analytics.TrackEvent("Application", new Dictionary<string, string> {
@@ -49,7 +51,7 @@ namespace SW.MB.UI.WPF {
 
         Dispatcher.Invoke(() => {
           StartMainApplication();
-          splash.Close();
+          splash?.Close();
         });
       });
     }
@@ -63,7 +65,7 @@ namespace SW.MB.UI.WPF {
       base.OnExit(e);
     }
 
-    private void CreateLogger() {
+    private static void CreateLogger() {
       Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Debug()
         .WriteTo.Debug(Serilog.Events.LogEventLevel.Debug)
@@ -84,10 +86,12 @@ namespace SW.MB.UI.WPF {
     }
 
     private void LoadApplication(Action<string> printStatus) {
+#if !DEBUG
       for (int n = 0; n <= 100; n++) {
         printStatus($"Loading data {n:###} %...");
         Task.Delay(10).Wait();
       }
+#endif
     }
 
     private void StartMainApplication() {
@@ -96,7 +100,7 @@ namespace SW.MB.UI.WPF {
       MainWindow.Show();
     } 
 
-    #region CALLBACKS
+#region CALLBACKS
     private void CurrentDomain_FirstChanceException(object? sender, FirstChanceExceptionEventArgs e) {
       Log.Logger.Error(e.Exception, $"FirstChangeException from {sender}");
     }
@@ -105,6 +109,6 @@ namespace SW.MB.UI.WPF {
       Log.Logger.Fatal(e.ExceptionObject as Exception, $"UnhandledException from {sender}");
       DialogService.ShowUnhandledExceptionDialog(e.IsTerminating);
     }
-    #endregion CALLBACKS
+#endregion CALLBACKS
   }
 }

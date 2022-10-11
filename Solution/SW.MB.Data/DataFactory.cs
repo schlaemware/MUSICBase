@@ -24,7 +24,7 @@ namespace SW.MB.Data {
       }
     }
 
-    public bool HasLicense { get; } = true;
+    public bool HasLicense { get; } = false;
 
     #region CONSTRUCTORS
     private DataFactory() {

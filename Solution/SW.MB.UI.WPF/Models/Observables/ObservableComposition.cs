@@ -3,7 +3,7 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableComposition : ObservableEntity {
-    public string? Title { get; set; }
+    public string Title { get; set; }
 
     #region CONSTRUCTORS
     public ObservableComposition() : base() {

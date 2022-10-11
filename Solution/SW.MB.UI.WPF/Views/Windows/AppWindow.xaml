@@ -12,13 +12,67 @@
 
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="2*" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>    
-    <TextBlock Text="MUSICBase" HorizontalAlignment="Center" VerticalAlignment="Center" />
-    <DataGrid Grid.Row="1" ItemsSource="{Binding Compositions}" AutoGenerateColumns="True" />
-    <Button Grid.Row="2" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,8"
-            Command="{Binding StoreCommand}" />
+    <TextBlock Grid.Row="0" Text="MUSICBase" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" />
+
+    <TabControl Grid.Row="1">
+      <TabItem Header="Mandators">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0" ItemsSource="{Binding Mandators}" AutoGenerateColumns="True" />
+          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
+                  Command="{Binding StoreMandatorsCommand}" />
+        </Grid>
+      </TabItem>
+      <TabItem Header="Users">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0" ItemsSource="{Binding Users}" AutoGenerateColumns="True" />
+          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
+                  Command="{Binding StoreUsersCommand}" />
+        </Grid>
+      </TabItem>
+      <TabItem Header="Compositions">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0" ItemsSource="{Binding Compositions}" AutoGenerateColumns="True" />
+          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
+                  Command="{Binding StoreCompositionsCommand}" />
+        </Grid>
+      </TabItem>
+      <TabItem Header="Musicians">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0" ItemsSource="{Binding Musicians}" AutoGenerateColumns="True" />
+          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
+                  Command="{Binding StoreMusiciansCommand}" />
+        </Grid>
+      </TabItem>
+      <TabItem Header="Members">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0" ItemsSource="{Binding Members}" AutoGenerateColumns="True" />
+          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
+                  Command="{Binding StoreMembersCommand}" />
+        </Grid>
+      </TabItem>
+    </TabControl>
   </Grid>
 </Window>

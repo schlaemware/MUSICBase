@@ -15,7 +15,7 @@ namespace SW.MB.Domain.Implementations {
 
     public IEnumerable<CompositionRecord> GetAll() {
       IUnitOfWork uow = ServiceProvider.GetRequiredService<IUnitOfWork>();
-      return uow.Compositions.Select(x => x.ToRecord()).ToList();
+      return uow.Compositions.Select(x => x.ToRecord());
     }
 
     public void Update(CompositionRecord record) {

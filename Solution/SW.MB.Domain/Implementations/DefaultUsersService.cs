@@ -6,16 +6,16 @@ using SW.MB.Domain.Implementations.Abstracts;
 using SW.MB.Domain.Models.Records;
 
 namespace SW.MB.Domain.Implementations {
-  internal class DefaultMandatorsService : ServiceBase, IMandatorsService {
+  internal class DefaultUsersService: ServiceBase, IUsersService {
     #region CONSTRUCTORS
-    public DefaultMandatorsService(IServiceProvider serviceProvider) : base(serviceProvider) {
+    public DefaultUsersService(IServiceProvider serviceProvider) : base(serviceProvider) {
       // empty...
     }
     #endregion CONSTRUCTORS
 
-    public IEnumerable<MandatorRecord> GetAll() {
+    public IEnumerable<UserRecord> GetAll() {
       IUnitOfWork uow = ServiceProvider.GetRequiredService<IUnitOfWork>();
-      return uow.Mandators.Select(x => x.ToRecord());
+      return uow.Users.Select(x => x.ToRecord());
     }
   }
 }
