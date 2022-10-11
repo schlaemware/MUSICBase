@@ -3,15 +3,20 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableComposition : ObservableEntity {
-    public string Title { get; set; }
+    private string _Title;
+
+    public string Title {
+      get => _Title;
+      set => SetProperty(ref _Title, value);
+    }
 
     #region CONSTRUCTORS
     public ObservableComposition() : base() {
-      Title = string.Empty;
+      _Title = string.Empty;
     }
 
     public ObservableComposition(CompositionRecord record) : base(record) {
-      Title = record.Title;
+      _Title = record.Title;
     }
     #endregion CONSTRUCTORS
 

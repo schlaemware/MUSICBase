@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore;
 using SW.Framework.Extensions;
 using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Data.UnitsOfWork.Abstractions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SW.MB.Data.UnitsOfWork {
   internal class DemoUnitOfWorkDbContext: BaseDbContext, IUnitOfWork {

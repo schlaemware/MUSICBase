@@ -3,15 +3,20 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableUser: ObservablePerson {
-    public string Mail { get; set; }
+    private string _Mail;
+
+    public string Mail {
+      get => _Mail;
+      set => SetProperty(ref _Mail, value);
+    }
 
     #region CONSTRUCTORS
     public ObservableUser() : base() {
-      Mail = string.Empty;
+      _Mail = string.Empty;
     }
 
     public ObservableUser(UserRecord record) : base(record) {
-      Mail = record.Mail;
+      _Mail = record.Mail;
     }
     #endregion CONSTRUCTORS
 

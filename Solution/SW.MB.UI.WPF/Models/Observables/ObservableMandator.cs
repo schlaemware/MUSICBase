@@ -3,15 +3,20 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableMandator : ObservableEntity {
-    public string Name { get; set; }
+    private string _Name;
 
-    #region CONSTRUCTORS
-    public ObservableMandator() : base() {
-      Name = string.Empty;
+    public string Name {
+      get => _Name;
+      set => SetProperty(ref _Name, value);
     }
 
+    #region CONSTRUCTORS
+    //public ObservableMandator() : base() {
+    //  _Name = string.Empty;
+    //}
+
     public ObservableMandator(MandatorRecord record) : base(record) {
-      Name = record.Name;
+      _Name = record.Name;
     }
     #endregion CONSTRUCTORS
 

@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableMember: ObservablePerson {
-    public List<int> YearsOfJoining { get; set; }
-    public List<int> YearsOfSeparation { get; init; }
+    public ObservableCollection<int> YearsOfJoining { get; }
+    public ObservableCollection<int> YearsOfSeparation { get; }
 
     #region CONSTRUCTORS
     public ObservableMember() : base() {
-      YearsOfJoining = new List<int>();
-      YearsOfSeparation = new List<int>();
+      YearsOfJoining = new();
+      YearsOfSeparation = new();
     }
 
     public ObservableMember(MemberRecord record) : base(record) {
-      YearsOfJoining = new List<int>(record.YearsOfJoining ?? Array.Empty<int>());
-      YearsOfSeparation = new List<int>(record.YearsOfSeparation ?? Array.Empty<int>());
+      YearsOfJoining = new ObservableCollection<int>(record.YearsOfJoining ?? Array.Empty<int>());
+      YearsOfSeparation = new ObservableCollection<int>(record.YearsOfSeparation ?? Array.Empty<int>());
     }
     #endregion CONSTRUCTORS
 
