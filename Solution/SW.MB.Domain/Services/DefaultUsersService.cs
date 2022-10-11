@@ -5,9 +5,8 @@ using SW.MB.Domain.Extensions;
 using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
-namespace SW.MB.Domain.Services
-{
-    internal class DefaultUsersService: ServiceBase, IUsersService {
+namespace SW.MB.Domain.Services {
+  internal class DefaultUsersService: ServiceBase, IUsersService {
     #region CONSTRUCTORS
     public DefaultUsersService(IServiceProvider serviceProvider) : base(serviceProvider) {
       // empty...
