@@ -68,13 +68,13 @@ namespace SW.MB.Data.UnitsOfWork
 
     private static List<MemberEntity> GetMembers() {
       return new List<MemberEntity>() {
-        new MemberEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Max", Lastname = "Muster", DateOfBirth = new DateTime() },
+        new MemberEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Max", Lastname = "Muster" },
       };
     }
 
     private static List<MusicianEntity> GetMusicians() {
       return new List<MusicianEntity>() {
-        new MusicianEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Hans", Lastname = "Zimmer", DateOfBirth = new DateTime(), DateOfDeath = new DateTime() },
+        new MusicianEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Hans", Lastname = "Zimmer" },
       };
     }
 

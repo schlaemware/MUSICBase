@@ -12,8 +12,8 @@ namespace SW.MB.Domain.Extensions {
         UpdatedBy = entity.UpdatedBy,
         Firstname = entity.Firstname,
         Lastname = entity.Lastname,
-        DateOfBirth = entity.DateOfBirth,
-        DateOfDeath = entity.DateOfDeath,
+        DateOfBirth = entity.DateOfBirth is DateTime birthDate ? DateOnly.FromDateTime(birthDate) : null,
+        DateOfDeath = entity.DateOfDeath is DateTime deathDate ? DateOnly.FromDateTime(deathDate) : null,
       };
     }
   }

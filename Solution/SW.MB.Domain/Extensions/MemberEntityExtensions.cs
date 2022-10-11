@@ -12,7 +12,7 @@ namespace SW.MB.Domain.Extensions {
         UpdatedBy = entity.UpdatedBy,
         Firstname = entity.Firstname,
         Lastname = entity.Lastname,
-        DateOfBirth = entity.DateOfBirth,
+        DateOfBirth = entity.DateOfBirth is DateTime date ? DateOnly.FromDateTime(date) : null,
         YearsOfJoining = entity.YearsOfJoining?.Split(';').Select(x => int.Parse(x)).ToArray(),
         YearsOfSeparation = entity.YearsOfSeparation?.Split(';').Select(x => int.Parse(x)).ToArray(),
       };

@@ -12,8 +12,8 @@ namespace SW.MB.Domain.Extensions {
         UpdatedBy = record.UpdatedBy,
         Firstname = record.Firstname,
         Lastname = record.Lastname,
-        DateOfBirth = record.DateOfBirth,
-        DateOfDeath = record.DateOfDeath,
+        DateOfBirth = record.DateOfBirth?.ToDateTime(TimeOnly.MinValue),
+        DateOfDeath = record.DateOfDeath?.ToDateTime(TimeOnly.MinValue),
       };
     }
   }

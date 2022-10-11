@@ -4,7 +4,7 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableMusician: ObservablePerson {
-    public DateTime? DateOfDeath { get; set; }
+    public DateOnly? DateOfDeath { get; set; }
 
     #region CONSTRUCTORS
     public ObservableMusician() : base() {

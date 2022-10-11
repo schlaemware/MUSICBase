@@ -12,7 +12,7 @@ namespace SW.MB.Domain.Extensions {
         UpdatedBy = record.UpdatedBy,
         Firstname = record.Firstname,
         Lastname = record.Lastname,
-        DateOfBirth = record.DateOfBirth,
+        DateOfBirth = record.DateOfBirth?.ToDateTime(TimeOnly.MinValue),
         YearsOfJoining = string.Join(';', record.YearsOfJoining ?? Array.Empty<int>()),
         YearsOfSeparation = string.Join(';', record.YearsOfSeparation ?? Array.Empty<int>()),
       };
