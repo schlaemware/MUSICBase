@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SW.MB.Data;
 using SW.MB.Domain;
-using SW.MB.UI.WPF.Models.ConfigurationObjects;
 using SW.MB.UI.WPF.ViewModels;
 using SW.MB.UI.WPF.Views.Windows;
 
@@ -15,7 +14,7 @@ namespace SW.MB.UI.WPF.HostBuilder {
       .Build();
 
     private static IHostBuilder ConfigureMyUserSecrets(this IHostBuilder hostBuilder) => hostBuilder.ConfigureAppConfiguration((context, configuration) => {
-      configuration.AddUserSecrets<AppCenterObject>(true, true);
+      configuration.AddUserSecrets<AppViewModel>(true, true);
     });
 
     private static IHostBuilder ConfigureMyServices(this IHostBuilder hostBuilder) => hostBuilder.ConfigureServices((context, services) => {

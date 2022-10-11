@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using SW.MB.UI.WPF.HostBuilder;
-using SW.MB.UI.WPF.Models.ConfigurationObjects;
 using SW.MB.UI.WPF.Services;
 using SW.MB.UI.WPF.ViewModels;
 using SW.MB.UI.WPF.Views.Windows;
@@ -24,13 +23,16 @@ namespace SW.MB.UI.WPF {
   public partial class App: Application {
     private readonly IHost _Host;
 
+    #region CONSTRUCTORS
     public App() {
       AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
       AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
       _Host = MyHostBuilder.Build();
     }
+    #endregion CONSTRUCTORS
 
+    #region PROTECTED METHODS
     protected override void OnStartup(StartupEventArgs e) {
       base.OnStartup(e);
 
@@ -65,6 +67,7 @@ namespace SW.MB.UI.WPF {
 
       base.OnExit(e);
     }
+    #endregion PROTECTED METHODS
 
     private static void CreateLogger() {
       Log.Logger = new LoggerConfiguration()
@@ -102,7 +105,7 @@ namespace SW.MB.UI.WPF {
       MainWindow.Show();
     } 
 
-#region CALLBACKS
+    #region CALLBACKS
     private void CurrentDomain_FirstChanceException(object? sender, FirstChanceExceptionEventArgs e) {
       Log.Logger.Error(e.Exception, $"FirstChangeException from {sender}");
     }
@@ -111,6 +114,6 @@ namespace SW.MB.UI.WPF {
       Log.Logger.Fatal(e.ExceptionObject as Exception, $"UnhandledException from {sender}");
       DialogService.ShowUnhandledExceptionDialog(e.IsTerminating);
     }
-#endregion CALLBACKS
+    #endregion CALLBACKS
   }
 }
