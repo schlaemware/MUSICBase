@@ -1,11 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SW.Framework.Extensions;
 using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Data.UnitsOfWork.Abstractions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace SW.MB.Data.UnitsOfWork
-{
-    internal class DemoUnitOfWorkDbContext: BaseDbContext, IUnitOfWork {
+namespace SW.MB.Data.UnitsOfWork {
+  internal class DemoUnitOfWorkDbContext: BaseDbContext, IUnitOfWork {
+    public const int NUM_OF_COMPOSITIONS = 10;
+    public const int NUM_OF_MANDATORS = 3;
+    public const int NUM_OF_MEMBERS = 10;
+    public const int NUM_OF_MUSICIANS = 10;
+    public const int NUM_OF_USERS = 5;
+
+    private static readonly Random _Random = new();
+
     public DbSet<CompositionEntity>? Compositions { get; set; }
     public DbSet<MandatorEntity>? Mandators { get; set; }
     public DbSet<MemberEntity>? Members { get; set; }
@@ -47,42 +59,119 @@ namespace SW.MB.Data.UnitsOfWork
     }
 
     private List<CompositionEntity> GetCompositions() {
-      return new List<CompositionEntity>() {
-        new CompositionEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "First Title" },
-        new CompositionEntity() { ID = 2, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "Second Title" },
-        new CompositionEntity() { ID = 3, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "Third Title" },
-        new CompositionEntity() { ID = 4, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "Fourth Title" },
-        new CompositionEntity() { ID = 5, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "Fifth Title" },
-        new CompositionEntity() { ID = 6, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "Sixth Title" },
-        new CompositionEntity() { ID = 7, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Title = "Seventh Title" },
-      };
+      List<CompositionEntity> list = new();
+
+      DateTime created;
+      DateTime updated;
+
+      for (int n = 0; n < NUM_OF_COMPOSITIONS; n++) {
+        created = _Random.NextDateTimePast();
+        updated = _Random.NextDateTimePast(created);
+
+        list.Add(new CompositionEntity() {
+          ID = n + 1,
+          Created = created,
+          CreatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Updated = updated,
+          UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Title = _Random.NextTitle(),
+        });
+      }
+
+      return list;
     }
 
     private static List<MandatorEntity> GetMandators() {
       return new List<MandatorEntity>() {
-        new MandatorEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Name = "First Mandator" },
-        new MandatorEntity() { ID = 2, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Name = "Second Mandator" },
-        new MandatorEntity() { ID = 3, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Name = "Third Mandator" },
+        new MandatorEntity() { ID = 1, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Musikverein Musterhausen" },
+        new MandatorEntity() { ID = 2, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Jodelchor Immerschwanger" },
+        new MandatorEntity() { ID = 3, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Jugendblasorchester Taubenuss" },
       };
     }
 
     private static List<MemberEntity> GetMembers() {
-      return new List<MemberEntity>() {
-        new MemberEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Max", Lastname = "Muster" },
-      };
+      List<MemberEntity> list = new();
+
+      DateTime created;
+      DateTime updated;
+
+      for (int n = 0; n < NUM_OF_MEMBERS; n++) {
+        created = _Random.NextDateTimePast();
+        updated = _Random.NextDateTimePast(created);
+
+        list.Add(new MemberEntity() {
+          ID = n + 1,
+          Created = created,
+          CreatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Updated = updated,
+          UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Firstname = _Random.NextFirstname(),
+          Lastname = _Random.NextLastname(),
+          DateOfBirth = _Random.NextDateTimePast()
+        });
+      }
+
+      return list;
     }
 
     private static List<MusicianEntity> GetMusicians() {
-      return new List<MusicianEntity>() {
-        new MusicianEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Hans", Lastname = "Zimmer" },
-      };
+      List<MusicianEntity> list = new();
+
+      DateTime created;
+      DateTime updated;
+      DateTime birthDate;
+      DateTime? deathDate;
+
+      for (int n = 0; n < NUM_OF_MUSICIANS; n++) {
+        created = _Random.NextDateTimePast();
+        updated = _Random.NextDateTimePast(created);
+        birthDate = _Random.NextDateTimePast();
+        deathDate = _Random.NextBoolean() ? _Random.NextDateTimePast(birthDate) : null;
+
+        list.Add(new MusicianEntity() {
+          ID = n + 1,
+          Created = created,
+          CreatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Updated = updated,
+          UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Firstname = _Random.NextFirstname(),
+          Lastname = _Random.NextLastname(),
+          DateOfBirth = birthDate,
+          DateOfDeath = deathDate,
+        });
+      }
+
+      return list;
     }
 
     private static List<UserEntity> GetUsers() {
-      return new List<UserEntity>() {
-        new UserEntity() { ID = 1, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Michael", Lastname = "Schläpfer" },
-        new UserEntity() { ID = 2, Created = DateTime.Now, CreatedBy = 1, Updated = DateTime.Now, UpdatedBy = 1, Firstname = "Svenja", Lastname = "Wick" }
-      };
+      List<UserEntity> list = new();
+
+      DateTime created;
+      DateTime updated;
+      string firstname;
+      string lastname;
+
+      for (int n = 0; n < NUM_OF_USERS; n++) {
+        created = _Random.NextDateTimePast();
+        updated = _Random.NextDateTimePast(created);
+        firstname = _Random.NextFirstname();
+        lastname = _Random.NextLastname();
+
+        list.Add(new UserEntity() {
+          ID = n + 1,
+          Created = created,
+          CreatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Updated = updated,
+          UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1),
+          Firstname = firstname,
+          Lastname = lastname,
+          DateOfBirth = _Random.NextDateTimePast(),
+          Mail = $"{firstname.ToLower()}.{lastname.ToLower()}@schlaemware.ch"
+        });
+      }
+
+      return list;
     }
   }
 }
