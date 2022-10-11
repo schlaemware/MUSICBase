@@ -6,6 +6,7 @@ using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.UnitsOfWork;
 
 [assembly: InternalsVisibleTo("DevConsole")]
+[assembly: InternalsVisibleTo("SW.MB.Test")]
 
 namespace SW.MB.Data
 {

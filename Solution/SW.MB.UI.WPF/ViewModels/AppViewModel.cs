@@ -8,9 +8,8 @@ using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
 
-namespace SW.MB.UI.WPF.ViewModels
-{
-    public class AppViewModel : ViewModel {
+namespace SW.MB.UI.WPF.ViewModels {
+  public class AppViewModel: ViewModel {
     public ObservableCollection<ObservableComposition> Compositions { get; } = new();
     public ObservableCollection<ObservableMandator> Mandators { get; } = new();
     public ObservableCollection<ObservableMember> Members { get; } = new();

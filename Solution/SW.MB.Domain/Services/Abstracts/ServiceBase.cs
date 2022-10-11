@@ -11,6 +11,10 @@ namespace SW.MB.Domain.Services.Abstracts {
       ?? throw new ApplicationException($"{nameof(_ServiceProvider)} not instantiated!");
 
     #region CONSTRUCTORS
+    public ServiceBase() {
+      // empty...
+    }
+
     public ServiceBase(IServiceProvider serviceProvider) {
       _ServiceProvider ??= serviceProvider;
     }

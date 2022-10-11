@@ -4,6 +4,7 @@ using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Services;
 
 [assembly: InternalsVisibleTo("DevConsole")]
+[assembly: InternalsVisibleTo("SW.MB.Test")]
 
 namespace SW.MB.Domain
 {
