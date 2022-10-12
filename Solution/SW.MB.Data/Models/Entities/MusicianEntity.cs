@@ -1,7 +1,9 @@
-﻿using SW.MB.Data.Models.Entities.Abstracts;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-  public class MusicianEntity : PersonEntity {
-    public DateTime? DateOfDeath { get; set; }
-  }
+    [Table("Musicians")]
+    public class MusicianEntity : PersonEntity {
+        public DateTime? DateOfDeath { get; set; }
+    }
 }

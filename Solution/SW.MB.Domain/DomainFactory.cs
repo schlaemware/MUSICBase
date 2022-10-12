@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Services;
@@ -30,7 +31,7 @@ namespace SW.MB.Domain
     }
     #endregion CONSTRUCTORS
 
-    public void ConfigureServices(IServiceCollection services) {
+    public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
       services.AddTransient<IApplicationService, DefaultApplicationService>();
       services.AddTransient<ICompositionsService, DefaultCompositionsService>();
       services.AddTransient<IMandatorsService, DefaultMandatorsService>();

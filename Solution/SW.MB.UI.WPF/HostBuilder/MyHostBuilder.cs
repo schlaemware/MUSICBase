@@ -18,8 +18,8 @@ namespace SW.MB.UI.WPF.HostBuilder {
     });
 
     private static IHostBuilder ConfigureMyServices(this IHostBuilder hostBuilder) => hostBuilder.ConfigureServices((context, services) => {
-      DataFactory.Instance.ConfigureServices(services);
-      DomainFactory.Instance.ConfigureServices(services);
+      DataFactory.Instance.ConfigureServices(services, context.Configuration);
+      DomainFactory.Instance.ConfigureServices(services, context.Configuration);
 
       services.AddSingleton<AppViewModel>();
       services.AddSingleton<AppWindow>();
