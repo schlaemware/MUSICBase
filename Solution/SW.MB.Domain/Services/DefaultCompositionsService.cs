@@ -6,10 +6,10 @@ using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
     internal class DefaultCompositionsService : ServiceBase, ICompositionsService {
-        private IUnitOfWork _UnitOfWork;
+        private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS
-        public DefaultCompositionsService(IUnitOfWork uow) {
+        public DefaultCompositionsService(IUnitOfWork uow) : base() {
             _UnitOfWork = uow;
         }
         #endregion CONSTRUCTORS

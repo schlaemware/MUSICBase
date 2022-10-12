@@ -10,5 +10,6 @@ namespace SW.MB.Data.Contracts.UnitsOfWork {
         public DbSet<UserEntity> Users { get; }
 
         public int SaveChanges();
+        public Task<int> SaveChangesAsync();
     }
 }

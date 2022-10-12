@@ -50,7 +50,7 @@ namespace SW.MB.Data.UnitsOfWork {
             modelBuilder.Entity<MemberEntity>().HasData(GetMembers());
             modelBuilder.Entity<MusicianEntity>().HasData(GetMusicians());
             modelBuilder.Entity<UserEntity>().HasData(GetUsers());
-
+            
             base.OnModelCreating(modelBuilder);
         }
 
@@ -79,10 +79,10 @@ namespace SW.MB.Data.UnitsOfWork {
 
         private static List<MandatorEntity> GetMandators() {
             return new List<MandatorEntity>() {
-        new MandatorEntity() { ID = 1, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Musikverein Musterhausen" },
-        new MandatorEntity() { ID = 2, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Jodelchor Immerschwanger" },
-        new MandatorEntity() { ID = 3, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Jugendblasorchester Taubenuss" },
-      };
+                new MandatorEntity() { ID = 1, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Musikverein Musterhausen" },
+                new MandatorEntity() { ID = 2, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Jodelchor Immerschwanger" },
+                new MandatorEntity() { ID = 3, Created = _Random.NextDateTimePast(), CreatedBy = _Random.Next(1, NUM_OF_USERS + 1), Updated = _Random.NextDateTimePast(), UpdatedBy = _Random.Next(1, NUM_OF_USERS + 1), Name = "Jugendblasorchester Taubenuss" },
+            };
         }
 
         private static List<MemberEntity> GetMembers() {

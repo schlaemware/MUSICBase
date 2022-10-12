@@ -3,5 +3,7 @@
 namespace SW.MB.Domain.Contracts.Services {
     public interface IMandatorsService {
         public IEnumerable<MandatorRecord> GetAll();
+
+        public void UpdateRange(params MandatorRecord[] records);
     }
 }

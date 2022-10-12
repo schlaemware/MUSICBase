@@ -3,5 +3,7 @@
 namespace SW.MB.Domain.Contracts.Services {
     public interface IMusiciansService {
         public IEnumerable<MusicianRecord> GetAll();
+
+        public void UpdateRange(params MusicianRecord[] records);
     }
 }

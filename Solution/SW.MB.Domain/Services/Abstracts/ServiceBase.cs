@@ -3,20 +3,11 @@ using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Domain.Services.Abstracts {
     internal abstract class ServiceBase {
-        private static IServiceProvider? _ServiceProvider;
-
         protected Serilog.ILogger Logger => Serilog.Log.Logger;
-
-        protected IServiceProvider ServiceProvider => _ServiceProvider
-          ?? throw new ApplicationException($"{nameof(_ServiceProvider)} not instantiated!");
 
         #region CONSTRUCTORS
         public ServiceBase() {
             // empty...
-        }
-
-        public ServiceBase(IServiceProvider serviceProvider) {
-            _ServiceProvider ??= serviceProvider;
         }
         #endregion CONSTRUCTORS
 

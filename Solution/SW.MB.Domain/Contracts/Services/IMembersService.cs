@@ -3,5 +3,7 @@
 namespace SW.MB.Domain.Contracts.Services {
     public interface IMembersService {
         public IEnumerable<MemberRecord> GetAll();
+
+        public void UpdateRange(params MemberRecord[] records);
     }
 }

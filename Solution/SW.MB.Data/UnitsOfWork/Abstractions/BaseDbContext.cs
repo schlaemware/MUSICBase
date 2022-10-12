@@ -9,5 +9,9 @@ namespace SW.MB.Data.UnitsOfWork.Abstractions {
             // empty...
         }
         #endregion CONSTRUCTORS
+
+        public Task<int> SaveChangesAsync() {
+            return base.SaveChangesAsync();
+        }
     }
 }

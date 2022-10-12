@@ -27,10 +27,10 @@ namespace SW.MB.UI.WPF.ViewModels {
         #region CONSTRUCTORS
         public AppViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
             StoreCompositionsCommand = new RelayCommand(obj => StoreCompositions(), obj => true);
-            StoreMandatorsCommand = new RelayCommand(obj => StoreMandators(), obj => false);
-            StoreMembersCommand = new RelayCommand(obj => StoreMembers(), obj => false);
-            StoreMusiciansCommand = new RelayCommand(obj => StoreMusicians(), obj => false);
-            StoreUsersCommand = new RelayCommand(obj => StoreUsers(), obj => false);
+            StoreMandatorsCommand = new RelayCommand(obj => StoreMandators(), obj => true);
+            StoreMembersCommand = new RelayCommand(obj => StoreMembers(), obj => true);
+            StoreMusiciansCommand = new RelayCommand(obj => StoreMusicians(), obj => true);
+            StoreUsersCommand = new RelayCommand(obj => StoreUsers(), obj => true);
 
             LoadCompositions();
             LoadMandators();
@@ -81,19 +81,23 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void StoreMandators() {
-
+            IMandatorsService service = ServiceProvider.GetRequiredService<IMandatorsService>();
+            service.UpdateRange(Mandators.Select(x => x.ToRecord()).ToArray());
         }
 
         private void StoreMembers() {
-
+            IMembersService service = ServiceProvider.GetRequiredService<IMembersService>();
+            service.UpdateRange(Members.Select(x => x.ToRecord()).ToArray());
         }
 
         private void StoreMusicians() {
-
+            IMusiciansService service = ServiceProvider.GetRequiredService<IMusiciansService>();
+            service.UpdateRange(Musicians.Select(x => x.ToRecord()).ToArray());
         }
 
         private void StoreUsers() {
-
+            IUsersService service = ServiceProvider.GetRequiredService<IUsersService>();
+            service.UpdateRange(Users.Select(x => x.ToRecord()).ToArray());
         }
     }
 }
