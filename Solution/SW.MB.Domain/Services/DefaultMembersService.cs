@@ -5,18 +5,17 @@ using SW.MB.Domain.Extensions;
 using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
-namespace SW.MB.Domain.Services
-{
-    internal class DefaultMembersService: ServiceBase, IMembersService {
-    #region CONSTRUCTORS
-    public DefaultMembersService(IServiceProvider serviceProvider) : base(serviceProvider) {
-      // empty...
-    }
-    #endregion CONSTRUCTORS
+namespace SW.MB.Domain.Services {
+    internal class DefaultMembersService : ServiceBase, IMembersService {
+        #region CONSTRUCTORS
+        public DefaultMembersService(IServiceProvider serviceProvider) : base(serviceProvider) {
+            // empty...
+        }
+        #endregion CONSTRUCTORS
 
-    public IEnumerable<MemberRecord> GetAll() {
-      IUnitOfWork uow = ServiceProvider.GetRequiredService<IUnitOfWork>();
-      return uow.Members.Select(x => x.ToRecord());
+        public IEnumerable<MemberRecord> GetAll() {
+            IUnitOfWork uow = ServiceProvider.GetRequiredService<IUnitOfWork>();
+            return uow.Members.Select(x => x.ToRecord());
+        }
     }
-  }
 }

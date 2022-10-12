@@ -2,16 +2,16 @@
 using SW.MB.Domain.Models.Records;
 
 namespace SW.MB.Domain.Extensions {
-  internal static class MandatorEntityExtensions {
-    public static MandatorRecord ToRecord(this MandatorEntity entity) {
-      return new MandatorRecord() {
-        ID = entity.ID,
-        Created = entity.Created,
-        CreatedBy = entity.CreatedBy,
-        Updated = entity.Updated,
-        UpdatedBy = entity.UpdatedBy,
-        Name = entity.Name
-      };
+    internal static class MandatorEntityExtensions {
+        public static MandatorRecord ToRecord(this MandatorEntity entity) {
+            return new MandatorRecord() {
+                ID = entity.ID,
+                Created = entity.Created,
+                CreatedBy = entity.CreatedBy,
+                Updated = entity.Updated,
+                UpdatedBy = entity.UpdatedBy,
+                Name = entity.Name
+            };
+        }
     }
-  }
 }
