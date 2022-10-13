@@ -45,7 +45,7 @@ namespace SW.MB.Data {
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors());
 #else
-                services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseMySql(connectionString, serverVersion));
+                services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseMySql(mySqlConnectionString, serverVersion));
 #endif
             } else if (true) {
                 // Umsetzung als SQLite-Datenbank.

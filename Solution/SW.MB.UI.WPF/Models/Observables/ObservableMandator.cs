@@ -10,12 +10,12 @@ namespace SW.MB.UI.WPF.Models.Observables {
             set => SetProperty(ref _Name, value);
         }
 
-        #region CONSTRUCTORS
-        //public ObservableMandator() : base() {
-        //  _Name = string.Empty;
-        //}
+    #region CONSTRUCTORS
+    public ObservableMandator() : base() {
+      _Name = string.Empty;
+    }
 
-        public ObservableMandator(MandatorRecord record) : base(record) {
+    public ObservableMandator(MandatorRecord record) : base(record) {
             _Name = record.Name;
         }
         #endregion CONSTRUCTORS
