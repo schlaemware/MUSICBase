@@ -3,6 +3,7 @@
 namespace SW.MB.Domain.Contracts.Services {
     public interface ICompositionsService {
         public IEnumerable<CompositionRecord> GetAll();
+        public IEnumerable<CompositionRecord> GetAll(params MandatorRecord?[]? mandators);
 
         public void Update(CompositionRecord record);
 

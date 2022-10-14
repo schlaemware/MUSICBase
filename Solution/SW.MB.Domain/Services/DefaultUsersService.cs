@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SW.MB.Data.Contracts.UnitsOfWork;
+﻿using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Extensions;
@@ -17,7 +16,23 @@ namespace SW.MB.Domain.Services {
         #endregion CONSTRUCTORS
 
         public IEnumerable<UserRecord> GetAll() {
-            return _UnitOfWork.Users.Include(x => x.Mandators).Select(x => x.ToRecord());
+            return _UnitOfWork.Users.Where(x => !x.Mandators.Any()).Select(x => x.ToRecord());
+        }
+
+        public IEnumerable<UserRecord> GetAll(params MandatorRecord?[]? mandators) {
+            if (mandators == null || !mandators.Any(x => x != null)) {
+                return GetAll();
+            }
+
+            List<UserRecord> compositions = new();
+
+            foreach (MandatorRecord? mandator in mandators) {
+                if (mandator != null) {
+                    compositions.AddRange(GetAll(mandator));
+                }
+            }
+
+            return compositions;
         }
 
         public void UpdateRange(params UserRecord[] records) {
@@ -30,6 +45,11 @@ namespace SW.MB.Domain.Services {
             }
 
             _UnitOfWork.SaveChangesAsync();
+        }
+
+        private IEnumerable<UserRecord> GetAll(MandatorRecord mandator) {
+            MandatorEntity mandatorEntity = mandator.ToEntity();
+            return _UnitOfWork.Users.Where(x => x.Mandators.Contains(mandatorEntity)).Select(x => x.ToRecord());
         }
     }
 }

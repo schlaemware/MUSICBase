@@ -12,16 +12,26 @@
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
   <DockPanel LastChildFill="True">
-    <Menu DockPanel.Dock="Top">
-      <MenuItem x:Name="MandatorsMenuItem" Header="Mandators" IsCheckable="True" />
-      <MenuItem x:Name="UsersMenuItem" Header="Users" IsCheckable="True" />
-      <MenuItem x:Name="CompositionsMenuItem" Header="Compositions" IsCheckable="True" IsChecked="True" />
-      <MenuItem x:Name="MusiciansMenuItem" Header="Musicians" IsCheckable="True" />
-      <MenuItem x:Name="MembersMenuItem" Header="Members" IsCheckable="True" />
-      <MenuItem x:Name="SettingsMenuItem" Header="Settings" IsCheckable="True" />
-      <MenuItem x:Name="UpdatesMenuItem" Header="Updates" IsCheckable="True" />
-    </Menu>
-    
+    <Grid DockPanel.Dock="Top">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Menu Grid.Column="0">
+        <MenuItem x:Name="MandatorsMenuItem" Header="Mandators" IsCheckable="True" />
+        <MenuItem x:Name="UsersMenuItem" Header="Users" IsCheckable="True" />
+        <MenuItem x:Name="CompositionsMenuItem" Header="Compositions" IsCheckable="True" IsChecked="True" />
+        <MenuItem x:Name="MusiciansMenuItem" Header="Musicians" IsCheckable="True" />
+        <MenuItem x:Name="MembersMenuItem" Header="Members" IsCheckable="True" />
+        <MenuItem x:Name="SettingsMenuItem" Header="Settings" IsCheckable="True" />
+        <MenuItem x:Name="UpdatesMenuItem" Header="Updates" IsCheckable="True" />
+      </Menu>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal">
+        <ComboBox ItemsSource="{Binding MandatorsCollection}" DisplayMemberPath="Name" SelectedItem="{Binding ActiveMandator}" />
+      </StackPanel>
+    </Grid>
+
     <TabControl>
       <TabControl.Resources>
         <Style TargetType="{x:Type TabItem}">

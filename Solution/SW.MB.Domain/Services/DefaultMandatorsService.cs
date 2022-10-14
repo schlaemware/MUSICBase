@@ -24,6 +24,10 @@ namespace SW.MB.Domain.Services {
                 .Select(x => x.ToRecord());
         }
 
+        public IEnumerable<MandatorRecord> GetAllRaw() {
+            return _UnitOfWork.Mandators.Select(x => x.ToRecord());
+        }
+
         public void UpdateRange(params MandatorRecord[] records) {
             foreach (MandatorRecord record in records) {
                 if (_UnitOfWork.Mandators.SingleOrDefault(x => x.ID == record.ID) is MandatorEntity entity) {

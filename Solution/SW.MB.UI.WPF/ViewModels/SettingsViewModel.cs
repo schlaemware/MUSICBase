@@ -5,15 +5,15 @@ using SW.Framework.WPF;
 using SW.MB.Domain.Contracts.Services;
 
 namespace SW.MB.UI.WPF.ViewModels {
-  public class SettingsViewModel: ViewModel {
-    #region COMMANDS
-    public ICommand GenereateSampleDataCommand { get; }
-    #endregion COMMANDS
+    public class SettingsViewModel : ViewModelBase {
+        #region COMMANDS
+        public ICommand GenereateSampleDataCommand { get; }
+        #endregion COMMANDS
 
-    #region CONSTRUCTORS
-    public SettingsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-      GenereateSampleDataCommand = new RelayCommand(obj => ServiceProvider.GetService<IApplicationService>()?.GenerateSampleData(), obj => IsDebug);
+        #region CONSTRUCTORS
+        public SettingsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
+            GenereateSampleDataCommand = new RelayCommand(obj => ServiceProvider.GetService<IApplicationService>()?.GenerateSampleData(), obj => IsDebug);
+        }
+        #endregion CONSTRUCTORS
     }
-    #endregion CONSTRUCTORS
-  }
 }
