@@ -7,38 +7,45 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
-    public class UsersViewModel : ViewModelBase {
-        public ObservableCollection<ObservableUser> Users { get; } = new();
+  public class UsersViewModel: ViewModelBase {
+    private ObservableUser? _SelectedUser;
 
-        #region CONSTRUCTORS
-        public UsersViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-            IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
-            
-            LoadUsers();
-        }
-        #endregion CONSTRUCTORS
+    public ObservableCollection<ObservableUser> Users { get; } = new();
 
-        private void LoadUsers() {
-            if (ServiceProvider.GetRequiredService<IUsersService>() is IUsersService service) {
-                Users.Clear();
-
-                foreach (UserRecord user in service.GetAll(ActiveMandator?.ToRecord())) {
-                    Users.Add(new ObservableUser(user));
-                }
-            }
-        }
-
-        private void StoreUsers() {
-            if (ServiceProvider.GetService<IUsersService>() is IUsersService service) {
-                service.UpdateRange(Users.Select(x => x.ToRecord()).ToArray());
-                LoadUsers();
-            }
-        }
-
-        #region CALLBACKS
-        private void IMandatorsService_MandatorChanged(object? sender, EventArgs e) {
-            LoadUsers();
-        }
-        #endregion CALLBACKS
+    public ObservableUser? SelectedUser {
+      get => _SelectedUser;
+      set => SetProperty(ref _SelectedUser, value);
     }
+
+    #region CONSTRUCTORS
+    public UsersViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
+      IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
+
+      LoadUsers();
+    }
+    #endregion CONSTRUCTORS
+
+    private void LoadUsers() {
+      if (ServiceProvider.GetRequiredService<IUsersService>() is IUsersService service) {
+        Users.Clear();
+
+        foreach (UserRecord user in service.GetAll(ActiveMandator?.ToRecord())) {
+          Users.Add(new ObservableUser(user));
+        }
+      }
+    }
+
+    private void StoreUsers() {
+      if (ServiceProvider.GetService<IUsersService>() is IUsersService service) {
+        service.UpdateRange(Users.Select(x => x.ToRecord()).ToArray());
+        LoadUsers();
+      }
+    }
+
+    #region CALLBACKS
+    private void IMandatorsService_MandatorChanged(object? sender, EventArgs e) {
+      LoadUsers();
+    }
+    #endregion CALLBACKS
+  }
 }
