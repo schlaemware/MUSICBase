@@ -17,15 +17,20 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
-      <Menu Grid.Column="0">
-        <MenuItem x:Name="MandatorsMenuItem" Header="Mandators" IsCheckable="True" />
-        <MenuItem x:Name="UsersMenuItem" Header="Users" IsCheckable="True" />
-        <MenuItem x:Name="CompositionsMenuItem" Header="Compositions" IsCheckable="True" IsChecked="True" />
-        <MenuItem x:Name="MusiciansMenuItem" Header="Musicians" IsCheckable="True" />
-        <MenuItem x:Name="MembersMenuItem" Header="Members" IsCheckable="True" />
-        <MenuItem x:Name="SettingsMenuItem" Header="Settings" IsCheckable="True" />
-        <MenuItem x:Name="UpdatesMenuItem" Header="Updates" IsCheckable="True" />
-      </Menu>
+      <StackPanel Grid.Column="0" Orientation="Horizontal">
+        <StackPanel.Resources>
+          <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="GroupName" Value="AppNavigationGroup" />
+          </Style>
+        </StackPanel.Resources>
+        <RadioButton x:Name="MandatorsNavigationButton" Content="Mandators" />
+        <RadioButton x:Name="UsersNavigationButton" Content="Users" />
+        <RadioButton x:Name="CompositionsNavigationButton" Content="Compositions" IsChecked="True" />
+        <RadioButton x:Name="MusiciansNavigationButton" Content="Musicians" />
+        <RadioButton x:Name="MembersNavigationButton" Content="Members" />
+        <RadioButton x:Name="SettingsNavigationButton" Content="Settings" />
+        <RadioButton x:Name="UpdatesNavigationButton" Content="Updates" />
+      </StackPanel>
 
       <StackPanel Grid.Column="1" Orientation="Horizontal">
         <ComboBox ItemsSource="{Binding MandatorsCollection}" DisplayMemberPath="Name" SelectedItem="{Binding ActiveMandator}" />
@@ -38,25 +43,25 @@
           <Setter Property="Visibility" Value="Collapsed" />
         </Style>
       </TabControl.Resources>
-      <TabItem Header="Compositions" IsSelected="{Binding ElementName=CompositionsMenuItem, Path=IsChecked}">
+      <TabItem Header="Compositions" IsSelected="{Binding ElementName=CompositionsNavigationButton, Path=IsChecked}">
         <cntrls:CompositionsMasterControl DataContext="{Binding CompositionsViewModel}" />
       </TabItem>
-      <TabItem Header="Mandators" IsSelected="{Binding ElementName=MandatorsMenuItem, Path=IsChecked}">
+      <TabItem Header="Mandators" IsSelected="{Binding ElementName=MandatorsNavigationButton, Path=IsChecked}">
         <cntrls:MandatorsControl DataContext="{Binding MandatorsViewModel}" />
       </TabItem>
-      <TabItem Header="Members" IsSelected="{Binding ElementName=MembersMenuItem, Path=IsChecked}">
+      <TabItem Header="Members" IsSelected="{Binding ElementName=MembersNavigationButton, Path=IsChecked}">
         <cntrls:MembersControl DataContext="{Binding MembersViewModel}" />
       </TabItem>
-      <TabItem Header="Musicians" IsSelected="{Binding ElementName=MusiciansMenuItem, Path=IsChecked}">
+      <TabItem Header="Musicians" IsSelected="{Binding ElementName=MusiciansNavigationButton, Path=IsChecked}">
         <cntrls:MusiciansControl DataContext="{Binding MusiciansViewModel}" />
       </TabItem>
-      <TabItem Header="Settings" IsSelected="{Binding ElementName=SettingsMenuItem, Path=IsChecked}">
+      <TabItem Header="Settings" IsSelected="{Binding ElementName=SettingsNavigationButton, Path=IsChecked}">
         <cntrls:SettingsControl DataContext="{Binding SettingsViewModel}" />
       </TabItem>
-      <TabItem Header="Updates" IsSelected="{Binding ElementName=UpdatesMenuItem, Path=IsChecked}">
+      <TabItem Header="Updates" IsSelected="{Binding ElementName=UpdatesNavigationButton, Path=IsChecked}">
         <cntrls:UpdatesControl DataContext="{Binding UpdatesViewModel}" />
       </TabItem>
-      <TabItem Header="Users" IsSelected="{Binding ElementName=UsersMenuItem, Path=IsChecked}">
+      <TabItem Header="Users" IsSelected="{Binding ElementName=UsersNavigationButton, Path=IsChecked}">
         <cntrls:UsersControl DataContext="{Binding UsersViewModel}" />
       </TabItem>
     </TabControl>
