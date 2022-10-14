@@ -12,7 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Controls\" />
     <Folder Include="Views\Templates\" />
   </ItemGroup>
 

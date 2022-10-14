@@ -36,7 +36,7 @@ namespace SW.MB.Data {
             string mySqlConnectionString = configuration.GetConnectionString("MySql");
 
             if (!string.IsNullOrEmpty(mySqlConnectionString)) {
-                MariaDbServerVersion serverVersion = new MariaDbServerVersion(new Version(10, 3));
+                MariaDbServerVersion serverVersion = new(new Version(10, 3));
 
 #if DEBUG
                 services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseMySql(mySqlConnectionString, serverVersion)
@@ -47,13 +47,9 @@ namespace SW.MB.Data {
 #else
                 services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseMySql(mySqlConnectionString, serverVersion));
 #endif
-            } else if (true) {
+            } else {
                 // Umsetzung als SQLite-Datenbank.
                 services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseSqlite("Data Source = C:\\Temporary\\MUSICBase.db"));
-            } else {
-                // Der In-Memory-Provider speichert keine Daten. Zusätzlich werden initial Musterdaten geladen.
-                services.AddDbContext<IUnitOfWork, DemoUnitOfWorkDbContext>(options => options.UseInMemoryDatabase("DemoDB")
-                  .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
             }
         }
     }

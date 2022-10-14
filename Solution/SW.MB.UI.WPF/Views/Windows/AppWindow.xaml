@@ -4,69 +4,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
+        xmlns:cntrls="clr-namespace:SW.MB.UI.WPF.Views.Controls"
         xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
         mc:Ignorable="d"
         Title="MUSICBase" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
-  <Grid>
+  <DockPanel LastChildFill="True">
+    <Menu DockPanel.Dock="Top">
+      <MenuItem x:Name="MandatorsMenuItem" Header="Mandators" IsCheckable="True" />
+      <MenuItem x:Name="UsersMenuItem" Header="Users" IsCheckable="True" />
+      <MenuItem x:Name="CompositionsMenuItem" Header="Compositions" IsCheckable="True" IsChecked="True" />
+      <MenuItem x:Name="MusiciansMenuItem" Header="Musicians" IsCheckable="True" />
+      <MenuItem x:Name="MembersMenuItem" Header="Members" IsCheckable="True" />
+      <MenuItem x:Name="SettingsMenuItem" Header="Settings" IsCheckable="True" />
+      <MenuItem x:Name="UpdatesMenuItem" Header="Updates" IsCheckable="True" />
+    </Menu>
+    
     <TabControl>
-      <TabItem Header="Mandators">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <DataGrid Grid.Row="0" ItemsSource="{Binding Mandators}" AutoGenerateColumns="True" CanUserAddRows="True" />
-          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
-                  Command="{Binding StoreMandatorsCommand}" />
-        </Grid>
+      <TabControl.Resources>
+        <Style TargetType="{x:Type TabItem}">
+          <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+      </TabControl.Resources>
+      <TabItem Header="Compositions" IsSelected="{Binding ElementName=CompositionsMenuItem, Path=IsChecked}">
+        <cntrls:CompositionsMasterControl DataContext="{Binding CompositionsViewModel}" />
       </TabItem>
-      <TabItem Header="Users">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <DataGrid Grid.Row="0" ItemsSource="{Binding Users}" AutoGenerateColumns="True" CanUserAddRows="True" />
-          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
-                  Command="{Binding StoreUsersCommand}" />
-        </Grid>
+      <TabItem Header="Mandators" IsSelected="{Binding ElementName=MandatorsMenuItem, Path=IsChecked}">
+        <cntrls:MandatorsControl DataContext="{Binding MandatorsViewModel}" />
       </TabItem>
-      <TabItem Header="Compositions">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <DataGrid Grid.Row="0" ItemsSource="{Binding Compositions}" AutoGenerateColumns="True" CanUserAddRows="True" />
-          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
-                  Command="{Binding StoreCompositionsCommand}" />
-        </Grid>
+      <TabItem Header="Members" IsSelected="{Binding ElementName=MembersMenuItem, Path=IsChecked}">
+        <cntrls:MembersControl DataContext="{Binding MembersViewModel}" />
       </TabItem>
-      <TabItem Header="Musicians">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <DataGrid Grid.Row="0" ItemsSource="{Binding Musicians}" AutoGenerateColumns="True" CanUserAddRows="True" />
-          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
-                  Command="{Binding StoreMusiciansCommand}" />
-        </Grid>
+      <TabItem Header="Musicians" IsSelected="{Binding ElementName=MusiciansMenuItem, Path=IsChecked}">
+        <cntrls:MusiciansControl DataContext="{Binding MusiciansViewModel}" />
       </TabItem>
-      <TabItem Header="Members">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <DataGrid Grid.Row="0" ItemsSource="{Binding Members}" AutoGenerateColumns="True" CanUserAddRows="True" />
-          <Button Grid.Row="1" Content="Store" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Padding="20,8"
-                  Command="{Binding StoreMembersCommand}" />
-        </Grid>
+      <TabItem Header="Settings" IsSelected="{Binding ElementName=SettingsMenuItem, Path=IsChecked}">
+        <cntrls:SettingsControl DataContext="{Binding SettingsViewModel}" />
+      </TabItem>
+      <TabItem Header="Updates" IsSelected="{Binding ElementName=UpdatesMenuItem, Path=IsChecked}">
+        <cntrls:UpdatesControl DataContext="{Binding UpdatesViewModel}" />
+      </TabItem>
+      <TabItem Header="Users" IsSelected="{Binding ElementName=UsersMenuItem, Path=IsChecked}">
+        <cntrls:UsersControl DataContext="{Binding UsersViewModel}" />
       </TabItem>
     </TabControl>
-  </Grid>
+  </DockPanel>
 </Window>

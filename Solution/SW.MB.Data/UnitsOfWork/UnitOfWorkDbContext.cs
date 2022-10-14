@@ -30,7 +30,12 @@ namespace SW.MB.Data.UnitsOfWork {
 
     #region CONSTRUCTORS
     public UnitOfWorkDbContext(DbContextOptions<UnitOfWorkDbContext> options) : base(options) {
-      if (!Task.Factory.StartNew(() => Database.EnsureCreated()).Wait(5000)) {
+      if (!Task.Factory.StartNew(() => {
+        if (Database.EnsureCreated()) {
+          Users?.Add(CreateSystemUser());
+          SaveChangesAsync();
+        }
+      }).Wait(5000)) {
         // TODO
         throw new ApplicationException("Offline");
       }
