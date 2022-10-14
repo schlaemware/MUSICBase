@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
@@ -12,6 +14,8 @@ namespace SW.MB.UI.WPF.ViewModels {
 
     public ObservableCollection<ObservableUser> Users { get; } = new();
 
+    public ICollectionView UsersView { get; }
+
     public ObservableUser? SelectedUser {
       get => _SelectedUser;
       set => SetProperty(ref _SelectedUser, value);
@@ -22,8 +26,19 @@ namespace SW.MB.UI.WPF.ViewModels {
       IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
 
       LoadUsers();
+
+      UsersView = CreateView(Users);
     }
     #endregion CONSTRUCTORS
+
+    private static ICollectionView CreateView(object source) {
+      ICollectionView view = CollectionViewSource.GetDefaultView(source);
+      view.SortDescriptions.Add(new SortDescription(nameof(ObservableUser.Lastname), ListSortDirection.Ascending));
+      view.SortDescriptions.Add(new SortDescription(nameof(ObservableUser.Firstname), ListSortDirection.Ascending));
+      view.SortDescriptions.Add(new SortDescription(nameof(ObservableUser.ID), ListSortDirection.Ascending));
+
+      return view;
+    }
 
     private void LoadUsers() {
       if (ServiceProvider.GetRequiredService<IUsersService>() is IUsersService service) {

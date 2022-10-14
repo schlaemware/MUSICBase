@@ -17,7 +17,7 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <ListView Grid.Column="0" ItemsSource="{Binding Mandators}" BorderThickness="0"
+    <ListView Grid.Column="0" ItemsSource="{Binding MandatorsView}" BorderThickness="0"
               SelectedItem="{Binding SelectedMandator}"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
               ScrollViewer.HorizontalScrollBarVisibility="Disabled">

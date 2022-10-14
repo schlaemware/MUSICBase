@@ -17,7 +17,7 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <ListView Grid.Column="0" ItemsSource="{Binding Musicians}" BorderThickness="0"
+    <ListView Grid.Column="0" ItemsSource="{Binding MusiciansView}" BorderThickness="0"
               SelectedItem="{Binding SelectedMusician}"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
               ScrollViewer.HorizontalScrollBarVisibility="Disabled">

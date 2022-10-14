@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
@@ -12,6 +14,8 @@ namespace SW.MB.UI.WPF.ViewModels {
 
     public ObservableCollection<ObservableMandator> Mandators { get; } = new();
 
+    public ICollectionView MandatorsView { get; }
+
     public ObservableMandator? SelectedMandator {
       get => _SelectedMandator;
       set => SetProperty(ref _SelectedMandator, value);
@@ -20,8 +24,18 @@ namespace SW.MB.UI.WPF.ViewModels {
     #region CONSTRUCTORS
     public MandatorsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
       LoadMandators();
+
+      MandatorsView = CreateView(Mandators);
     }
     #endregion CONSTRUCTORS
+
+    private static ICollectionView CreateView(object source) {
+      ICollectionView view = CollectionViewSource.GetDefaultView(source);
+      view.SortDescriptions.Add(new SortDescription(nameof(ObservableMandator.Name), ListSortDirection.Ascending));
+      view.SortDescriptions.Add(new SortDescription(nameof(ObservableMandator.ID), ListSortDirection.Ascending));
+
+      return view;
+    }
 
     private void LoadMandators() {
       if (ServiceProvider.GetService<IMandatorsService>() is IMandatorsService service) {
