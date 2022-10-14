@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Application.Resources>
-
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Views/Templates/MandatorDetailTemplate.xaml" />
+        <ResourceDictionary Source="Views/Templates/MemberDetailTemplate.xaml" />
+        <ResourceDictionary Source="Views/Templates/MusicianDetailTemplate.xaml" />
+        <ResourceDictionary Source="Views/Templates/UserDetailTemplate.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </Application.Resources>
 </Application>

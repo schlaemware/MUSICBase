@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:observables="clr-namespace:SW.MB.UI.WPF.Models.Observables">
+
+  <DataTemplate DataType="{x:Type observables:ObservableMandator}">
+    <Grid>
+      <TextBlock Text="{Binding Name}" />
+    </Grid>
+  </DataTemplate>
+</ResourceDictionary>

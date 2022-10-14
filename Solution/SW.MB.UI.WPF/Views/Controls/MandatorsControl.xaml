@@ -10,14 +10,6 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vms:MandatorsViewModel, IsDesignTimeCreatable=False}">
 
-  <UserControl.Resources>
-    <DataTemplate DataType="{x:Type observables:ObservableMandator}">
-      <Grid>
-        <TextBlock Text="{Binding Name}" />
-      </Grid>
-    </DataTemplate>
-  </UserControl.Resources>
-
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
