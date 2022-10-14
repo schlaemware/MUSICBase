@@ -17,8 +17,6 @@ namespace SW.MB.Domain.Services {
     #endregion CONSTRUCTORS
 
     public void GenerateSampleData() {
-      Random random = new();
-
       GenerateSampleMandators(out List<MandatorEntity> mandators);
       GenerateSampleUsers(mandators, out List<UserEntity> users);
       GenerateSampleMembers(mandators, users, out List<MemberEntity> members);

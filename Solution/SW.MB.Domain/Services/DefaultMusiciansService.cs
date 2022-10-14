@@ -1,4 +1,5 @@
-﻿using SW.MB.Data.Contracts.UnitsOfWork;
+﻿using Microsoft.EntityFrameworkCore;
+using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Extensions;
@@ -16,7 +17,7 @@ namespace SW.MB.Domain.Services {
         #endregion CONSTRUCTORS
 
         public IEnumerable<MusicianRecord> GetAll() {
-            return _UnitOfWork.Musicians.Select(x => x.ToRecord());
+            return _UnitOfWork.Musicians.Include(x => x.Mandators).Select(x => x.ToRecord());
         }
 
         public void UpdateRange(params MusicianRecord[] records) {
