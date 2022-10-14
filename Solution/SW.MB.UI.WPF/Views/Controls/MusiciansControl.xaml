@@ -5,13 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Controls"
              xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
+             xmlns:observables="clr-namespace:SW.MB.UI.WPF.Models.Observables"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vms:MusiciansViewModel, IsDesignTimeCreatable=False}">
 
+  <UserControl.Resources>
+    <DataTemplate DataType="{x:Type observables:ObservableMusician}">
+      <Grid>
+        <TextBlock Text="{Binding Fullname}" />
+      </Grid>
+    </DataTemplate>
+  </UserControl.Resources>
+
   <Grid>
-    <DataGrid ItemsSource="{Binding Musicians}" AutoGenerateColumns="True" CanUserAddRows="True">
-      
-    </DataGrid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="4" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <ListView Grid.Column="0" ItemsSource="{Binding Musicians}" BorderThickness="0"
+              SelectedItem="{Binding SelectedMusician}"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+      <ListView.ItemTemplate>
+        <DataTemplate DataType="{x:Type observables:ObservableMember}">
+          <Border>
+            <TextBlock Text="{Binding Fullname}" />
+          </Border>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+
+    <ContentPresenter Grid.Column="2" Content="{Binding SelectedMusician}" />
   </Grid>
 </UserControl>

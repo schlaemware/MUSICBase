@@ -14,11 +14,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
     public ObservableMember? SelectedMember {
       get => _SelectedMember;
-      set {
-        if (SetProperty(ref _SelectedMember, value)) {
-          System.Diagnostics.Debug.WriteLine($"Changed to {value?.Fullname ?? "NULL"}");
-        }
-      }
+      set => SetProperty(ref _SelectedMember, value);
     }
 
     #region CONSTRUCTORS
