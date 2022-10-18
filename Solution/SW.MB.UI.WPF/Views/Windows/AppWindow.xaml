@@ -1,0 +1,69 @@
+﻿<Window x:Class="SW.MB.UI.WPF.Views.Windows.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
+        xmlns:cntrls="clr-namespace:SW.MB.UI.WPF.Views.Controls"
+        xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="MUSICBase" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
+
+  <DockPanel LastChildFill="True">
+    <Grid DockPanel.Dock="Top">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Grid.Column="0" Orientation="Horizontal">
+        <StackPanel.Resources>
+          <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="GroupName" Value="AppNavigationGroup" />
+          </Style>
+        </StackPanel.Resources>
+        <RadioButton x:Name="MandatorsNavigationButton" Content="Mandators" />
+        <RadioButton x:Name="UsersNavigationButton" Content="Users" />
+        <RadioButton x:Name="CompositionsNavigationButton" Content="Compositions" IsChecked="True" />
+        <RadioButton x:Name="MusiciansNavigationButton" Content="Musicians" />
+        <RadioButton x:Name="MembersNavigationButton" Content="Members" />
+        <RadioButton x:Name="SettingsNavigationButton" Content="Settings" />
+        <RadioButton x:Name="UpdatesNavigationButton" Content="Updates" />
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal">
+        <ComboBox ItemsSource="{Binding MandatorsCollection}" DisplayMemberPath="Name" SelectedItem="{Binding ActiveMandator}" />
+      </StackPanel>
+    </Grid>
+
+    <TabControl>
+      <TabControl.Resources>
+        <Style TargetType="{x:Type TabItem}">
+          <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+      </TabControl.Resources>
+      <TabItem Header="Compositions" IsSelected="{Binding ElementName=CompositionsNavigationButton, Path=IsChecked}">
+        <cntrls:CompositionsMasterControl DataContext="{Binding CompositionsViewModel}" />
+      </TabItem>
+      <TabItem Header="Mandators" IsSelected="{Binding ElementName=MandatorsNavigationButton, Path=IsChecked}">
+        <cntrls:MandatorsControl DataContext="{Binding MandatorsViewModel}" />
+      </TabItem>
+      <TabItem Header="Members" IsSelected="{Binding ElementName=MembersNavigationButton, Path=IsChecked}">
+        <cntrls:MembersControl DataContext="{Binding MembersViewModel}" />
+      </TabItem>
+      <TabItem Header="Musicians" IsSelected="{Binding ElementName=MusiciansNavigationButton, Path=IsChecked}">
+        <cntrls:MusiciansControl DataContext="{Binding MusiciansViewModel}" />
+      </TabItem>
+      <TabItem Header="Settings" IsSelected="{Binding ElementName=SettingsNavigationButton, Path=IsChecked}">
+        <cntrls:SettingsControl DataContext="{Binding SettingsViewModel}" />
+      </TabItem>
+      <TabItem Header="Updates" IsSelected="{Binding ElementName=UpdatesNavigationButton, Path=IsChecked}">
+        <cntrls:UpdatesControl DataContext="{Binding UpdatesViewModel}" />
+      </TabItem>
+      <TabItem Header="Users" IsSelected="{Binding ElementName=UsersNavigationButton, Path=IsChecked}">
+        <cntrls:UsersControl DataContext="{Binding UsersViewModel}" />
+      </TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>
