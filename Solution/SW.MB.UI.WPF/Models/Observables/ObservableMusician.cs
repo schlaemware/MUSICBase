@@ -4,9 +4,9 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
     public class ObservableMusician : ObservablePerson {
-        private DateOnly? _DateOfDeath;
+        private DateTime? _DateOfDeath;
 
-        public DateOnly? DateOfDeath {
+        public DateTime? DateOfDeath {
             get => _DateOfDeath;
             set => SetProperty(ref _DateOfDeath, value);
         }

@@ -50,8 +50,8 @@ namespace SW.MB.Test.UnitTests.Extensions {
                 UpdatedBy = Random.Next(),
                 Firstname = Random.NextFirstname(),
                 Lastname = Random.NextLastname(),
-                DateOfBirth = DateOnly.FromDateTime(Random.NextDateTimePast()),
-                DateOfDeath = DateOnly.FromDateTime(Random.NextDateTimePast()),
+                DateOfBirth = Random.NextDateTimePast(),
+                DateOfDeath = Random.NextDateTimePast(),
             };
         }
 

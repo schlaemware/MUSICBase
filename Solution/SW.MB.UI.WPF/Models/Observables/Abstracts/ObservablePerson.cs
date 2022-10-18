@@ -5,7 +5,7 @@ namespace SW.MB.UI.WPF.Models.Observables.Abstracts {
     public abstract class ObservablePerson : ObservableEntity {
         private string _Firstname;
         private string _Lastname;
-        private DateOnly? _DateOfBirth;
+        private DateTime? _DateOfBirth;
 
         public string Firstname {
             get => _Firstname;
@@ -25,7 +25,7 @@ namespace SW.MB.UI.WPF.Models.Observables.Abstracts {
             }
         }
 
-        public DateOnly? DateOfBirth {
+        public DateTime? DateOfBirth {
             get => _DateOfBirth;
             set => SetProperty(ref _DateOfBirth, value);
         }

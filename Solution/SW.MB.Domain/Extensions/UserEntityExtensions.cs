@@ -12,7 +12,7 @@ namespace SW.MB.Domain.Extensions {
                 UpdatedBy = entity.UpdatedBy,
                 Firstname = entity.Firstname,
                 Lastname = entity.Lastname,
-                DateOfBirth = entity.DateOfBirth is DateTime birthDate ? DateOnly.FromDateTime(birthDate) : null,
+                DateOfBirth = entity.DateOfBirth,
                 Mail = entity.Mail,
             };
         }

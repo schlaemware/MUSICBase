@@ -10,28 +10,47 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vms:UsersViewModel, IsDesignTimeCreatable=False}">
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="4" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
+  <DockPanel LastChildFill="True">
+    <Grid DockPanel.Dock="Top">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Ribbon Grid.Column="0">
+        
+      </Ribbon>
+      
+      <StackPanel Grid.Column="0" Orientation="Horizontal">
+        
+      </StackPanel>
 
-    <ListView Grid.Column="0" ItemsSource="{Binding UsersView}" BorderThickness="0"
+      <StackPanel Grid.Column="1" Orientation="Horizontal">
+        
+      </StackPanel>
+    </Grid>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="4" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <ListView Grid.Column="0" ItemsSource="{Binding UsersView}" BorderThickness="0"
               SelectedItem="{Binding SelectedUser}"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-      <ListView.ItemTemplate>
-        <DataTemplate DataType="{x:Type observables:ObservableUser}">
-          <Border>
-            <TextBlock Text="{Binding Fullname}" />
-          </Border>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+        <ListView.ItemTemplate>
+          <DataTemplate DataType="{x:Type observables:ObservableUser}">
+            <Border>
+              <TextBlock Text="{Binding Fullname}" />
+            </Border>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
 
-    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+      <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
 
-    <ContentPresenter Grid.Column="2" Content="{Binding SelectedUser}" />
-  </Grid>
+      <ContentPresenter Grid.Column="2" Content="{Binding SelectedUser}" />
+    </Grid>
+  </DockPanel>
 </UserControl>

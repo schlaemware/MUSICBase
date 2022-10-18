@@ -12,7 +12,7 @@ namespace SW.MB.Domain.Extensions {
                 UpdatedBy = record.UpdatedBy,
                 Firstname = record.Firstname,
                 Lastname = record.Lastname,
-                DateOfBirth = record.DateOfBirth?.ToDateTime(TimeOnly.MinValue),
+                DateOfBirth = record.DateOfBirth,
                 Mail = record.Mail,
             };
         }

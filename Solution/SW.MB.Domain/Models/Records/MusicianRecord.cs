@@ -2,6 +2,6 @@
 
 namespace SW.MB.Domain.Models.Records {
     public record class MusicianRecord : PersonRecord {
-        public DateOnly? DateOfDeath { get; init; }
+        public DateTime? DateOfDeath { get; init; }
     }
 }
