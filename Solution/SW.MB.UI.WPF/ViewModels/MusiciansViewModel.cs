@@ -3,13 +3,15 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
+using SW.Framework.WPF;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
-  public class MusiciansViewModel: ViewModelBase {
+  public class MusiciansViewModel: PageViewModel {
     private ObservableMusician? _SelectedMusician;
 
     public ObservableCollection<ObservableMusician> Musicians { get; } = new();
@@ -21,6 +23,10 @@ namespace SW.MB.UI.WPF.ViewModels {
       set => SetProperty(ref _SelectedMusician, value);
     }
 
+    #region ICOMMANDS
+    public ICommand TestCommand { get; }
+    #endregion ICOMMANDS
+
     #region CONSTRUCTORS
     public MusiciansViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
       IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
@@ -28,6 +34,8 @@ namespace SW.MB.UI.WPF.ViewModels {
       LoadMusicians();
 
       MusiciansView = CreateView(Musicians);
+
+      TestCommand = new RelayCommand(obj => SelectedMusician = Musicians.FirstOrDefault());
     }
     #endregion CONSTRUCTORS
 

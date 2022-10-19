@@ -9,7 +9,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
-  public class UsersViewModel: ViewModelBase {
+  public class UsersViewModel: PageViewModel {
     private ObservableUser? _SelectedUser;
 
     public ObservableCollection<ObservableUser> Users { get; } = new();

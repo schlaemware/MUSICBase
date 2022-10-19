@@ -12,27 +12,30 @@
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
   <DockPanel LastChildFill="True">
-    <Grid DockPanel.Dock="Top">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
-      <StackPanel Grid.Column="0" Orientation="Horizontal">
-        <StackPanel.Resources>
-          <Style TargetType="{x:Type RadioButton}">
-            <Setter Property="GroupName" Value="AppNavigationGroup" />
-          </Style>
-        </StackPanel.Resources>
-        <RadioButton x:Name="MandatorsNavigationButton" Content="Mandators" />
-        <RadioButton x:Name="UsersNavigationButton" Content="Users" />
-        <RadioButton x:Name="CompositionsNavigationButton" Content="Compositions" IsChecked="True" />
-        <RadioButton x:Name="MusiciansNavigationButton" Content="Musicians" />
-        <RadioButton x:Name="MembersNavigationButton" Content="Members" />
-        <RadioButton x:Name="SettingsNavigationButton" Content="Settings" />
-        <RadioButton x:Name="UpdatesNavigationButton" Content="Updates" />
+    <Grid DockPanel.Dock="Left">
+      <Grid.Resources>
+        <Style TargetType="{x:Type RadioButton}">
+          <Setter Property="GroupName" Value="AppNavigationGroup" />
+        </Style>
+      </Grid.Resources>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <StackPanel Grid.Row="0" Orientation="Vertical">
+        <TextBox Padding="4" />
+        <RadioButton x:Name="DashboardNavigationButton" Content="Dashboard" IsChecked="{Binding DashboardViewModel.IsActive}" />
+        <RadioButton x:Name="MandatorsNavigationButton" Content="Mandators" IsChecked="{Binding MandatorsViewModel.IsActive}" />
+        <RadioButton x:Name="UsersNavigationButton" Content="Users" IsChecked="{Binding UsersViewModel.IsActive}" />
+        <RadioButton x:Name="CompositionsNavigationButton" Content="Compositions" IsChecked="{Binding CompositionsViewModel.IsActive}" />
+        <RadioButton x:Name="MusiciansNavigationButton" Content="Musicians" IsChecked="{Binding MusiciansViewModel.IsActive}" />
+        <RadioButton x:Name="MembersNavigationButton" Content="Members" IsChecked="{Binding MembersViewModel.IsActive}" />
       </StackPanel>
 
-      <StackPanel Grid.Column="1" Orientation="Horizontal">
+      <StackPanel Grid.Row="1" Orientation="Vertical">
+        <RadioButton x:Name="UpdatesNavigationButton" Content="Updates" IsChecked="{Binding UpdatesViewModel.IsActive}" />
+        <RadioButton x:Name="SettingsNavigationButton" Content="Settings" IsChecked="{Binding SettingsViewModel.IsActive}" />
         <ComboBox ItemsSource="{Binding MandatorsCollection}" DisplayMemberPath="Name" SelectedItem="{Binding ActiveMandator}" />
       </StackPanel>
     </Grid>
@@ -45,6 +48,9 @@
       </TabControl.Resources>
       <TabItem Header="Compositions" IsSelected="{Binding ElementName=CompositionsNavigationButton, Path=IsChecked}">
         <cntrls:CompositionsMasterControl DataContext="{Binding CompositionsViewModel}" />
+      </TabItem>
+      <TabItem Header="Dashboard" IsSelected="{Binding ElementName=DashboardNavigationButton, Path=IsChecked}">
+        <cntrls:DashboardControl DataContext="{Binding DashboardViewModel}" />
       </TabItem>
       <TabItem Header="Mandators" IsSelected="{Binding ElementName=MandatorsNavigationButton, Path=IsChecked}">
         <cntrls:MandatorsControl DataContext="{Binding MandatorsViewModel}" />

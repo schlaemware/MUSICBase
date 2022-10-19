@@ -24,6 +24,7 @@ namespace SW.MB.UI.WPF.HostBuilder {
       // ViewModels
       services.AddTransient<AppViewModel>();
       services.AddTransient<CompositionsViewModel>();
+      services.AddTransient<DashboardViewModel>();
       services.AddTransient<MandatorsViewModel>();
       services.AddTransient<MembersViewModel>();
       services.AddTransient<MusiciansViewModel>();

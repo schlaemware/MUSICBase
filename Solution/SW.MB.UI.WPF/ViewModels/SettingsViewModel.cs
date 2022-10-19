@@ -5,7 +5,7 @@ using SW.Framework.WPF;
 using SW.MB.Domain.Contracts.Services;
 
 namespace SW.MB.UI.WPF.ViewModels {
-    public class SettingsViewModel : ViewModelBase {
+    public class SettingsViewModel : PageViewModel {
         #region COMMANDS
         public ICommand GenereateSampleDataCommand { get; }
         #endregion COMMANDS

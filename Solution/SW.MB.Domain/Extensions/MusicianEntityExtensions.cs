@@ -14,6 +14,7 @@ namespace SW.MB.Domain.Extensions {
                 Lastname = entity.Lastname,
                 DateOfBirth = entity.DateOfBirth,
                 DateOfDeath = entity.DateOfDeath,
+                Origin = entity.Origin?.ToRecord(),
             };
         }
     }

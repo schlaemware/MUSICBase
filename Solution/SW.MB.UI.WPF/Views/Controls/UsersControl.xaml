@@ -16,9 +16,6 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
-      <Ribbon Grid.Column="0">
-        
-      </Ribbon>
       
       <StackPanel Grid.Column="0" Orientation="Horizontal">
         

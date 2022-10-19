@@ -9,7 +9,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
-  public class MandatorsViewModel: ViewModelBase {
+  public class MandatorsViewModel: PageViewModel {
     private ObservableMandator? _SelectedMandator;
 
     public ObservableCollection<ObservableMandator> Mandators { get; } = new();

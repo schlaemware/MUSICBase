@@ -2,8 +2,10 @@
 using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-    [Table("Musicians")]
-    public class MusicianEntity : PersonEntity {
-        public DateTime? DateOfDeath { get; set; }
-    }
+  [Table("Musicians")]
+  public class MusicianEntity: PersonEntity {
+    public DateTime? DateOfDeath { get; set; }
+
+    public MusicianEntity? Origin { get; set; }
+  }
 }

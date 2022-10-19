@@ -7,7 +7,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
-    public class CompositionsViewModel : ViewModelBase {
+    public class CompositionsViewModel : PageViewModel {
         public ObservableCollection<ObservableComposition> Compositions { get; } = new();
 
         #region CONSTRUCTORS

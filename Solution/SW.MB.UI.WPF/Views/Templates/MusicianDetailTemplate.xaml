@@ -4,7 +4,25 @@
 
   <DataTemplate DataType="{x:Type observables:ObservableMusician}">
     <Grid>
-      <TextBlock Text="{Binding Fullname}" />
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="20" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      
+      <TextBlock Grid.Column="0" Grid.Row="0" Text="Firstname" />
+      <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Firstname}" />
+
+      <TextBlock Grid.Column="0" Grid.Row="1" Text="Lastname" />
+      <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Lastname}" />
+
+      <TextBlock Grid.Column="0" Grid.Row="2" Text="Pseudonym" />
+      <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Origin.Fullname}" />
     </Grid>
   </DataTemplate>
 </ResourceDictionary>

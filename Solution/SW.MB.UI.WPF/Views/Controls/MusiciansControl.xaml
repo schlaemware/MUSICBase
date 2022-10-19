@@ -10,28 +10,45 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vms:MusiciansViewModel, IsDesignTimeCreatable=False}">
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="4" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
+  <DockPanel LastChildFill="True">
+    <Grid DockPanel.Dock="Top">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
 
-    <ListView Grid.Column="0" ItemsSource="{Binding MusiciansView}" BorderThickness="0"
-              SelectedItem="{Binding SelectedMusician}"
-              ScrollViewer.VerticalScrollBarVisibility="Auto"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-      <ListView.ItemTemplate>
-        <DataTemplate DataType="{x:Type observables:ObservableMember}">
-          <Border>
-            <TextBlock Text="{Binding Fullname}" />
-          </Border>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+      <StackPanel Grid.Column="0" Orientation="Horizontal">
+        <Button Content="Set" Command="{Binding TestCommand}" />
+      </StackPanel>
 
-    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+      <StackPanel Grid.Column="1" Orientation="Horizontal">
+        
+      </StackPanel>
+    </Grid>
+    
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="4" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
 
-    <ContentPresenter Grid.Column="2" Content="{Binding SelectedMusician}" />
-  </Grid>
+      <ListView Grid.Column="0" ItemsSource="{Binding MusiciansView}" BorderThickness="0"
+                SelectedItem="{Binding SelectedMusician}"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView.ItemTemplate>
+          <DataTemplate DataType="{x:Type observables:ObservableMember}">
+            <Border>
+              <TextBlock Text="{Binding Fullname}" />
+            </Border>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+
+      <ContentPresenter Grid.Column="2" Content="{Binding SelectedMusician}" />
+    </Grid>
+  </DockPanel>
 </UserControl>
