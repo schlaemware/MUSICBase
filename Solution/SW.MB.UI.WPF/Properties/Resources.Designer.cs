@@ -61,6 +61,25 @@ namespace SW.MB.UI.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to License file not found.
+        /// </summary>
+        public static string DialogLicenseFileMissingCaption {
+            get {
+                return ResourceManager.GetString("DialogLicenseFileMissingCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No valid license file found.
+        ///Application must be terminated..
+        /// </summary>
+        public static string DialogLicenseFileMissingMessage {
+            get {
+                return ResourceManager.GetString("DialogLicenseFileMissingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected exception occured.
         /// </summary>
         public static string DialogUnhandledExceptionCaption {

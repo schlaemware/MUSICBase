@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.IO;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SW.MB.Data;
@@ -7,32 +8,35 @@ using SW.MB.UI.WPF.ViewModels;
 using SW.MB.UI.WPF.Views.Windows;
 
 namespace SW.MB.UI.WPF.HostBuilder {
-  internal static class MyHostBuilder {
-    public static IHost Build() => Host.CreateDefaultBuilder()
-      .ConfigureMyUserSecrets()
-      .ConfigureMyServices()
-      .Build();
+    internal static class MyHostBuilder {
+        public const string LICENSE_FILE_NAME = "license.mblic";
 
-    private static IHostBuilder ConfigureMyUserSecrets(this IHostBuilder hostBuilder) => hostBuilder.ConfigureAppConfiguration((context, configuration) => {
-      configuration.AddUserSecrets<AppViewModel>(true, true);
-    });
+        public static IHost Build() => Host.CreateDefaultBuilder()
+          .ConfigureMyUserSecrets()
+          .ConfigureMyServices()
+          .Build();
 
-    private static IHostBuilder ConfigureMyServices(this IHostBuilder hostBuilder) => hostBuilder.ConfigureServices((context, services) => {
-      DataFactory.Instance.ConfigureServices(services, context.Configuration);
-      DomainFactory.Instance.ConfigureServices(services, context.Configuration);
+        private static IHostBuilder ConfigureMyUserSecrets(this IHostBuilder hostBuilder) => hostBuilder.ConfigureAppConfiguration((context, configuration) => {
+            //configuration.AddUserSecrets<AppViewModel>(true, true);
+            configuration.AddJsonFile(Path.Combine(App.ApplicationDirectoryPath, LICENSE_FILE_NAME), true);
+        });
 
-      // ViewModels
-      services.AddTransient<AppViewModel>();
-      services.AddTransient<CompositionsViewModel>();
-      services.AddTransient<DashboardViewModel>();
-      services.AddTransient<MandatorsViewModel>();
-      services.AddTransient<MembersViewModel>();
-      services.AddTransient<MusiciansViewModel>();
-      services.AddTransient<SettingsViewModel>();
-      services.AddTransient<UpdatesViewModel>();
-      services.AddTransient<UsersViewModel>();
+        private static IHostBuilder ConfigureMyServices(this IHostBuilder hostBuilder) => hostBuilder.ConfigureServices((context, services) => {
+            DataFactory.Instance.ConfigureServices(services, context.Configuration);
+            DomainFactory.Instance.ConfigureServices(services, context.Configuration);
 
-      services.AddTransient<AppWindow>();
-    });
-  }
+            // ViewModels
+            services.AddTransient<AppViewModel>();
+            services.AddTransient<CompositionsViewModel>();
+            services.AddTransient<DashboardViewModel>();
+            services.AddTransient<MandatorsViewModel>();
+            services.AddTransient<MembersViewModel>();
+            services.AddTransient<MusiciansViewModel>();
+            services.AddTransient<SettingsViewModel>();
+            services.AddTransient<UpdatesViewModel>();
+            services.AddTransient<UsersViewModel>();
+
+            services.AddTransient<AppWindow>();
+        });
+    }
 }

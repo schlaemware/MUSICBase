@@ -4,7 +4,7 @@ using SW.MB.Data.Models.Entities;
 using SW.MB.Data.UnitsOfWork.Abstractions;
 
 namespace SW.MB.Data.UnitsOfWork {
-  internal class UnitOfWorkDbContext: BaseDbContext, IUnitOfWork {
+  internal class UnitOfWorkDbContext: BaseDbContext, IUnitOfWork, IBackupUnitOfWork {
     public DbSet<CompositionEntity>? Compositions { get; set; }
     public DbSet<MandatorEntity>? Mandators { get; set; }
     public DbSet<MemberEntity>? Members { get; set; }
