@@ -10,6 +10,11 @@
              d:DataContext="{d:DesignInstance vms:DashboardViewModel, IsDesignTimeCreatable=False}">
 
   <Grid>
-    <TextBlock Text="Dashboard" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="Dashboard" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <TextBlock Grid.Row="1" Text="{Binding DashboardValue}" HorizontalAlignment="Center" VerticalAlignment="Center" />
   </Grid>
 </UserControl>

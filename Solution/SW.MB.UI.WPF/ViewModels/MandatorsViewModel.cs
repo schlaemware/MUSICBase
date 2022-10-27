@@ -27,7 +27,7 @@ namespace SW.MB.UI.WPF.ViewModels {
             set {
                 if (SetProperty(ref _ActiveMandator, value)) {
                     if (_ActiveMandator is not null) {
-                        ServiceProvider.GetService<IMandatorsService>()?.RaiseMandatorChanged(_ActiveMandator.ToRecord());
+                        IMandatorsService.RaiseMandatorChanged(_ActiveMandator.ToRecord());
                     }
                 }
             }
@@ -35,13 +35,14 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public MandatorsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
+            IMandatorsService.MandatorsChanged += new EventHandler((_, _) => Initialize());
             MandatorsView = CreateView(Mandators);
         }
         #endregion CONSTRUCTORS
 
         public override void Initialize() {
             LoadMandators();
-            ActiveMandator = Mandators.FirstOrDefault();
+            ActiveMandator ??= Mandators.FirstOrDefault();
         }
 
         private static ICollectionView CreateView(object source) {

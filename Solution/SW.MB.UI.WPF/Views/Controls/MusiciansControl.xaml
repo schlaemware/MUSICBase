@@ -6,9 +6,15 @@
              xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Controls"
              xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
              xmlns:observables="clr-namespace:SW.MB.UI.WPF.Models.Observables"
+             xmlns:tempSelectors="clr-namespace:SW.MB.UI.WPF.Models.TemplateSelectors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vms:MusiciansViewModel, IsDesignTimeCreatable=False}">
+
+  <UserControl.Resources>
+    <tempSelectors:MusicianListElementTemplateSelector x:Key="MusicianListTemplateSelector" />
+    <tempSelectors:MusicianDetailElementTemplateSelector x:Key="MusicianDetailTemplateSelector" />
+  </UserControl.Resources>
 
   <DockPanel LastChildFill="True">
     <Grid DockPanel.Dock="Top">
@@ -34,21 +40,21 @@
       </Grid.ColumnDefinitions>
 
       <ListView Grid.Column="0" ItemsSource="{Binding MusiciansView}" BorderThickness="0"
-                SelectedItem="{Binding SelectedMusician}"
+                SelectedItem="{Binding SelectedMusician}" ItemTemplateSelector="{StaticResource MusicianListTemplateSelector}"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-        <ListView.ItemTemplate>
-          <DataTemplate DataType="{x:Type observables:ObservableMember}">
-            <Border>
-              <TextBlock Text="{Binding Fullname}" />
-            </Border>
-          </DataTemplate>
-        </ListView.ItemTemplate>
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="240"
+                HorizontalContentAlignment="Stretch">
+        <ListView.Resources>
+          <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+          </Style>
+        </ListView.Resources>
       </ListView>
 
       <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
 
-      <ContentPresenter Grid.Column="2" Content="{Binding SelectedMusician}" />
+      <ContentPresenter Grid.Column="2" Content="{Binding SelectedMusician}" ContentTemplateSelector="{StaticResource MusicianDetailTemplateSelector}" />
     </Grid>
   </DockPanel>
 </UserControl>

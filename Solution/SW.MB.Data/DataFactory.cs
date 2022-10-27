@@ -65,7 +65,7 @@ namespace SW.MB.Data {
                 }
             } else if (!string.IsNullOrEmpty(sqliteConnectionString) && File.Exists(sqliteConnectionString)) {
                 // Datenbank existiert bereits -> Offline-Modus
-                // TODO
+                services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseSqlite(sqliteConnectionString));
             } else {
                 // Umsetzung als Demo-Datenbank (volatile)
                 services.AddDbContext<IUnitOfWork, UnitOfWorkDbContext>(options => options.UseInMemoryDatabase(DEMO_DB_NAME));
