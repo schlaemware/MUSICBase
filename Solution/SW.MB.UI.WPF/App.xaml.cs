@@ -60,7 +60,10 @@ namespace SW.MB.UI.WPF {
                         { "Status", "Load" }
                     });
 
-                    LoadApplication(status => Dispatcher.Invoke(() => splash?.Update(status)));
+                    AppViewModel vm = LoadApplication(status => {
+                        Dispatcher.Invoke(() => splash?.Update(status));
+                        Task.Delay(10).Wait();
+                    });
 
                     Log.Logger.Information("Start application...");
                     Analytics.TrackEvent("Application", new Dictionary<string, string> {
@@ -68,7 +71,7 @@ namespace SW.MB.UI.WPF {
                     });
 
                     Dispatcher.Invoke(() => {
-                        StartMainApplication();
+                        StartMainApplication(vm);
                         splash?.Close();
                     });
                 });
@@ -106,24 +109,28 @@ namespace SW.MB.UI.WPF {
             }
         }
 
-        private void LoadApplication(Action<string> printStatus) {
+        private AppViewModel LoadApplication(Action<string> printStatus) {
             Log.Logger.Debug($"Start {nameof(LoadApplication)}");
-            printStatus($"Loading data  10 %...");
-            
-            // TODO
 
-            printStatus($"Loading data  90 %...");
+            printStatus($"{WPF.Properties.Resources.SplashCreateViewModelsString}...");
+            AppViewModel vm = Dispatcher.Invoke(() => _Host.Services.GetRequiredService<AppViewModel>());
+
+            printStatus($"{WPF.Properties.Resources.SplashInitializeViewModelsString}...");
+            Dispatcher.Invoke(() => vm.Initialize());
+
+            printStatus($"{WPF.Properties.Resources.SplashStartApplicationString}...");
+
             Log.Logger.Debug($"End {nameof(LoadApplication)}");
+
+            return vm;
         }
 
-        private void StartMainApplication() {
+        private void StartMainApplication(AppViewModel vm) {
             Log.Logger.Debug($"Start {nameof(StartMainApplication)}");
 
             MainWindow = _Host.Services.GetRequiredService<AppWindow>();
-            MainWindow.DataContext = _Host.Services.GetRequiredService<AppViewModel>();
+            MainWindow.DataContext = vm;
             MainWindow.Show();
-
-            Dispatcher.BeginInvoke(() => ((AppViewModel)MainWindow.DataContext).Initialize());
 
             Log.Logger.Debug($"End {nameof(StartMainApplication)}");
         }

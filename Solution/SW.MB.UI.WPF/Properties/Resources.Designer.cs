@@ -106,5 +106,32 @@ namespace SW.MB.UI.WPF.Properties {
                 return ResourceManager.GetString("DialogUnhandledExceptionTerminatingMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create viewmodels.
+        /// </summary>
+        public static string SplashCreateViewModelsString {
+            get {
+                return ResourceManager.GetString("SplashCreateViewModelsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initialize viewmodels.
+        /// </summary>
+        public static string SplashInitializeViewModelsString {
+            get {
+                return ResourceManager.GetString("SplashInitializeViewModelsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start application.
+        /// </summary>
+        public static string SplashStartApplicationString {
+            get {
+                return ResourceManager.GetString("SplashStartApplicationString", resourceCulture);
+            }
+        }
     }
 }

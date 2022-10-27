@@ -134,4 +134,13 @@ Application must be terminated.</value>
     <value>An unexpected exception occured.
 Application must be terminated.</value>
   </data>
+  <data name="SplashCreateViewModelsString" xml:space="preserve">
+    <value>Create viewmodels</value>
+  </data>
+  <data name="SplashInitializeViewModelsString" xml:space="preserve">
+    <value>Initialize viewmodels</value>
+  </data>
+  <data name="SplashStartApplicationString" xml:space="preserve">
+    <value>Start application</value>
+  </data>
 </root>

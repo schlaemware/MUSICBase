@@ -127,4 +127,13 @@
     <value>Ein unerwarteter Fehler ist aufgetreten.
 Das Programm muss beendet werden.</value>
   </data>
+  <data name="SplashCreateViewModelsString" xml:space="preserve">
+    <value>Erstelle Viewmodels</value>
+  </data>
+  <data name="SplashInitializeViewModelsString" xml:space="preserve">
+    <value>Initialisiere Viewmodels</value>
+  </data>
+  <data name="SplashStartApplicationString" xml:space="preserve">
+    <value>Starte Applikation</value>
+  </data>
 </root>
