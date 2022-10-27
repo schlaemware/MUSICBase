@@ -36,7 +36,7 @@
       <StackPanel Grid.Row="1" Orientation="Vertical">
         <RadioButton x:Name="UpdatesNavigationButton" Content="Updates" IsChecked="{Binding UpdatesViewModel.IsActive}" />
         <RadioButton x:Name="SettingsNavigationButton" Content="Settings" IsChecked="{Binding SettingsViewModel.IsActive}" />
-        <ComboBox ItemsSource="{Binding MandatorsCollection}" DisplayMemberPath="Name" SelectedItem="{Binding ActiveMandator}" />
+        <ComboBox ItemsSource="{Binding MandatorsViewModel.MandatorsView}" DisplayMemberPath="Name" SelectedItem="{Binding MandatorsViewModel.ActiveMandator, Mode=TwoWay}" />
       </StackPanel>
     </Grid>
 

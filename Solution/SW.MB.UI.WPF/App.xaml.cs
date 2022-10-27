@@ -106,14 +106,14 @@ namespace SW.MB.UI.WPF {
             }
         }
 
-        private AppViewModel LoadApplication(Action<string> printStatus) {
+        private void LoadApplication(Action<string> printStatus) {
             Log.Logger.Debug($"Start {nameof(LoadApplication)}");
             printStatus($"Loading data  10 %...");
-            AppViewModel vm = _Host.Services.GetRequiredService<AppViewModel>();
+            
+            // TODO
+
             printStatus($"Loading data  90 %...");
             Log.Logger.Debug($"End {nameof(LoadApplication)}");
-
-            return vm;
         }
 
         private void StartMainApplication() {
@@ -122,6 +122,8 @@ namespace SW.MB.UI.WPF {
             MainWindow = _Host.Services.GetRequiredService<AppWindow>();
             MainWindow.DataContext = _Host.Services.GetRequiredService<AppViewModel>();
             MainWindow.Show();
+
+            Dispatcher.BeginInvoke(() => ((AppViewModel)MainWindow.DataContext).Initialize());
 
             Log.Logger.Debug($"End {nameof(StartMainApplication)}");
         }

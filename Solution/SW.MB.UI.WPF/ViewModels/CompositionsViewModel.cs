@@ -8,21 +8,29 @@ using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
     public class CompositionsViewModel : PageViewModel {
+        private MandatorRecord? _Mandator;
+
         public ObservableCollection<ObservableComposition> Compositions { get; } = new();
 
         #region CONSTRUCTORS
         public CompositionsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
             IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
-
-            LoadCompositions();
         }
         #endregion CONSTRUCTORS
+
+        protected override void OnIsActiveChanged() {
+            base.OnIsActiveChanged();
+
+            if (IsActive) {
+                LoadCompositions();
+            }
+        }
 
         private void LoadCompositions() {
             if (ServiceProvider.GetService<ICompositionsService>() is ICompositionsService service) {
                 Compositions.Clear();
 
-                foreach (CompositionRecord composition in service.GetAll(ActiveMandator?.ToRecord())) {
+                foreach (CompositionRecord composition in service.GetAll(_Mandator)) {
                     Compositions.Add(new ObservableComposition(composition));
                 }
             }
@@ -36,8 +44,12 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         #region CALLBACKS
-        private void IMandatorsService_MandatorChanged(object? sender, EventArgs e) {
-            LoadCompositions();
+        private void IMandatorsService_MandatorChanged(object? sender, MandatorRecord e) {
+            _Mandator = e;
+
+            if (IsActive) {
+                LoadCompositions();
+            }
         }
         #endregion CALLBACKS
     }
