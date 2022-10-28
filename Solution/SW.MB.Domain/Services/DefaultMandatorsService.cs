@@ -3,10 +3,13 @@ using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Extensions;
+using SW.MB.Domain.Extensions.EntityExtensions;
+using SW.MB.Domain.Extensions.RecordExtensions;
 using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
-namespace SW.MB.Domain.Services {
+namespace SW.MB.Domain.Services
+{
     internal class DefaultMandatorsService : ServiceBase, IMandatorsService {
         private readonly IUnitOfWork _UnitOfWork;
 

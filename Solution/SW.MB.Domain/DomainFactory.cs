@@ -32,6 +32,7 @@ namespace SW.MB.Domain {
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
             services.AddTransient<IApplicationService, DefaultApplicationService>();
+            services.AddTransient<IBandsService, DefaultBandsService>();
             services.AddTransient<ICompositionsService, DefaultCompositionsService>();
             services.AddTransient<IMandatorsService, DefaultMandatorsService>();
             services.AddTransient<IMembersService, DefaultMembersService>();

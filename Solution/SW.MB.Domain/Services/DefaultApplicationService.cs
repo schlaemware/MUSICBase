@@ -1,14 +1,15 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SW.Framework.Extensions;
 using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Extensions;
+using SW.MB.Domain.Extensions.RecordExtensions;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
     internal class DefaultApplicationService : ServiceBase, IApplicationService {
+        public const int NUM_OF_BANDS_PER_MANDATOR = 10;
         public const int NUM_OF_COMPOSITIONS_PER_MANDATOR = 50;
         public const int NUM_OF_MEMBERS_PER_MANDATOR = 20;
         public const int NUM_OF_MUSICIANS_PER_MANDATOR = 20;
@@ -26,19 +27,22 @@ namespace SW.MB.Domain.Services {
             GenerateSampleMandator(out MandatorEntity mandator, "Musikverein Berneck");
             GenerateSampleUsers(mandator, out List<UserEntity> users);
             GenerateSampleMusicians(mandator, users, out List<MusicianEntity> musicians);
-            GenerateSampleCompositions(mandator, users, musicians, out List<CompositionEntity> compositions);
+            GenerateSampleBands(mandator, users, musicians, out List<BandEntity> bands);
+            GenerateSampleCompositions(mandator, users, musicians, bands, out List<CompositionEntity> compositions);
             GenerateSampleMembers(mandator, users, out List<MemberEntity> members);
 
             GenerateSampleMandator(out mandator, "Musikverein Balgach");
             GenerateSampleUsers(mandator, out users);
             GenerateSampleMusicians(mandator, users, out musicians);
-            GenerateSampleCompositions(mandator, users, musicians, out compositions);
+            GenerateSampleBands(mandator, users, musicians, out bands);
+            GenerateSampleCompositions(mandator, users, musicians, bands, out compositions);
             GenerateSampleMembers(mandator, users, out members);
 
             GenerateSampleMandator(out mandator, "Musikverein Heerbrugg");
             GenerateSampleUsers(mandator, out users);
             GenerateSampleMusicians(mandator, users, out musicians);
-            GenerateSampleCompositions(mandator, users, musicians, out compositions);
+            GenerateSampleBands(mandator, users, musicians, out bands);
+            GenerateSampleCompositions(mandator, users, musicians, bands, out compositions);
             GenerateSampleMembers(mandator, users, out members);
 
             _UnitOfWork.SaveChangesAsync();
@@ -46,7 +50,22 @@ namespace SW.MB.Domain.Services {
             IMandatorsService.RaiseMandatorsChanged();
         }
 
-        private void GenerateSampleCompositions(MandatorEntity mandator, List<UserEntity> users, List<MusicianEntity> musicians, out List<CompositionEntity> compositions) {
+        private void GenerateSampleBands(MandatorEntity mandator, List<UserEntity> users, List<MusicianEntity> musicians, out List<BandEntity> bands) {
+            Random random = new();
+            bands = new();
+
+            for (int n = 0; n < NUM_OF_BANDS_PER_MANDATOR; n++) {
+                BandEntity band = CreateBandEntity(musicians);
+                band.Mandators.Add(mandator);
+                band.CreatedBy = users[random.Next(users.Count)].ID;
+                band.UpdatedBy = users[random.Next(users.Count)].ID;
+
+                EntityEntry<BandEntity> added = _UnitOfWork.Bands.Add(band);
+                bands.Add(added.Entity);
+            }
+        }
+
+        private void GenerateSampleCompositions(MandatorEntity mandator, List<UserEntity> users, List<MusicianEntity> musicians, List<BandEntity> bands, out List<CompositionEntity> compositions) {
             Random random = new();
             compositions = new();
 
@@ -119,6 +138,25 @@ namespace SW.MB.Domain.Services {
         }
 
         #region CREATE SAMPLE ENTITIES
+        private static BandEntity CreateBandEntity(List<MusicianEntity> musicians) {
+            Random random = new();
+            DateTime temp = DateTime.Now;
+
+            BandEntity band = new BandEntity() {
+                Created = temp,
+                CreatedBy = 1,
+                Updated = temp,
+                UpdatedBy = 1,
+                Name = random.NextBandName()
+            };
+
+            for (int n = 0; n < random.Next(5); n++) {
+                band.Musicians.Add(musicians.Where(x => !band.Musicians.Contains(x)).ToArray()[random.Next(musicians.Count(x => !band.Musicians.Contains(x)))]);
+            }
+
+            return band;
+        }
+
         private static CompositionEntity CreateCompositionEntity() {
             Random random = new();
             DateTime temp = DateTime.Now;

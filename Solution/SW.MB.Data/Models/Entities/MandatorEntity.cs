@@ -4,6 +4,7 @@ using SW.MB.Data.Models.Entities.Abstracts;
 namespace SW.MB.Data.Models.Entities {
     [Table("Mandators")]
     public class MandatorEntity : Entity {
+        public virtual ICollection<BandEntity>? Bands { get; set; }
         public virtual ICollection<CompositionEntity>? Compositions { get; set; }
         public virtual ICollection<MemberEntity>? Members { get; set; }
         public virtual ICollection<MusicianEntity>? Musicians { get; set; }

@@ -2,11 +2,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SW.Framework.Extensions;
 using SW.MB.Data.Models.Entities;
-using SW.MB.Domain.Extensions;
+using SW.MB.Domain.Extensions.EntityExtensions;
+using SW.MB.Domain.Extensions.RecordExtensions;
 using SW.MB.Domain.Models.Records;
 using SW.MB.Test.UnitTests.Extensions.Abstracts;
 
-namespace SW.MB.Test.UnitTests.Extensions {
+namespace SW.MB.Test.UnitTests.Extensions
+{
     [TestClass]
     public class UserExtensionTests : BaseEntityExtensionTests {
         [TestMethod]

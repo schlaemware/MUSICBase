@@ -30,6 +30,7 @@
         <RadioButton x:Name="UsersNavigationButton" Content="Users" IsChecked="{Binding UsersViewModel.IsActive}" />
         <RadioButton x:Name="CompositionsNavigationButton" Content="Compositions" IsChecked="{Binding CompositionsViewModel.IsActive}" />
         <RadioButton x:Name="MusiciansNavigationButton" Content="Musicians" IsChecked="{Binding MusiciansViewModel.IsActive}" />
+        <RadioButton x:Name="BandsNavigationButton" Content="Bands" IsChecked="{Binding BandsViewModel.IsActive}" />
         <RadioButton x:Name="MembersNavigationButton" Content="Members" IsChecked="{Binding MembersViewModel.IsActive}" />
       </StackPanel>
 
@@ -46,6 +47,9 @@
           <Setter Property="Visibility" Value="Collapsed" />
         </Style>
       </TabControl.Resources>
+      <TabItem Header="Bands" IsSelected="{Binding ElementName=BandsNavigationButton, Path=IsChecked}">
+        <cntrls:BandsControl DataContext="{Binding BandsViewModel}" />
+      </TabItem>
       <TabItem Header="Compositions" IsSelected="{Binding ElementName=CompositionsNavigationButton, Path=IsChecked}">
         <cntrls:CompositionsMasterControl DataContext="{Binding CompositionsViewModel}" />
       </TabItem>

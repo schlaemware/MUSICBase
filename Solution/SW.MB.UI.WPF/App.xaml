@@ -5,6 +5,7 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Views/Templates/BandDetailTemplate.xaml" />
         <ResourceDictionary Source="Views/Templates/MandatorDetailTemplate.xaml" />
         <ResourceDictionary Source="Views/Templates/MemberDetailTemplate.xaml" />
         <ResourceDictionary Source="Views/Templates/MusicianDetailOriginTemplate.xaml" />

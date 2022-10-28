@@ -7,6 +7,7 @@ using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels {
     public class AppViewModel : ViewModelBase {
+        public PageViewModel? BandsViewModel { get; }
         public PageViewModel? CompositionsViewModel { get; }
         public PageViewModel? DashboardViewModel { get; }
         public MandatorsViewModel? MandatorsViewModel { get; }
@@ -20,6 +21,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public AppViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
+            BandsViewModel = serviceProvider.GetService<BandsViewModel>();
             CompositionsViewModel = serviceProvider.GetService<CompositionsViewModel>();
             DashboardViewModel = serviceProvider.GetService<DashboardViewModel>();
             MandatorsViewModel = serviceProvider.GetService<MandatorsViewModel>();
@@ -47,6 +49,7 @@ namespace SW.MB.UI.WPF.ViewModels {
             DashboardViewModel?.Initialize();
             CompositionsViewModel?.Initialize();
             MusiciansViewModel?.Initialize();
+            BandsViewModel?.Initialize();
             MembersViewModel?.Initialize();
             SettingsViewModel?.Initialize();
             UpdatesViewModel?.Initialize();
