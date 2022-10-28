@@ -24,7 +24,9 @@
       </Grid.ColumnDefinitions>
 
       <StackPanel Grid.Column="0" Orientation="Horizontal">
-        <Button Content="Set" Command="{Binding TestCommand}" />
+        <Button Content="Create" Command="{Binding CreateMusicianCommand}" Padding="4" />
+        <Button Content="Discard" Command="{Binding DiscardChangesCommand}" Padding="4" />
+        <Button Content="Save" Command="{Binding SaveChangesCommand}" Padding="4" />
       </StackPanel>
 
       <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -43,7 +45,7 @@
                 SelectedItem="{Binding SelectedMusician}" ItemTemplateSelector="{StaticResource MusicianListTemplateSelector}"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="240"
-                HorizontalContentAlignment="Stretch">
+                HorizontalContentAlignment="Stretch" SelectionMode="Single">
         <ListView.Resources>
           <Style TargetType="{x:Type ListViewItem}">
             <Setter Property="Margin" Value="0" />

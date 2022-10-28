@@ -10,28 +10,30 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vms:MandatorsViewModel, IsDesignTimeCreatable=False}">
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="4" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
+  <DockPanel LastChildFill="True">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="240" />
+        <ColumnDefinition Width="4" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
 
-    <ListView Grid.Column="0" ItemsSource="{Binding MandatorsView}" BorderThickness="0"
+      <ListView Grid.Column="0" ItemsSource="{Binding MandatorsView}" BorderThickness="0"
               SelectedItem="{Binding SelectedMandator}"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-      <ListView.ItemTemplate>
-        <DataTemplate DataType="{x:Type observables:ObservableMandator}">
-          <Border>
-            <TextBlock Text="{Binding Name}" />
-          </Border>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+        <ListView.ItemTemplate>
+          <DataTemplate DataType="{x:Type observables:ObservableMandator}">
+            <Border>
+              <TextBlock Text="{Binding Name}" />
+            </Border>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
 
-    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+      <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
 
-    <ContentPresenter Grid.Column="2" Content="{Binding SelectedMandator}" />
-  </Grid>
+      <ContentPresenter Grid.Column="2" Content="{Binding SelectedMandator}" />
+    </Grid>
+  </DockPanel>
 </UserControl>

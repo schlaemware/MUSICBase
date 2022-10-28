@@ -12,7 +12,7 @@
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
   <DockPanel LastChildFill="True">
-    <Grid DockPanel.Dock="Left">
+    <Grid DockPanel.Dock="Left" Width="160">
       <Grid.Resources>
         <Style TargetType="{x:Type RadioButton}">
           <Setter Property="GroupName" Value="AppNavigationGroup" />

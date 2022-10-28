@@ -25,9 +25,10 @@
         
       </StackPanel>
     </Grid>
+    
     <Grid>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="240" />
         <ColumnDefinition Width="4" />
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
