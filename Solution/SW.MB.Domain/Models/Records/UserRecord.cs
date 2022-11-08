@@ -2,6 +2,6 @@
 
 namespace SW.MB.Domain.Models.Records {
     public record class UserRecord : PersonRecord {
-        public string Mail { get; init; } = string.Empty;
+        public string? Mail { get; init; }
     }
 }

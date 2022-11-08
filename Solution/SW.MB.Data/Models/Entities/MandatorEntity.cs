@@ -2,14 +2,13 @@
 using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-    [Table("Mandators")]
-    public class MandatorEntity : Entity {
-        public virtual ICollection<BandEntity>? Bands { get; set; }
-        public virtual ICollection<CompositionEntity>? Compositions { get; set; }
-        public virtual ICollection<MemberEntity>? Members { get; set; }
-        public virtual ICollection<MusicianEntity>? Musicians { get; set; }
-        public virtual ICollection<UserEntity>? Users { get; set; }
+  [Table("Mandators")]
+  public class MandatorEntity: Entity {
+    public virtual ICollection<CompositionEntity> Compositions { get; set; } = new List<CompositionEntity>();
+    public virtual ICollection<FormationEntity> Formations { get; set; } = new List<FormationEntity>();
+    public virtual ICollection<MemberEntity> Members { get; set; } = new List<MemberEntity>();
+    public virtual ICollection<UserEntity> Users { get; set; } = new List<UserEntity>();
 
-        public string Name { get; set; } = string.Empty;
-    }
+    public string Name { get; set; }
+  }
 }

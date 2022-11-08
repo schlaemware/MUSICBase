@@ -1,15 +1,13 @@
 ﻿using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts.Services;
-using SW.MB.Domain.Extensions;
 using SW.MB.Domain.Extensions.EntityExtensions;
 using SW.MB.Domain.Extensions.RecordExtensions;
 using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
-namespace SW.MB.Domain.Services
-{
-    internal class DefaultCompositionsService : ServiceBase, ICompositionsService {
+namespace SW.MB.Domain.Services {
+  internal class DefaultCompositionsService : ServiceBase, ICompositionsService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS
@@ -18,20 +16,16 @@ namespace SW.MB.Domain.Services
         }
         #endregion CONSTRUCTORS
 
-        public IEnumerable<CompositionRecord> GetAll() {
-            return _UnitOfWork.Compositions.Where(x => !x.Mandators.Any()).Select(x => x.ToRecord());
-        }
-
         public IEnumerable<CompositionRecord> GetAll(params MandatorRecord?[]? mandators) {
             if (mandators == null || !mandators.Any(x => x != null)) {
-                return GetAll();
+                return new List<CompositionRecord>();
             }
 
             List<CompositionRecord> compositions = new();
 
             foreach (MandatorRecord? mandator in mandators) {
                 if (mandator != null) {
-                    compositions.AddRange(GetAll(mandator));
+                    compositions.AddRange(GetAllByMandatorID(mandator.ID));
                 }
             }
 
@@ -55,9 +49,8 @@ namespace SW.MB.Domain.Services
             _UnitOfWork.SaveChangesAsync();
         }
 
-        private IEnumerable<CompositionRecord> GetAll(MandatorRecord mandator) {
-            MandatorEntity mandatorEntity = mandator.ToEntity();
-            return _UnitOfWork.Compositions.Where(x => x.Mandators.Contains(mandatorEntity)).Select(x => x.ToRecord());
+        private IEnumerable<CompositionRecord> GetAllByMandatorID(int mandatorID) {
+            return _UnitOfWork.Compositions.Where(x => x.Mandator.ID == mandatorID).Select(x => x.ToRecord());
         }
     }
 }

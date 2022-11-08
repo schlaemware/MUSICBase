@@ -30,7 +30,7 @@ namespace SW.MB.Domain.Services
 
             foreach (MandatorRecord? mandator in mandators) {
                 if (mandator != null) {
-                    compositions.AddRange(GetAll(mandator));
+                    compositions.AddRange(GetAllByMandator(mandator));
                 }
             }
 
@@ -49,7 +49,7 @@ namespace SW.MB.Domain.Services
             _UnitOfWork.SaveChangesAsync();
         }
 
-        private IEnumerable<UserRecord> GetAll(MandatorRecord mandator) {
+        private IEnumerable<UserRecord> GetAllByMandator(MandatorRecord mandator) {
             MandatorEntity mandatorEntity = mandator.ToEntity();
             return _UnitOfWork.Users.Where(x => x.Mandators.Contains(mandatorEntity)).Select(x => x.ToRecord());
         }

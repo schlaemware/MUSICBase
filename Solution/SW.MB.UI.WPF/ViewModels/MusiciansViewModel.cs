@@ -67,7 +67,7 @@ namespace SW.MB.UI.WPF.ViewModels {
       if (ServiceProvider.GetService<IMusiciansService>() is IMusiciansService service) {
         Musicians.Clear();
 
-        foreach (MusicianRecord musician in service.GetAll(_Mandator)) {
+        foreach (MusicianRecord musician in service.GetAll()) {
           Musicians.Add(new ObservableMusician(musician));
         }
       }

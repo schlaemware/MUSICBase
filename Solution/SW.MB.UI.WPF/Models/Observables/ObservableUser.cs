@@ -3,9 +3,9 @@ using SW.MB.UI.WPF.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WPF.Models.Observables {
     public class ObservableUser : ObservablePerson {
-        private string _Mail;
+        private string? _Mail;
 
-        public string Mail {
+        public string? Mail {
             get => _Mail;
             set => SetProperty(ref _Mail, value);
         }

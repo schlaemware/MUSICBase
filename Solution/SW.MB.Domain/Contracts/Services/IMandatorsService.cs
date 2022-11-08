@@ -14,7 +14,6 @@ namespace SW.MB.Domain.Contracts.Services {
         }
 
         public IEnumerable<MandatorRecord> GetAll();
-        public IEnumerable<MandatorRecord> GetAllRaw();
 
         public void UpdateRange(params MandatorRecord[] records);
     }

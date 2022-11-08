@@ -56,7 +56,6 @@ namespace SW.MB.Domain.Services {
 
             for (int n = 0; n < NUM_OF_BANDS_PER_MANDATOR; n++) {
                 BandEntity band = CreateBandEntity(musicians);
-                band.Mandators.Add(mandator);
                 band.CreatedBy = users[random.Next(users.Count)].ID;
                 band.UpdatedBy = users[random.Next(users.Count)].ID;
 
@@ -71,7 +70,7 @@ namespace SW.MB.Domain.Services {
 
             for (int n = 0; n < NUM_OF_COMPOSITIONS_PER_MANDATOR; n++) {
                 CompositionEntity composition = CreateCompositionEntity();
-                composition.Mandators.Add(mandator);
+                composition.Mandator = mandator;
                 composition.CreatedBy = users[random.Next(users.Count)].ID;
                 composition.UpdatedBy = users[random.Next(users.Count)].ID;
 
@@ -91,7 +90,7 @@ namespace SW.MB.Domain.Services {
 
             for (int n = 0; n < NUM_OF_MEMBERS_PER_MANDATOR; n++) {
                 MemberEntity member = CreateMemberEntity();
-                member.Mandators.Add(mandator);
+                member.Mandator = mandator;
                 member.CreatedBy = users[random.Next(users.Count)].ID;
                 member.UpdatedBy = users[random.Next(users.Count)].ID;
 
@@ -106,7 +105,6 @@ namespace SW.MB.Domain.Services {
 
             for (int n = 0; n < NUM_OF_MUSICIANS_PER_MANDATOR; n++) {
                 MusicianEntity musician = CreateMusicianEntity();
-                musician.Mandators.Add(mandator);
                 musician.CreatedBy = users[random.Next(users.Count)].ID;
                 musician.UpdatedBy = users[random.Next(users.Count)].ID;
 
@@ -115,7 +113,6 @@ namespace SW.MB.Domain.Services {
 
                 if (random.NextBoolean()) {
                     musician = CreatePseudonym(added.Entity);
-                    musician.Mandators.Add(mandator);
                     musician.CreatedBy = musician.CreatedBy;
                     musician.UpdatedBy = musician.UpdatedBy;
 

@@ -49,7 +49,7 @@ namespace SW.MB.UI.WPF.ViewModels {
             if (ServiceProvider.GetService<IBandsService>() is IBandsService service) {
                 Bands.Clear();
 
-                foreach (BandRecord band in service.GetAll(_Mandator)) {
+                foreach (BandRecord band in service.GetAll()) {
                     Bands.Add(new ObservableBand(band));
                 }
             }

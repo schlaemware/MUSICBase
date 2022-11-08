@@ -2,8 +2,10 @@
 using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-    [Table("Users")]
-    public class UserEntity : PersonEntity {
-        public string Mail { get; set; } = string.Empty;
-    }
+  [Table("Users")]
+  public class UserEntity: PersonEntity {
+    public virtual ICollection<MandatorEntity> Mandators { get; set; } = new List<MandatorEntity>();
+
+    public string? Mail { get; set; }
+  }
 }

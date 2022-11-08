@@ -2,10 +2,9 @@
 using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-  [Table("Bands")]
-  public class BandEntity: Entity {
-    public virtual ICollection<MusicianEntity> Musicians { get; set; } = new List<MusicianEntity>();
-
+  [Table("Formations")]
+  public class FormationEntity : Entity {
+    public MandatorEntity Mandator { get; set; }
     public string Name { get; set; }
   }
 }
