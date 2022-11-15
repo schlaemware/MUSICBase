@@ -29,13 +29,10 @@ namespace SW.MB.UI.WPF {
 
     private readonly IHost _Host;
 
-    public static string ApplicationDirectoryPath {
-      get {
-        FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-          versionInfo.CompanyName ?? DEFAULT_COMPANY_NAME, versionInfo.ProductName ?? DEFAULT_PRODUCT_NAME);
-      }
-    }
+    public static string Organization { get; } = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName ?? DEFAULT_COMPANY_NAME;
+    public static string SimplifiedOrganization { get; } = Organization.Replace("æ", "ae");
+    public static string Product { get; } = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName ?? DEFAULT_PRODUCT_NAME;
+    public static string ApplicationDirectoryPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Organization, Product);
 
     #region CONSTRUCTORS
     public App() {
