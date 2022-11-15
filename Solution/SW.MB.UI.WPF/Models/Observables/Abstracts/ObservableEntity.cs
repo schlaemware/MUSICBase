@@ -1,5 +1,5 @@
 ﻿using System;
-using SW.Framework.WPF;
+using CommunityToolkit.Mvvm.ComponentModel;
 using SW.MB.Data.Contracts.Models;
 
 namespace SW.MB.UI.WPF.Models.Observables.Abstracts {

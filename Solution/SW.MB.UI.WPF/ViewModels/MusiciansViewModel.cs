@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
-using SW.Framework.WPF;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WPF.Models.Observables;
@@ -36,12 +36,9 @@ namespace SW.MB.UI.WPF.ViewModels {
 
       MusiciansView = CreateView(Musicians);
 
-      CreateMusicianCommand = new RelayCommand(obj => CreateNewMusician(),
-        obj => SelectedMusician?.IsEditMode != true);
-      DiscardChangesCommand = new RelayCommand(obj => DiscardChanges(),
-        obj => SelectedMusician?.IsEditMode == true);
-      SaveChangesCommand = new RelayCommand(obj => StoreMusician(),
-        obj => SelectedMusician?.IsEditMode == true);
+      CreateMusicianCommand = new RelayCommand(() => CreateNewMusician(), () => SelectedMusician?.IsEditMode != true);
+      DiscardChangesCommand = new RelayCommand(() => DiscardChanges(), () => SelectedMusician?.IsEditMode == true);
+      SaveChangesCommand = new RelayCommand(() => StoreMusician(), () => SelectedMusician?.IsEditMode == true);
     }
     #endregion CONSTRUCTORS
 

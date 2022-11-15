@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:observables="clr-namespace:SW.MB.UI.WPF.Models.Observables"
-                    xmlns:fwkconvs="clr-namespace:SW.Framework.WPF.Converters;assembly=SW.Framework.WPF">
+                    xmlns:convs="clr-namespace:SW.MB.UI.WPF.Converters">
 
   <DataTemplate x:Key="MusicianDetailOriginTemplate" DataType="{x:Type observables:ObservableMusician}">
     <Grid>
       <Grid.Resources>
-        <fwkconvs:BooleanInverter x:Key="BoolInverter" />
+        <convs:BooleanInverter x:Key="BoolInverter" />
       </Grid.Resources>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace SW.Framework.WPF.Converters {
+namespace SW.MB.UI.WPF.Converters {
   /// <summary>
   /// Inverts the value of a <see cref="bool"/>.
   /// </summary>

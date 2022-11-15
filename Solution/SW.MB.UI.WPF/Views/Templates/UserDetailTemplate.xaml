@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:fwkconvs="clr-namespace:SW.Framework.WPF.Converters;assembly=SW.Framework.WPF"
+                    xmlns:convs="clr-namespace:SW.MB.UI.WPF.Converters"
                     xmlns:observables="clr-namespace:SW.MB.UI.WPF.Models.Observables">
 
   <DataTemplate DataType="{x:Type observables:ObservableUser}">
     <Grid>
       <Grid.Resources>
-        <fwkconvs:BooleanInverter x:Key="BoolInverter" />
+        <convs:BooleanInverter x:Key="BoolInverter" />
         
         <Style TargetType="{x:Type TextBlock}">
           <Setter Property="VerticalAlignment" Value="Center" />
