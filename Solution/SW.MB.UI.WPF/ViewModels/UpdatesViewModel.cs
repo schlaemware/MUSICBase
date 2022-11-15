@@ -17,6 +17,8 @@ namespace SW.MB.UI.WPF.ViewModels {
 
     public ICollectionView ReleasesView { get; }
 
+    public bool UpdateAvailable => ReleasesCollection.Any(x => x.Version > Assembly.GetExecutingAssembly().GetName().Version);
+
     #region CONSTRUCTORS
     public UpdatesViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
       _Client = new GitHubClient(new ProductHeaderValue(App.SimplifiedOrganization));
@@ -37,7 +39,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
     private async void CheckUpdatesAsync() {
       IReadOnlyList<Repository> repositories = await _Client.Repository.GetAllForOrg(App.SimplifiedOrganization);
-      if (repositories.FirstOrDefault(x => x.Name.ToLower() == "testrepo" /* App.Product.ToLower() */) is Repository repository) {
+      if (repositories.FirstOrDefault(x => x.Name.ToLower() == App.Product.ToLower()) is Repository repository) {
         IEnumerable<Release> releases = (await _Client.Repository.Release.GetAll(repository.Id)).Where(x => Version.TryParse(x.TagName, out Version? version));
         releases.ForEach(async release => {
           IReadOnlyList<ReleaseAsset> assets = await _Client.Repository.Release.GetAllAssets(repository.Id, release.Id);
