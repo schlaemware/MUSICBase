@@ -81,6 +81,9 @@ namespace SW.MB.UI.WPF {
 
     protected override void OnExit(ExitEventArgs e) {
       Log.Logger.Information("Exit application...");
+
+      WPF.Properties.Settings.Default.Save();
+
       Analytics.TrackEvent("Application", new Dictionary<string, string> {
                 { "Status", "Exit" }
             });
@@ -101,7 +104,7 @@ namespace SW.MB.UI.WPF {
 
     private void StartAppCenter() {
       if (_Host?.Services.GetService<IConfiguration>() is IConfiguration configuration) {
-        string appSecretString = configuration.GetValue<string>("AppCenter:AppSecret");
+        string? appSecretString = configuration.GetValue<string>("AppCenter:AppSecret");
 
         if (Guid.TryParse(appSecretString, out Guid appSecret)) {
           AppCenter.SetCountryCode(RegionInfo.CurrentRegion.TwoLetterISORegionName);
@@ -128,6 +131,11 @@ namespace SW.MB.UI.WPF {
 
     private void StartMainApplication(AppViewModel vm) {
       Log.Logger.Debug($"Start {nameof(StartMainApplication)}");
+
+      bool isUpdated = WPF.Properties.Settings.Default.VersionLastStart < Assembly.GetExecutingAssembly().GetName().Version;
+      if (isUpdated) {
+        WPF.Properties.Settings.Default.VersionLastStart = Assembly.GetExecutingAssembly().GetName().Version;
+      }
 
       MainWindow = _Host.Services.GetRequiredService<AppWindow>();
       MainWindow.DataContext = vm;

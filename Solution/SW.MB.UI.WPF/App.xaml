@@ -5,6 +5,10 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Views/Templates/Releases/CurrentReleaseTemplate.xaml" />
+        <ResourceDictionary Source="Views/Templates/Releases/PastReleaseTemplate.xaml" />
+        <ResourceDictionary Source="Views/Templates/Releases/ReleaseTemplate.xaml" />
+        
         <ResourceDictionary Source="Views/Templates/BandDetailTemplate.xaml" />
         <ResourceDictionary Source="Views/Templates/MandatorDetailTemplate.xaml" />
         <ResourceDictionary Source="Views/Templates/MemberDetailTemplate.xaml" />

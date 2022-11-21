@@ -6,18 +6,22 @@ using Octokit;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableRelease: ObservableObject {
-    public string Name { get; }
-    public Version Version { get; }
-    public string? Description { get; }
-    public bool Draft { get; }
-    public bool PreRelease { get; }
-    public DateTimeOffset Created { get; }
-    public DateTimeOffset? Published { get; }
-    public bool HasInstaller { get; }
+    public string Name { get; init; }
+    public Version Version { get; init; }
+    public string? Description { get; init; }
+    public bool Draft { get; init; }
+    public bool PreRelease { get; init; }
+    public DateTimeOffset Created { get; init; }
+    public DateTimeOffset? Published { get; init; }
+    public bool HasInstaller { get; init; }
 
     #region COMMANDS
     public ICommand DownloadCommand { get; }
     #endregion COMMANDS
+
+    public ObservableRelease() {
+      DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."), () => HasInstaller);
+    }
 
     public ObservableRelease(Release release, bool hasInstaller) {
       Name = release.Name;
