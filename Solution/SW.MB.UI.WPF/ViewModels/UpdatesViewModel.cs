@@ -74,6 +74,8 @@ namespace SW.MB.UI.WPF.ViewModels {
           OnPropertyChanged(nameof(CurrentRelease));
           OnPropertyChanged(nameof(UpdateAvailable));
         }
+      } else {
+        // Load updates from local database
       }
     }
   }
