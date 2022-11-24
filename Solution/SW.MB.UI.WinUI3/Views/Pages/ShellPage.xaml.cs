@@ -1,4 +1,8 @@
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using SW.MB.UI.WinUI3.Extensions;
+using SW.MB.UI.WinUI3.Helpers;
 using SW.MB.UI.WinUI3.ViewModels;
 
 namespace SW.MB.UI.WinUI3.Views.Pages {
@@ -15,16 +19,29 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
       ViewModel.NavigationService.Frame = NavigationFrame;
       ViewModel.NavigationViewService.Initialize(NavigationViewControl);
 
-      //App.MainWindow.ExtendsContentIntoTitleBar = true;
-      //App.MainWindow.SetTitleBar(AppTitleBar);
-      //App.MainWindow.Activated += MainWindow_Activated;
-      //AppTitleBarText.Text = "";
+      App.MainWindow.ExtendsContentIntoTitleBar = true;
+      App.MainWindow.SetTitleBar(AppTitleBar);
+      App.MainWindow.Activated += MainWindow_Activated;
+      AppTitleBarText.Text = "AppDisplayName".GetLocalized();
     }
 
-    private void MainWindow_Activated(object sender, Microsoft.UI.Xaml.WindowActivatedEventArgs args) {
-      string resource = args.WindowActivationState == Microsoft.UI.Xaml.WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
+    private void OnLoaded(object sender, RoutedEventArgs e) {
+      TitleBarHelper.UpdateTitleBar(RequestedTheme);
+    }
 
-      //AppTitleBarText.Foreground = (SolidColorBrush)App.Current.Resources[resource];
+    private void MainWindow_Activated(object sender, WindowActivatedEventArgs args) {
+      string resource = args.WindowActivationState == WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
+
+      AppTitleBarText.Foreground = (SolidColorBrush)App.Current.Resources[resource];
+    }
+
+    private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args) {
+      AppTitleBar.Margin = new Thickness() {
+        Left = sender.CompactPaneLength * (sender.DisplayMode == NavigationViewDisplayMode.Minimal ? 2 : 1),
+        Top = AppTitleBar.Margin.Top,
+        Right = AppTitleBar.Margin.Right,
+        Bottom = AppTitleBar.Margin.Bottom
+      };
     }
   }
 }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using SW.MB.UI.WinUI3.Contracts.Services;
+using SW.MB.UI.WinUI3.Helpers;
 
 namespace SW.MB.UI.WinUI3.Services {
   internal class ThemeSelectorService: IThemeSelectorService {
@@ -25,7 +26,7 @@ namespace SW.MB.UI.WinUI3.Services {
     public async Task SetRequestedThemeAsync() {
       if (App.MainWindow.Content is FrameworkElement rootElement) {
         rootElement.RequestedTheme = Theme;
-        // TitleBarHelper
+        TitleBarHelper.UpdateTitleBar(Theme);
       }
 
       await Task.CompletedTask;
@@ -35,7 +36,7 @@ namespace SW.MB.UI.WinUI3.Services {
       Theme = theme;
 
       await SetRequestedThemeAsync();
-      await SaveThemeInSettingsAsync(Theme);
+      //await SaveThemeInSettingsAsync(Theme);
     }
 
     private async Task<ElementTheme> LoadThemeFromSettingsAsync() {

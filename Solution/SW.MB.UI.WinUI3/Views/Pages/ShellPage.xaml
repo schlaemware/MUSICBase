@@ -7,14 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:SW.MB.UI.WinUI3.Helpers"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="OnLoaded">
 
   <Grid>
+    <Grid x:Name="AppTitleBar"
+          Canvas.ZIndex="1"
+          Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+          IsHitTestVisible="True"
+          VerticalAlignment="Top">
+      <Image Source="/Assets/WindowIcon.ico"
+             HorizontalAlignment="Left"
+             Width="16" Height="16" />
+      <TextBlock x:Name="AppTitleBarText"
+                 VerticalAlignment="Center"
+                 TextWrapping="NoWrap"
+                 Style="{StaticResource CaptionTextBlockStyle}"
+                 Margin="28,0,0,0" />
+    </Grid>
+    
     <NavigationView x:Name="NavigationViewControl"
+                    Canvas.ZIndex="0"
                     IsBackButtonVisible="Visible"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                     SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
                     IsSettingsVisible="True"
+                    ExpandedModeThresholdWidth="1280"
+                    DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
                     Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
       <NavigationView.MenuItems>
         <NavigationViewItem x:Uid="NavigationViewItem_Home" Icon="Home" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.HomeViewModel" />
@@ -41,7 +60,7 @@
         </DataTemplate>
       </NavigationView.HeaderTemplate>
 
-      <Grid>
+      <Grid Margin="{StaticResource NavigationViewPaneContentGridMargin}">
         <Frame x:Name="NavigationFrame" />
       </Grid>
     </NavigationView>
