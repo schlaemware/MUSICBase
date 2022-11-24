@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "SW.MB.UI.WinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SW.MB.UI.WinUI3 (Unpackaged)": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
