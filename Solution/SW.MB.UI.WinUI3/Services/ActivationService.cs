@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SW.MB.UI.WinUI3.Activation;
@@ -33,6 +34,7 @@ namespace SW.MB.UI.WinUI3.Services {
       if (App.MainWindow.Content == null) {
         _Shell = App.GetService<ShellPage>();
         App.MainWindow.Content = _Shell ?? new Frame();
+        App.Dispatcher = DispatcherQueue.GetForCurrentThread();
       }
 
       // Handle activation via ActivationHandlers.

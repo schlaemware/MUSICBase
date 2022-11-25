@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Extensions.Hosting;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using SW.MB.UI.WinUI3.Contracts.Services;
 using SW.MB.UI.WinUI3.HostBuilder;
@@ -10,8 +11,9 @@ namespace SW.MB.UI.WinUI3 {
   /// Provides application-specific behavior to supplement the default Application class.
   /// </summary>
   public partial class App: Application {
-    public IHost Host { get; } = MyHostBuilder.Build();
+    protected IHost Host { get; } = MyHostBuilder.Build();
 
+    public static DispatcherQueue Dispatcher { get; set; } = DispatcherQueue.GetForCurrentThread();
     public static Window MainWindow { get; } = new MainWindow();
 
     /// <summary>
