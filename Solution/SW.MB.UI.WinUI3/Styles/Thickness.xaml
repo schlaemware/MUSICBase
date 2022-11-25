@@ -1,0 +1,11 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SW.MB.UI.WinUI3.Styles">
+
+  <Thickness x:Key="SmallTopBottomMargin">0,12,0,12</Thickness>
+
+  <Thickness x:Key="XSmallTopMargin">0,8,0,0</Thickness>
+  
+  <Thickness x:Key="NavigationViewPageContentMargin">56,24,56,0</Thickness>
+</ResourceDictionary>

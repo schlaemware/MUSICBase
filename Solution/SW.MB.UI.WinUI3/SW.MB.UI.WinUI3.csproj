@@ -17,6 +17,7 @@
     <Content Remove="Assets\LightIcon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Styles\Thickness.xaml" />
     <None Remove="Views\Pages\CompositionsPage.xaml" />
     <None Remove="Views\Pages\HomePage.xaml" />
     <None Remove="Views\Pages\MandantsPage.xaml" />
@@ -65,6 +66,9 @@
     <None Update="Assets\LightIcon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Styles\Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Pages\CompositionsPage.xaml">

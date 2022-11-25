@@ -159,6 +159,12 @@
   <data name="Settings_About.Text" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>TODO: Replace with your app description</value>
+  </data>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>Personalisierung</value>
+  </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Theme</value>
   </data>

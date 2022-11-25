@@ -21,7 +21,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
 
     public SettingsViewModel(IThemeSelectorService themeSelectorService) {
       _ThemeSelectorService = themeSelectorService;
-      VersionDescription = string.Empty;
+      VersionDescription = GetVersionDescription();
 
       SwitchThemeCommand = new RelayCommand<ElementTheme>(async param => {
         if (Theme != param) {
@@ -29,6 +29,10 @@ namespace SW.MB.UI.WinUI3.ViewModels {
           await _ThemeSelectorService.SetThemeAsync(Theme);
         }
       });
+    }
+
+    private string GetVersionDescription() {
+      return "Die Versionsbeschreibung wird noch nicht geladen.";
     }
   }
 }

@@ -16,7 +16,8 @@
           Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
           IsHitTestVisible="True"
           VerticalAlignment="Top">
-      <Image Source="/Assets/LightIcon.ico"
+      <Image x:Name="AppTitleBarIcon"
+             Source="/Assets/LightIcon.ico"
              HorizontalAlignment="Left"
              Width="16" Height="16" />
       <TextBlock x:Name="AppTitleBarText"
@@ -31,10 +32,16 @@
                     IsBackButtonVisible="Visible"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                     SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-                    IsSettingsVisible="True"
+                    IsSettingsVisible="True" IsPaneOpen="False"
                     ExpandedModeThresholdWidth="1280"
                     DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-                    Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                    Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
+                    PaneOpening="NavigationViewControl_PaneOpening"
+                    PaneClosing="NavigationViewControl_PaneClosing">
+      
+      <NavigationView.AutoSuggestBox>
+        <AutoSuggestBox Text="Search" />
+      </NavigationView.AutoSuggestBox>
       <NavigationView.MenuItems>
         <NavigationViewItem x:Uid="NavigationViewItem_Home" Icon="Home" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.HomeViewModel" />
         <NavigationViewItem x:Uid="NavigationViewItem_Mandants" Icon="Flag" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.MandantsViewModel" />
@@ -52,15 +59,7 @@
         <NavigationViewItem x:Uid="NavigationViewItem_Updates" Icon="Refresh" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.UpdatesViewModel" />
       </NavigationView.FooterMenuItems>
 
-      <NavigationView.HeaderTemplate>
-        <DataTemplate>
-          <Grid>
-            <TextBlock Text="{Binding}" Style="{ThemeResource TitleTextBlockStyle}" />
-          </Grid>
-        </DataTemplate>
-      </NavigationView.HeaderTemplate>
-
-      <Grid Margin="{StaticResource NavigationViewPaneContentGridMargin}">
+      <Grid Margin="{StaticResource NavigationViewPageContentMargin}">
         <Frame x:Name="NavigationFrame" />
       </Grid>
     </NavigationView>

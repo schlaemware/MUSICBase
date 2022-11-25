@@ -22,7 +22,10 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
       App.MainWindow.ExtendsContentIntoTitleBar = true;
       App.MainWindow.SetTitleBar(AppTitleBar);
       App.MainWindow.Activated += MainWindow_Activated;
+
+      AppTitleBarIcon.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
       AppTitleBarText.Text = "AppDisplayName".GetLocalized();
+      AppTitleBarText.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e) {
@@ -42,6 +45,16 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
         Right = AppTitleBar.Margin.Right,
         Bottom = AppTitleBar.Margin.Bottom
       };
+    }
+
+    private void NavigationViewControl_PaneOpening(NavigationView sender, object args) {
+      AppTitleBarIcon.Visibility = Visibility.Visible;
+      AppTitleBarText.Visibility = Visibility.Visible;
+    }
+
+    private void NavigationViewControl_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args) {
+      AppTitleBarIcon.Visibility = Visibility.Collapsed;
+      AppTitleBarText.Visibility = Visibility.Collapsed;
     }
   }
 }
