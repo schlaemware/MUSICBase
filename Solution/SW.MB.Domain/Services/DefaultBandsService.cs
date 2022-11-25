@@ -5,7 +5,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultBandsService : ServiceBase, IBandsService {
+  internal class DefaultBandsService : DataServiceBase, IBandsService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS

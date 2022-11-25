@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Octokit;
+using SW.MB.Domain.Models.Records;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableRelease: ObservableObject {
@@ -13,7 +13,6 @@ namespace SW.MB.UI.WPF.Models.Observables {
     public bool PreRelease { get; init; }
     public DateTimeOffset Created { get; init; }
     public DateTimeOffset? Published { get; init; }
-    public bool HasInstaller { get; init; }
 
     #region COMMANDS
     public ICommand DownloadCommand { get; }
@@ -21,20 +20,19 @@ namespace SW.MB.UI.WPF.Models.Observables {
 
     #region CONSTRUCTORS
     public ObservableRelease() {
-      DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."), () => HasInstaller);
+      DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."));
     }
 
-    public ObservableRelease(Release release, bool hasInstaller) {
-      Name = release.Name;
-      Version = Version.Parse(release.TagName);
-      Description = release.Body;
-      Draft = release.Draft;
-      PreRelease = release.Prerelease;
-      Created = release.CreatedAt;
-      Published = release.PublishedAt;
-      HasInstaller = hasInstaller;
+    public ObservableRelease(ReleaseRecord record) {
+      Name = record.Designation;
+      Version = record.Version;
+      Description = record.Description;
+      Draft = record.Draft;
+      PreRelease = record.PreRelease;
+      Created = record.Created;
+      Published = record.Published;
 
-      DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."), () => HasInstaller);
+      DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."));
     }
     #endregion CONSTRUCTORS
   }

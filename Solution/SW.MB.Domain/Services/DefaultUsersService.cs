@@ -8,7 +8,7 @@ using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services
 {
-    internal class DefaultUsersService : ServiceBase, IUsersService {
+    internal class DefaultUsersService : DataServiceBase, IUsersService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS

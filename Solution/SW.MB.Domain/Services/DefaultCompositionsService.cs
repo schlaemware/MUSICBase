@@ -7,7 +7,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultCompositionsService : ServiceBase, ICompositionsService {
+  internal class DefaultCompositionsService : DataServiceBase, ICompositionsService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS

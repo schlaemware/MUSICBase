@@ -7,7 +7,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultMusiciansService : ServiceBase, IMusiciansService {
+  internal class DefaultMusiciansService : DataServiceBase, IMusiciansService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS

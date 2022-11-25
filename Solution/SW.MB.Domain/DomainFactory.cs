@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Services;
+using SW.MB.Domain.Services.SampleDataServices;
 
 [assembly: InternalsVisibleTo("DevConsole")]
 [assembly: InternalsVisibleTo("SW.MB.Test")]
@@ -38,6 +39,8 @@ namespace SW.MB.Domain {
       services.AddTransient<IMandatorsService, DefaultMandatorsService>();
       services.AddTransient<IMembersService, DefaultMembersService>();
       services.AddTransient<IMusiciansService, DefaultMusiciansService>();
+      //services.AddTransient<IUpdatesService, DefaultUpdatesService>();
+      services.AddTransient<IUpdatesService, SampleDataUpdateService>();
       services.AddTransient<IUsersService, DefaultUsersService>();
     }
   }

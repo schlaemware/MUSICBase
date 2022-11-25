@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SW.MB.UI.WinUI3.Models.Observables {
-  public class ObservableUser: ObservableObject {
+    public class ObservableUser: ObservableObject {
     public string? Firstname { get; set; }
     public string? Lastname { get; set; }
 

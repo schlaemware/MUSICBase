@@ -5,9 +5,37 @@
     xmlns:local="using:SW.MB.UI.WinUI3.Views.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:observables="using:SW.MB.UI.WinUI3.Models.Observables"
     mc:Ignorable="d">
 
+  <Page.Resources>
+    <DataTemplate x:Key="ReleaseListItemTemplate" x:DataType="observables:ObservableRelease">
+      <Grid Height="60">
+        <TextBlock VerticalAlignment="Center"
+                   Text="{Binding Designation}"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+      </Grid>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="ReleaseDetailItemTemplate" x:DataType="observables:ObservableRelease">
+      <ScrollViewer Margin="20,-0,0,0"
+                    VerticalScrollMode="Enabled"
+                    HorizontalScrollMode="Disabled">
+        <StackPanel HorizontalAlignment="Left"
+                    Orientation="Vertical">
+          <TextBlock VerticalAlignment="Center"
+                     Text="{Binding Designation}"
+                     Style="{ThemeResource HeaderTextBlockStyle}" />
+        </StackPanel>
+      </ScrollViewer>
+    </DataTemplate>
+  </Page.Resources>
+
   <Grid>
-    <TextBlock Text="Updates" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.ReleasesCollection}"
+                              ItemTemplate="{StaticResource ReleaseListItemTemplate}"
+                              DetailsTemplate="{StaticResource ReleaseDetailItemTemplate}"
+                              Background="Transparent" />
   </Grid>
 </Page>

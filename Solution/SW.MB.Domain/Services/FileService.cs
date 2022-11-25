@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 using SW.MB.Domain.Contracts.Services;
+using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  public class FileService: IFileService {
+  internal class FileService: ServiceBase, IFileService {
     public T? Read<T>(string folderPath, string fileName) where T : class {
       string path = Path.Combine(folderPath, fileName);
       if (File.Exists(path)) {
