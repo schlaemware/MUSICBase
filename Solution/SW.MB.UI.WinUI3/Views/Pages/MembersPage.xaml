@@ -5,9 +5,73 @@
     xmlns:local="using:SW.MB.UI.WinUI3.Views.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:observables="using:SW.MB.UI.WinUI3.Models.Observables"
     mc:Ignorable="d">
 
+  <Page.Resources>
+    <DataTemplate x:Key="MembersListItemTemplate" x:DataType="observables:ObservableMember">
+      <Grid Height="60">
+        <TextBlock VerticalAlignment="Center"
+                   Text="{Binding Fullname}"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MembersDetailItemTemplate" x:DataType="observables:ObservableMember">
+      <ScrollViewer Margin="20,-0,0,0"
+                    VerticalScrollMode="Enabled"
+                    HorizontalScrollMode="Disabled">
+        <StackPanel HorizontalAlignment="Left"
+                    Orientation="Vertical">
+          <TextBlock VerticalAlignment="Center"
+                     Text="{Binding Fullname}"
+                     Style="{ThemeResource HeaderTextBlockStyle}"
+                     Margin="0,0,0,20" />
+
+          <Grid Height="40">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="140" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Instrument"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1"
+                       Text="Querflöte"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       VerticalAlignment="Center" />
+          </Grid>
+          <Grid Height="40">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="140" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Instrument"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <ComboBox Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Stretch"
+                      SelectedIndex="0"
+                      IsEditable="False"
+                      Margin="-12,0,0,0">
+              <ComboBoxItem Content="Querflöte" />
+              <ComboBoxItem Content="Klarinette" />
+            </ComboBox>
+          </Grid>
+        </StackPanel>
+      </ScrollViewer>
+    </DataTemplate>
+  </Page.Resources>
+  
   <Grid>
-    <TextBlock Text="Members" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.MembersCollection}"
+                              ItemTemplate="{StaticResource MembersListItemTemplate}"
+                              DetailsTemplate="{StaticResource MembersDetailItemTemplate}"
+                              SelectedItem="{x:Bind ViewModel.SelectedMember, Mode=TwoWay}"
+                              Background="Transparent" />
   </Grid>
 </Page>

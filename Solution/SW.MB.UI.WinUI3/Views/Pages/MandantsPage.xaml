@@ -5,9 +5,39 @@
     xmlns:local="using:SW.MB.UI.WinUI3.Views.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:observables="using:SW.MB.UI.WinUI3.Models.Observables"
     mc:Ignorable="d">
 
+  <Page.Resources>
+    <DataTemplate x:Key="MandantListItemTemplate" x:DataType="observables:ObservableMandant">
+      <Grid Height="60">
+        <TextBlock VerticalAlignment="Center"
+                   Text="{Binding Name}"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MandantDetailItemTemplate" x:DataType="observables:ObservableMandant">
+      <ScrollViewer Margin="20,-0,0,0"
+                    VerticalScrollMode="Enabled"
+                    HorizontalScrollMode="Disabled">
+        <StackPanel HorizontalAlignment="Left"
+                    Orientation="Vertical">
+          <TextBlock VerticalAlignment="Center"
+                     Text="{Binding Name}"
+                     Style="{ThemeResource HeaderTextBlockStyle}"
+                     Margin="0,0,0,20" />
+        </StackPanel>
+      </ScrollViewer>
+    </DataTemplate>
+  </Page.Resources>
+
   <Grid>
-    <TextBlock Text="Mandants" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.MandantsCollection}" 
+                              ItemTemplate="{StaticResource MandantListItemTemplate}"
+                              DetailsTemplate="{StaticResource MandantDetailItemTemplate}"
+                              SelectedItem="{x:Bind ViewModel.SelectedMandant}"
+                              Background="Transparent" />
   </Grid>
 </Page>

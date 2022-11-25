@@ -5,9 +5,38 @@
     xmlns:local="using:SW.MB.UI.WinUI3.Views.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:observables="using:SW.MB.UI.WinUI3.Models.Observables"
     mc:Ignorable="d">
 
+  <Page.Resources>
+    <DataTemplate x:Key="MusiciansListItemTemplate" x:DataType="observables:ObservableMusician">
+      <Grid Height="60">
+        <TextBlock VerticalAlignment="Center"
+                   Text="{Binding Fullname}"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MusiciansDetailItemTemplate" x:DataType="observables:ObservableMusician">
+      <ScrollViewer Margin="20,-0,0,0"
+                    VerticalScrollMode="Enabled"
+                    HorizontalScrollMode="Disabled">
+        <StackPanel HorizontalAlignment="Left"
+                    Orientation="Vertical">
+          <TextBlock VerticalAlignment="Center"
+                     Text="{Binding Fullname}"
+                     Style="{ThemeResource HeaderTextBlockStyle}" />
+        </StackPanel>
+      </ScrollViewer>
+    </DataTemplate>
+  </Page.Resources>
+
   <Grid>
-    <TextBlock Text="Musicians" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.MusiciansCollection}"
+                              ItemTemplate="{StaticResource MusiciansListItemTemplate}"
+                              DetailsTemplate="{StaticResource MusiciansDetailItemTemplate}"
+                              SelectedItem="{x:Bind ViewModel.SelectedMusician, Mode=TwoWay}"
+                              Background="Transparent" />
   </Grid>
 </Page>
