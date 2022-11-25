@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Reflection;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
@@ -14,6 +15,8 @@ namespace SW.MB.UI.WinUI3.ViewModels {
       get => _Theme;
       set => SetProperty(ref _Theme, value);
     }
+
+    public string VersionString { get; } = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
 
     public string VersionDescription { get; }
 

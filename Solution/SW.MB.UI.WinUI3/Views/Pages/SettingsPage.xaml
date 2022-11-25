@@ -16,8 +16,9 @@
   <Grid>
     <StackPanel x:Name="ContentArea">
       <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+      
       <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-        <TextBlock x:Uid="Settings_Theme" Style="{ThemeResource SubtitleTextBlockStyle}" />
+        <TextBlock x:Uid="Settings_Theme" Style="{ThemeResource BodyStrongTextBlockStyle}" />
         <StackPanel Margin="{StaticResource XSmallTopMargin}">
           <RadioButton x:Uid="Settings_Theme_Light"
                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
@@ -49,14 +50,20 @@
       <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
       <StackPanel Margin="{StaticResource XSmallTopMargin}">
+        <TextBlock Text="{x:Bind ViewModel.VersionString, Mode=OneWay}"
+                   Margin="{StaticResource XSmallTopMargin}"
+                   Style="{ThemeResource BodyTextBlockStyle}" />
+        
         <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}"
+                   Margin="{StaticResource XSmallTopMargin}"
                    Style="{ThemeResource BodyTextBlockStyle}" />
 
         <TextBlock x:Uid="Settings_AboutDescription"
                    Margin="{StaticResource XSmallTopMargin}"
                    Style="{ThemeResource BodyTextBlockStyle}" />
 
-        <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" />
+        <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink"
+                         Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
       </StackPanel>
     </StackPanel>
   </Grid>
