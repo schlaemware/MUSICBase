@@ -10,7 +10,7 @@ namespace SW.MB.UI.WinUI3.Services {
 
     private readonly ILocalSettingsService _LocalSettingsService;
 
-    public ElementTheme Theme { get; set; } = ElementTheme.Default;
+    public ElementTheme Theme { get; set; }
 
     #region CONSTRUCTORS
     public ThemeSelectorService(ILocalSettingsService localSettingsService) {
@@ -19,7 +19,7 @@ namespace SW.MB.UI.WinUI3.Services {
     #endregion CONSTRUCTORS
 
     public async Task InitializeAsync() {
-      Theme = ElementTheme.Default; // await LoadThemeFromSettingsAsync();
+      Theme = await LoadThemeFromSettingsAsync();
       await Task.CompletedTask;
     }
 
@@ -36,7 +36,7 @@ namespace SW.MB.UI.WinUI3.Services {
       Theme = theme;
 
       await SetRequestedThemeAsync();
-      //await SaveThemeInSettingsAsync(Theme);
+      await SaveThemeInSettingsAsync(Theme);
     }
 
     private async Task<ElementTheme> LoadThemeFromSettingsAsync() {

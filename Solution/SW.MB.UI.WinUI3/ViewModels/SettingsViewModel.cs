@@ -20,10 +20,15 @@ namespace SW.MB.UI.WinUI3.ViewModels {
 
     public string VersionDescription { get; }
 
+    #region COMMANDS
     public ICommand SwitchThemeCommand { get; }
+    #endregion COMMANDS
 
+    #region CONSTRUCTORS
     public SettingsViewModel(IThemeSelectorService themeSelectorService) {
       _ThemeSelectorService = themeSelectorService;
+      _Theme = _ThemeSelectorService.Theme;
+
       VersionDescription = GetVersionDescription();
 
       SwitchThemeCommand = new RelayCommand<ElementTheme>(async param => {
@@ -33,6 +38,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
         }
       });
     }
+    #endregion CONSTRUCTORS
 
     private string GetVersionDescription() {
       return "Die Versionsbeschreibung wird noch nicht geladen.";

@@ -6,8 +6,8 @@ using Octokit;
 
 namespace SW.MB.UI.WPF.Models.Observables {
   public class ObservableRelease: ObservableObject {
-    public string Name { get; init; }
-    public Version Version { get; init; }
+    public string? Name { get; init; }
+    public Version? Version { get; init; }
     public string? Description { get; init; }
     public bool Draft { get; init; }
     public bool PreRelease { get; init; }
@@ -19,6 +19,7 @@ namespace SW.MB.UI.WPF.Models.Observables {
     public ICommand DownloadCommand { get; }
     #endregion COMMANDS
 
+    #region CONSTRUCTORS
     public ObservableRelease() {
       DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."), () => HasInstaller);
     }
@@ -35,5 +36,6 @@ namespace SW.MB.UI.WPF.Models.Observables {
 
       DownloadCommand = new RelayCommand(() => System.Diagnostics.Debug.WriteLine("Download..."), () => HasInstaller);
     }
+    #endregion CONSTRUCTORS
   }
 }
