@@ -6,8 +6,10 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     public class CompositionsViewModel : ObservableRecipient {
         public OrderedObservableCollection<ObservableComposition> CompositionsCollection { get; } = new();
 
+        #region CONSTRUCTORS
         public CompositionsViewModel() {
 
         }
+        #endregion CONSTRUCTORS
     }
 }

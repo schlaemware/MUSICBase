@@ -9,19 +9,19 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WinUI3.Models.Observables;
 
 namespace SW.MB.UI.WinUI3.ViewModels {
-  public class UpdatesViewModel: ObservableRecipient {
-    public ObservableCollection<ObservableRelease> ReleasesCollection { get; } = new();
+    public class UpdatesViewModel : ObservableRecipient {
+        public ObservableCollection<ObservableRelease> ReleasesCollection { get; } = new();
 
-    #region CONSTRUCTORS
-    public UpdatesViewModel() {
-      LoadReleasesAsync();
-    }
-    #endregion CONSTRUCTORS
+        #region CONSTRUCTORS
+        public UpdatesViewModel() {
+            LoadReleasesAsync();
+        }
+        #endregion CONSTRUCTORS
 
-    private async void LoadReleasesAsync() {
-      IUpdatesService updatesService = App.GetService<IUpdatesService>();
-      IEnumerable<ReleaseRecord> releases = await updatesService.CheckUpdatesAsync("Schlaemware", "MUSICBase", Assembly.GetExecutingAssembly().GetName().Version, "msix");
-      releases.Select(x => new ObservableRelease(x)).OrderByDescending(x => x.Version).ForEach(x => App.Dispatcher.TryEnqueue(() => ReleasesCollection.Add(x)));
+        private async void LoadReleasesAsync() {
+            IUpdatesService updatesService = App.GetService<IUpdatesService>();
+            IEnumerable<ReleaseRecord> releases = await updatesService.CheckUpdatesAsync("Schlaemware", "MUSICBase", Assembly.GetExecutingAssembly().GetName().Version, "msix");
+            releases.Select(x => new ObservableRelease(x)).OrderByDescending(x => x.Version).ForEach(x => App.Dispatcher.TryEnqueue(() => ReleasesCollection.Add(x)));
+        }
     }
-  }
 }

@@ -1,7 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SW.MB.UI.WinUI3.ViewModels {
-  public class HomeViewModel: ObservableRecipient {
-
-  }
+    public class HomeViewModel : ObservableRecipient {
+        #region CONSTRUCTORS
+        public HomeViewModel() {
+            // empty...
+        }
+        #endregion CONSTRUCTORS
+    }
 }
