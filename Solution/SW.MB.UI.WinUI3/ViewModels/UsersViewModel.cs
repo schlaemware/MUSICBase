@@ -1,4 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using SW.Framework.Extensions;
+using SW.MB.Domain.Contracts.Services;
 using SW.MB.UI.WinUI3.Models;
 using SW.MB.UI.WinUI3.Models.Observables;
 
@@ -15,14 +20,17 @@ namespace SW.MB.UI.WinUI3.ViewModels {
 
         #region CONSTRUCTORS
         public UsersViewModel() {
-            AddSampleData();
+            LoadDataAsync();
         }
         #endregion CONSTRUCTORS
 
-        private void AddSampleData() {
-            UsersCollection.Add(new ObservableUser { Firstname = "Michael", Lastname = "Schläpfer" });
-            UsersCollection.Add(new ObservableUser { Firstname = "Andi", Lastname = "Seitz" });
-            UsersCollection.Add(new ObservableUser { Firstname = "Svenja", Lastname = "Wick" });
+        private void LoadData() {
+            IEnumerable<ObservableUser> users = App.GetService<IUsersService>().GetAll().Select(x => new ObservableUser(x));
+            App.Dispatcher.TryEnqueue(() => users.ForEach(x => UsersCollection.Add(x)));
+        }
+
+        private async void LoadDataAsync() {
+            await Task.Factory.StartNew(() => LoadData());
         }
     }
 }

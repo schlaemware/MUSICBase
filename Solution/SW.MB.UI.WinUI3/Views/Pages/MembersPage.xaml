@@ -11,10 +11,19 @@
 
   <Page.Resources>
     <DataTemplate x:Key="MembersListItemTemplate" x:DataType="observables:ObservableMember">
-      <Grid Height="60">
-        <TextBlock VerticalAlignment="Center"
+      <Grid VerticalAlignment="Center" Padding="0,12">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   VerticalAlignment="Center"
                    Text="{Binding Fullname}"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        <TextBlock Grid.Row="1"
+                   VerticalAlignment="Center"
+                   Text="{Binding Instrument}"
+                   Style="{ThemeResource BodyTextBlockStyle}" />
       </Grid>
     </DataTemplate>
 
@@ -24,35 +33,63 @@
                     HorizontalScrollMode="Disabled">
         <StackPanel HorizontalAlignment="Left"
                     Orientation="Vertical">
+          <StackPanel.Resources>
+            <Style TargetType="Grid">
+              <Setter Property="Height" Value="40" />
+              <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+          </StackPanel.Resources>
           <TextBlock VerticalAlignment="Center"
                      Text="{Binding Fullname}"
                      Style="{ThemeResource HeaderTextBlockStyle}"
                      Margin="0,0,0,20" />
 
-          <Grid Height="40">
+          <!-- Firstname -->
+          <Grid>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="140" />
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
               <ColumnDefinition Width="*" MinWidth="200" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="Instrument"
+                       Text="Firstname"
                        Style="{ThemeResource BodyStrongTextBlockStyle}"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Column="1"
-                       Text="Querflöte"
-                       Style="{ThemeResource BodyTextBlockStyle}"
-                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding Firstname}"
+                     VerticalAlignment="Center" />
           </Grid>
-          <Grid Height="40">
+
+          <!-- Lastname -->
+          <Grid>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="140" />
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Lastname"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding Lastname}"
+                     VerticalAlignment="Center" />
+          </Grid>
+          
+          <!-- Instrument -->
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
               <ColumnDefinition Width="*" MinWidth="200" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
                        Text="Instrument"
                        Style="{ThemeResource BodyStrongTextBlockStyle}"
                        VerticalAlignment="Center" />
-            <ComboBox Grid.Column="1"
+            <ComboBox Grid.Column="2"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Stretch"
                       SelectedIndex="0"
@@ -60,6 +97,7 @@
                       Margin="-12,0,0,0">
               <ComboBoxItem Content="Querflöte" />
               <ComboBoxItem Content="Klarinette" />
+              <ComboBoxItem Content="Trompete" />
             </ComboBox>
           </Grid>
         </StackPanel>

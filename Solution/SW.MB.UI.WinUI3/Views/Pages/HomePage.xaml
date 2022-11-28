@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
   <Grid>
-    <TextBlock Text="Home" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    
   </Grid>
 </Page>

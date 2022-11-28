@@ -4,14 +4,9 @@ using SW.MB.UI.WinUI3.Models.Observables.Abstracts;
 namespace SW.MB.UI.WinUI3.Models.Observables {
     public class ObservableMusician : ObservablePerson {
         #region CONSTRUCTORS
-        public ObservableMusician() {
-            // empty...
-        }
+        public ObservableMusician() { }
 
-        public ObservableMusician(MusicianRecord record) {
-            Firstname = record.Firstname;
-            Lastname = record.Lastname;
-        }
+        public ObservableMusician(MusicianRecord record) : base(record) { }
         #endregion CONSTRUCTORS
     }
 }

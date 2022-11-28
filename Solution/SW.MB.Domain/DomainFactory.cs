@@ -9,39 +9,42 @@ using SW.MB.Domain.Services.SampleDataServices;
 [assembly: InternalsVisibleTo("SW.MB.Test")]
 
 namespace SW.MB.Domain {
-  public sealed class DomainFactory {
-    private static readonly object _LockObject = new();
-    private static DomainFactory? _Instance;
+    public sealed class DomainFactory {
+        private static readonly object _LockObject = new();
+        private static DomainFactory? _Instance;
 
-    public static DomainFactory Instance {
-      get {
-        if (_Instance == null) {
-          lock (_LockObject) {
-            _Instance ??= new DomainFactory();
-          }
+        public static DomainFactory Instance {
+            get {
+                if (_Instance == null) {
+                    lock (_LockObject) {
+                        _Instance ??= new DomainFactory();
+                    }
+                }
+
+                return _Instance;
+            }
         }
 
-        return _Instance;
-      }
-    }
+        #region CONSTRUCTORS
+        private DomainFactory() {
+            // empty...
+        }
+        #endregion CONSTRUCTORS
 
-    #region CONSTRUCTORS
-    private DomainFactory() {
-      // empty...
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
+            services.AddTransient<IApplicationService, DefaultApplicationService>();
+            services.AddTransient<IBandsService, DefaultBandsService>();
+            services.AddTransient<ICompositionsService, DefaultCompositionsService>();
+            services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IMandatorsService, DefaultMandatorsService>();
+            //services.AddTransient<IMembersService, DefaultMembersService>();
+            services.AddTransient<IMembersService, SampleDataMembersService>();
+            //services.AddTransient<IMusiciansService, DefaultMusiciansService>();
+            services.AddTransient<IMusiciansService, SampleDataMusiciansService>();
+            //services.AddTransient<IUpdatesService, DefaultUpdatesService>();
+            services.AddTransient<IUpdatesService, SampleDataUpdateService>();
+            //services.AddTransient<IUsersService, DefaultUsersService>();
+            services.AddTransient<IUsersService, SampleDataUsersService>();
+        }
     }
-    #endregion CONSTRUCTORS
-
-    public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
-      services.AddTransient<IApplicationService, DefaultApplicationService>();
-      services.AddTransient<IBandsService, DefaultBandsService>();
-      services.AddTransient<ICompositionsService, DefaultCompositionsService>();
-      services.AddTransient<IFileService, FileService>();
-      services.AddTransient<IMandatorsService, DefaultMandatorsService>();
-      services.AddTransient<IMembersService, DefaultMembersService>();
-      services.AddTransient<IMusiciansService, DefaultMusiciansService>();
-      //services.AddTransient<IUpdatesService, DefaultUpdatesService>();
-      services.AddTransient<IUpdatesService, SampleDataUpdateService>();
-      services.AddTransient<IUsersService, DefaultUsersService>();
-    }
-  }
 }

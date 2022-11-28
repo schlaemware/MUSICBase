@@ -1,4 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using SW.Framework.Extensions;
+using SW.MB.Domain.Contracts.Services;
 using SW.MB.UI.WinUI3.Models;
 using SW.MB.UI.WinUI3.Models.Observables;
 
@@ -15,16 +20,17 @@ namespace SW.MB.UI.WinUI3.ViewModels {
 
         #region CONSTRUCTORS
         public MembersViewModel() {
-            AddSampleData();
+            LoadDataAsync();
         }
         #endregion CONSTRUCTORS
 
-        private void AddSampleData() {
-            MembersCollection.Add(new ObservableMember() { Firstname = "Philipp", Lastname = "Färber" });
-            MembersCollection.Add(new ObservableMember() { Firstname = "Andrin", Lastname = "Zimmermann" });
-            MembersCollection.Add(new ObservableMember() { Firstname = "Jana", Lastname = "Schläpfer" });
-            MembersCollection.Add(new ObservableMember() { Firstname = "Sarah", Lastname = "Schläpfer" });
-            MembersCollection.Add(new ObservableMember() { Firstname = "Michael", Lastname = "Schläpfer" });
+        private void LoadData() {
+            IEnumerable<ObservableMember> members = App.GetService<IMembersService>().GetAll().Select(x => new ObservableMember(x));
+            App.Dispatcher.TryEnqueue(() => members.ForEach(x => MembersCollection.Add(x)));
+        }
+
+        private async void LoadDataAsync() {
+            await Task.Factory.StartNew(() => LoadData());
         }
     }
 }

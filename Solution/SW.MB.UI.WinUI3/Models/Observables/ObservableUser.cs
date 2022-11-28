@@ -6,11 +6,7 @@ namespace SW.MB.UI.WinUI3.Models.Observables {
         #region CONSTRUCTORS
         public ObservableUser() { }
 
-        public ObservableUser(UserRecord record) {
-            Firstname = record.Firstname;
-            Lastname = record.Lastname;
-            DateOfBirth = record.DateOfBirth;
-        }
+        public ObservableUser(UserRecord record) : base(record) { }
         #endregion CONSTRUCTORS
     }
 }

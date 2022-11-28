@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using SW.MB.Domain.Models.Records.Abstracts;
 
 namespace SW.MB.UI.WinUI3.Models.Observables.Abstracts {
     public abstract class ObservablePerson : ObservableObject, IComparable<ObservablePerson> {
@@ -12,6 +13,12 @@ namespace SW.MB.UI.WinUI3.Models.Observables.Abstracts {
         #region CONSTRUCTORS
         public ObservablePerson() {
             // empty...
+        }
+
+        public ObservablePerson(PersonRecord record) {
+            Firstname = record.Firstname;
+            Lastname = record.Lastname;
+            DateOfBirth = record.DateOfBirth;
         }
         #endregion CONSTRUCTORS
 
