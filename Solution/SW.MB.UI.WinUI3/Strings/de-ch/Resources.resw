@@ -165,16 +165,34 @@
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalisierung</value>
   </data>
+  <data name="Settings_PersonsDisplayMode.Text" xml:space="preserve">
+    <value>Darstellung von Personen</value>
+  </data>
+  <data name="Settings_PersonsDisplayMode_FirstnameLastname.Content" xml:space="preserve">
+    <value>Vorname Nachname</value>
+  </data>
+  <data name="Settings_PersonsDisplayMode_LastnameFirstname.Content" xml:space="preserve">
+    <value>Nachname, Vorname</value>
+  </data>
+  <data name="Settings_PersonsOrderingMode.Text" xml:space="preserve">
+    <value>Sortierung von Personen</value>
+  </data>
+  <data name="Settings_PersonsOrderingMode_FirstnameLastnameBirthdate.Content" xml:space="preserve">
+    <value>Vorname - Nachname - Geburtstag</value>
+  </data>
+  <data name="Settings_PersonsOrderingMode_LastnameFirstnameBirthdate.Content" xml:space="preserve">
+    <value>Nachname - Vorname - Geburtstag</value>
+  </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Theme</value>
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>Dunkel</value>
   </data>
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
-    <value>Default</value>
+    <value>Standard</value>
   </data>
   <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>Hell</value>
   </data>
 </root>
