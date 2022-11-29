@@ -47,7 +47,7 @@ namespace SW.MB.UI.WinUI3 {
 
     #region CALLBACKS
     private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e) {
-      throw new NotImplementedException();
+      throw new Exception(e.Message);
     }
     #endregion CALLBACKS
   }

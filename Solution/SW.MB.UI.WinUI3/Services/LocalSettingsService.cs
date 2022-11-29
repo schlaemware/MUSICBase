@@ -34,6 +34,10 @@ namespace SW.MB.UI.WinUI3.Services {
     }
     #endregion CONSTRUCTORS
 
+    public async Task<T?> ReadSettingAsync<T>() where T : Enum {
+      return await ReadSettingAsync<T>(typeof(T).GUID.ToString());
+    }
+
     public async Task<T?> ReadSettingAsync<T>(string key) {
       if (RuntimeHelper.IsMSIX) {
         if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj)) {
@@ -48,6 +52,10 @@ namespace SW.MB.UI.WinUI3.Services {
       }
 
       return default;
+    }
+
+    public async Task SaveSettingAsync<T>(T value) where T : Enum {
+      await SaveSettingAsync<T>(typeof(T).GUID.ToString(), value);
     }
 
     public async Task SaveSettingAsync<T>(string key, T value) {

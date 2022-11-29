@@ -13,16 +13,13 @@ namespace SW.MB.UI.WinUI3.Services {
   public class ActivationService: IActivationService {
     private readonly ActivationHandler<LaunchActivatedEventArgs> _DefaultHandler;
     private readonly IEnumerable<IActivationHandler> _ActivationHandlers;
-    private readonly IThemeSelectorService _ThemeSelectorService;
 
     private UIElement? _Shell = null;
 
     #region CONSTRUCTORS
-    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers,
-      IThemeSelectorService themeSelectorService) {
+    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers) {
       _DefaultHandler = defaultHandler;
       _ActivationHandlers = activationHandlers;
-      _ThemeSelectorService = themeSelectorService;
     }
     #endregion CONSTRUCTORS
 
@@ -60,12 +57,15 @@ namespace SW.MB.UI.WinUI3.Services {
     }
 
     private async Task InitializeAsync() {
-      await _ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
+      await App.GetService<IDisplaySettingsService>().InitializeAsync().ConfigureAwait(false);
+      await App.GetService<IThemeSelectorService>().InitializeAsync().ConfigureAwait(false);
+
       await Task.CompletedTask;
     }
 
     private async Task StartupAsync() {
-      await _ThemeSelectorService.SetRequestedThemeAsync();
+      await App.GetService<IThemeSelectorService>().SetRequestedThemeAsync();
+
       await Task.CompletedTask;
     }
   }

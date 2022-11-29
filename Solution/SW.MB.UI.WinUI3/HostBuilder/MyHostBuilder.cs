@@ -32,11 +32,12 @@ namespace SW.MB.UI.WinUI3.HostBuilder {
       services.AddTransient<INavigationViewService, NavigationViewService>();
 
       /// Singleton
-      services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
-      services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
       services.AddSingleton<IActivationService, ActivationService>();
-      services.AddSingleton<IPageService, PageService>();
+      services.AddSingleton<IDisplaySettingsService, DisplaySettingsService>();
+      services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
       services.AddSingleton<INavigationService, NavigationService>();
+      services.AddSingleton<IPageService, PageService>();
+      services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 
       // Views and ViewModels
       services.AddTransient<CompositionsPage>();

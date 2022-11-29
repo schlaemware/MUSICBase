@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xaml="using:Microsoft.UI.Xaml"
     xmlns:converters="using:SW.MB.UI.WinUI3.Converters"
+    xmlns:enumerations="using:SW.MB.UI.WinUI3.Models.Enumerations"
     mc:Ignorable="d">
 
   <Page.Resources>
@@ -16,34 +17,57 @@
   <Grid>
     <StackPanel x:Name="ContentArea">
       <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
-      
+
+      <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+        <TextBlock x:Uid="Settings_PersonsDisplayMode" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        <StackPanel Margin="{StaticResource XSmallTopMargin}">
+          <RadioButton x:Uid="Settings_PersonsDisplayMode_FirstnameLastname"
+                       Command="{x:Bind ViewModel.SwitchPersonsDisplayCommand}"
+                       IsChecked="{x:Bind ViewModel.PersonsDisplayMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=FirstnameLastname, Mode=OneWay}"
+                       CommandParameter="{x:Bind enumerations:PersonsDisplayMode.FirstnameLastname}"
+                       GroupName="PersonsDisplayModeGroup" />
+          <RadioButton x:Uid="Settings_PersonsDisplayMode_LastnameFirstname"
+                       Command="{x:Bind ViewModel.SwitchPersonsDisplayCommand}"
+                       IsChecked="{x:Bind ViewModel.PersonsDisplayMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=LastnameFirstname, Mode=OneWay}"
+                       CommandParameter="{x:Bind enumerations:PersonsDisplayMode.LastnameFirstname}"
+                       GroupName="PersonsDisplayModeGroup" />
+        </StackPanel>
+      </StackPanel>
+
+      <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+        <TextBlock x:Uid="Settings_PersonsOrderingMode" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        <StackPanel Margin="{StaticResource XSmallTopMargin}">
+          <RadioButton x:Uid="Settings_PersonsOrderingMode_LastnameFirstnameBirthdate"
+                       Command="{x:Bind ViewModel.SwitchPersonsOrderingCommand}"
+                       IsChecked="{x:Bind ViewModel.PersonsOrderingMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=LastnameFirstnameBirthdate, Mode=OneWay}"
+                       CommandParameter="{x:Bind enumerations:PersonsOrderingMode.LastnameFirstnameBirthdate}"
+                       GroupName="PersonsOrderingModeGroup" />
+          <RadioButton x:Uid="Settings_PersonsOrderingMode_FirstnameLastnameBirthdate"
+                       Command="{x:Bind ViewModel.SwitchPersonsOrderingCommand}"
+                       IsChecked="{x:Bind ViewModel.PersonsOrderingMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=FirstnameLastnameBirthdate, Mode=OneWay}"
+                       CommandParameter="{x:Bind enumerations:PersonsOrderingMode.FirstnameLastnameBirthdate}"
+                       GroupName="PersonsOrderingModeGroup" />
+        </StackPanel>
+      </StackPanel>
+
       <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
         <TextBlock x:Uid="Settings_Theme" Style="{ThemeResource BodyStrongTextBlockStyle}" />
         <StackPanel Margin="{StaticResource XSmallTopMargin}">
           <RadioButton x:Uid="Settings_Theme_Light"
                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
                        IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
-                       GroupName="AppTheme">
-            <RadioButton.CommandParameter>
-              <xaml:ElementTheme>Light</xaml:ElementTheme>
-            </RadioButton.CommandParameter>
-          </RadioButton>
+                       CommandParameter="{x:Bind xaml:ElementTheme.Light}"
+                       GroupName="AppThemeGroup" />
           <RadioButton x:Uid="Settings_Theme_Dark"
                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
                        IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
-                       GroupName="AppTheme">
-            <RadioButton.CommandParameter>
-              <xaml:ElementTheme>Dark</xaml:ElementTheme>
-            </RadioButton.CommandParameter>
-          </RadioButton>
+                       CommandParameter="{x:Bind xaml:ElementTheme.Dark}"
+                       GroupName="AppThemeGroup" />
           <RadioButton x:Uid="Settings_Theme_Default"
                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
                        IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
-                       GroupName="AppTheme">
-            <RadioButton.CommandParameter>
-              <xaml:ElementTheme>Default</xaml:ElementTheme>
-            </RadioButton.CommandParameter>
-          </RadioButton>
+                       CommandParameter="{x:Bind xaml:ElementTheme.Default}"
+                       GroupName="AppThemeGroup" />
         </StackPanel>
       </StackPanel>
 

@@ -38,7 +38,12 @@
                     DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
                     PaneOpening="NavigationViewControl_PaneOpening"
                     PaneClosing="NavigationViewControl_PaneClosing">
-      
+
+      <NavigationView.PaneHeader>
+        <Button Content="{x:Bind ViewModel.LoggedInUserName}" 
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Margin="12,0,16,0"/>
+      </NavigationView.PaneHeader>
       <NavigationView.AutoSuggestBox>
         <AutoSuggestBox Text="Search" />
       </NavigationView.AutoSuggestBox>
@@ -51,6 +56,7 @@
         <NavigationViewItem x:Uid="NavigationViewItem_Musicians" Icon="ContactInfo" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.MusiciansViewModel" />
         <NavigationViewItem x:Uid="NavigationViewItem_Members" Icon="People" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.MembersViewModel" />
       </NavigationView.MenuItems>
+
       <NavigationView.FooterMenuItems>
         <NavigationViewItem x:Uid="NavigationViewItem_Updates" Icon="Refresh" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.UpdatesViewModel" />
       </NavigationView.FooterMenuItems>

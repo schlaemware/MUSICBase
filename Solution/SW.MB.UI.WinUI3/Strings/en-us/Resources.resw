@@ -165,6 +165,24 @@
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
   </data>
+  <data name="Settings_PersonsDisplayMode.Text" xml:space="preserve">
+    <value>Display mode for persons</value>
+  </data>
+  <data name="Settings_PersonsDisplayMode_FirstnameLastname.Content" xml:space="preserve">
+    <value>Firstname Lastname</value>
+  </data>
+  <data name="Settings_PersonsDisplayMode_LastnameFirstname.Content" xml:space="preserve">
+    <value>Lastname, Firstname</value>
+  </data>
+  <data name="Settings_PersonsOrderingMode.Text" xml:space="preserve">
+    <value>Ordering mode for persons</value>
+  </data>
+  <data name="Settings_PersonsOrderingMode_FirstnameLastnameBirthdate.Content" xml:space="preserve">
+    <value>Firstname - Lastname - Birthdate</value>
+  </data>
+  <data name="Settings_PersonsOrderingMode_LastnameFirstnameBirthdate.Content" xml:space="preserve">
+    <value>Lastname - Firstname - Birthdate</value>
+  </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Theme</value>
   </data>

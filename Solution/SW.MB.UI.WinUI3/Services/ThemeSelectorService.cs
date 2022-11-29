@@ -10,7 +10,7 @@ namespace SW.MB.UI.WinUI3.Services {
 
     private readonly ILocalSettingsService _LocalSettingsService;
 
-    public ElementTheme Theme { get; set; }
+    public ElementTheme Theme { get; private set; }
 
     #region CONSTRUCTORS
     public ThemeSelectorService(ILocalSettingsService localSettingsService) {

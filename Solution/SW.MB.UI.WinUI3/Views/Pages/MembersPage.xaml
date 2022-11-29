@@ -5,11 +5,15 @@
     xmlns:local="using:SW.MB.UI.WinUI3.Views.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:SW.MB.UI.WinUI3.Converters"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:observables="using:SW.MB.UI.WinUI3.Models.Observables"
     mc:Ignorable="d">
 
   <Page.Resources>
+    <converters:BooleanInvertingConverter x:Key="BooleanInverter" />
+    <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+
     <DataTemplate x:Key="MembersListItemTemplate" x:DataType="observables:ObservableMember">
       <Grid Padding="0,12">
         <Grid.RowDefinitions>
@@ -45,7 +49,7 @@
                      Margin="0,0,0,20" />
 
           <!-- Firstname -->
-          <Grid>
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -58,11 +62,12 @@
             <TextBox Grid.Column="2"
                      Margin="-12,0,0,0"
                      Text="{Binding Firstname}"
-                     VerticalAlignment="Center" />
+                     VerticalAlignment="Center"
+                     IsReadOnly="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
           </Grid>
 
           <!-- Lastname -->
-          <Grid>
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -75,7 +80,8 @@
             <TextBox Grid.Column="2"
                      Margin="-12,0,0,0"
                      Text="{Binding Lastname}"
-                     VerticalAlignment="Center" />
+                     VerticalAlignment="Center"
+                     IsReadOnly="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
           </Grid>
           
           <!-- Instrument -->
@@ -89,12 +95,18 @@
                        Text="Instrument"
                        Style="{ThemeResource BodyStrongTextBlockStyle}"
                        VerticalAlignment="Center" />
+            <TextBlock Grid.Column="2"
+                       Text="{Binding Instrument}"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}, ConverterParameter='true'}" />
             <ComboBox Grid.Column="2"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Stretch"
                       SelectedIndex="0"
                       IsEditable="False"
-                      Margin="-12,0,0,0">
+                      Margin="-12,0,0,0"
+                      Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
               <ComboBoxItem Content="Querflöte" />
               <ComboBoxItem Content="Klarinette" />
               <ComboBoxItem Content="Trompete" />
@@ -106,7 +118,27 @@
   </Page.Resources>
   
   <Grid>
-    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.MembersCollection}"
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <CommandBar Grid.Row="0" Grid.Column="0"
+                Background="Transparent">
+      <AppBarButton Icon="Add" Label="Add" />
+      <AppBarSeparator />
+      <AppBarToggleButton x:Name="EditButton"
+                          Icon="Edit"
+                          Label="Edit" />
+      <AppBarSeparator />
+    </CommandBar>
+
+    <controls:ListDetailsView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                              ItemsSource="{x:Bind ViewModel.MembersCollection}"
                               ItemTemplate="{StaticResource MembersListItemTemplate}"
                               DetailsTemplate="{StaticResource MembersDetailItemTemplate}"
                               SelectedItem="{x:Bind ViewModel.SelectedMember, Mode=TwoWay}"
