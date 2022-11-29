@@ -11,7 +11,7 @@
 
   <Page.Resources>
     <DataTemplate x:Key="MandantListItemTemplate" x:DataType="observables:ObservableMandant">
-      <Grid Height="60">
+      <Grid Margin="0,12">
         <TextBlock VerticalAlignment="Center"
                    Text="{Binding Name}"
                    Style="{ThemeResource BodyStrongTextBlockStyle}"/>

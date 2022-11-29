@@ -11,11 +11,13 @@
 
   <Page.Resources>
     <DataTemplate x:Key="ReleaseListItemTemplate" x:DataType="observables:ObservableRelease">
-      <Grid Height="60">
+      <StackPanel Margin="0,12">
         <TextBlock VerticalAlignment="Center"
                    Text="{Binding Designation}"
                    Style="{ThemeResource BodyStrongTextBlockStyle}"/>
-      </Grid>
+        <TextBlock Text="{Binding PublishedString}"
+                   Style="{ThemeResource BodyTextBlockStyle}" />
+      </StackPanel>
     </DataTemplate>
     
     <DataTemplate x:Key="ReleaseDetailItemTemplate" x:DataType="observables:ObservableRelease">

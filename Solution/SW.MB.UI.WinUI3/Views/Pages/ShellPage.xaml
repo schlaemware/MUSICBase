@@ -46,12 +46,8 @@
         <NavigationViewItem x:Uid="NavigationViewItem_Home" Icon="Home" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.HomeViewModel" />
         <NavigationViewItem x:Uid="NavigationViewItem_Mandants" Icon="Flag" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.MandantsViewModel" />
         <NavigationViewItem x:Uid="NavigationViewItem_Users" Icon="Contact" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.UsersViewModel" />
-        <NavigationViewItem x:Uid="NavigationViewItem_Compositions" Icon="Library">
-          <NavigationViewItem.MenuItems>
-            <NavigationViewItem x:Uid="NavigationViewItem_Archive" Icon="Library" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.CompositionsViewModel" />
-            <NavigationViewItem x:Uid="NavigationViewItem_Programs" Icon="MusicInfo" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.ProgramsViewModel" />
-          </NavigationViewItem.MenuItems>
-        </NavigationViewItem>
+        <NavigationViewItem x:Uid="NavigationViewItem_Archive" Icon="Library" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.CompositionsViewModel" />
+        <NavigationViewItem x:Uid="NavigationViewItem_Programs" Icon="MusicInfo" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.ProgramsViewModel" />
         <NavigationViewItem x:Uid="NavigationViewItem_Musicians" Icon="ContactInfo" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.MusiciansViewModel" />
         <NavigationViewItem x:Uid="NavigationViewItem_Members" Icon="People" helpers:NavigationHelper.NavigateTo="SW.MB.UI.WinUI3.ViewModels.MembersViewModel" />
       </NavigationView.MenuItems>

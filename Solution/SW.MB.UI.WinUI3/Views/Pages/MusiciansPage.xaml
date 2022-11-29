@@ -11,7 +11,7 @@
 
   <Page.Resources>
     <DataTemplate x:Key="MusiciansListItemTemplate" x:DataType="observables:ObservableMusician">
-      <Grid Height="60">
+      <Grid Margin="0,12">
         <TextBlock VerticalAlignment="Center"
                    Text="{Binding Fullname}"
                    Style="{ThemeResource BodyStrongTextBlockStyle}"/>

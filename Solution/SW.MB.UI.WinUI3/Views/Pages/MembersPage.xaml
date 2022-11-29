@@ -11,7 +11,7 @@
 
   <Page.Resources>
     <DataTemplate x:Key="MembersListItemTemplate" x:DataType="observables:ObservableMember">
-      <Grid VerticalAlignment="Center" Padding="0,12">
+      <Grid Padding="0,12">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />

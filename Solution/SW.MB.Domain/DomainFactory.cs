@@ -42,7 +42,7 @@ namespace SW.MB.Domain {
             //services.AddTransient<IMusiciansService, DefaultMusiciansService>();
             services.AddTransient<IMusiciansService, SampleDataMusiciansService>();
             //services.AddTransient<IUpdatesService, DefaultUpdatesService>();
-            services.AddTransient<IUpdatesService, SampleDataUpdateService>();
+            services.AddTransient<IUpdatesService, SampleDataUpdatesService>();
             //services.AddTransient<IUsersService, DefaultUsersService>();
             services.AddTransient<IUsersService, SampleDataUsersService>();
         }

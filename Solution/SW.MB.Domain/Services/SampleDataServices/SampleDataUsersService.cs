@@ -11,7 +11,7 @@ namespace SW.MB.Domain.Services.SampleDataServices {
             for (int n = 0; n < numOfUsers; n++) {
                 users.Add(new UserRecord() {
                     Firstname = random.NextFirstname(),
-                    Lastname = random.NextFirstname(),
+                    Lastname = random.NextLastname(),
                     DateOfBirth = random.NextDateTimePast(),
                 });
             }
