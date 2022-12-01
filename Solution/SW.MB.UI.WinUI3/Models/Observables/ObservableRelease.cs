@@ -16,7 +16,7 @@ namespace SW.MB.UI.WinUI3.Models.Observables {
     public string? PublishedString => Published?.ToShortDateString();
 
     #region CONSTRUCTORS
-    public ObservableRelease(ReleaseRecord record) {
+    public ObservableRelease(ReleaseRecord record) : base() {
       Designation = record.Designation;
       Version = record.Version;
       Description = record.Description;

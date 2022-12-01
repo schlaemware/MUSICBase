@@ -37,8 +37,8 @@ namespace SW.MB.Domain {
             services.AddTransient<ICompositionsService, DefaultCompositionsService>();
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IMandatorsService, DefaultMandatorsService>();
-            //services.AddTransient<IMembersService, DefaultMembersService>();
-            services.AddTransient<IMembersService, SampleDataMembersService>();
+            services.AddTransient<IMembersService, DefaultMembersService>();
+            //services.AddTransient<IMembersService, SampleDataMembersService>();
             //services.AddTransient<IMusiciansService, DefaultMusiciansService>();
             services.AddTransient<IMusiciansService, SampleDataMusiciansService>();
             //services.AddTransient<IUpdatesService, DefaultUpdatesService>();

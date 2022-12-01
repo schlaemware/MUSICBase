@@ -1,29 +1,29 @@
 ﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
-using SW.MB.Domain.Models.Records.Abstracts;
+using SW.MB.Domain.Contracts.Models;
 using SW.MB.UI.WinUI3.Contracts.Services;
 using SW.MB.UI.WinUI3.Models.Enumerations;
 
 namespace SW.MB.UI.WinUI3.Models.Observables.Abstracts {
-  public abstract class ObservablePerson: ObservableObject, IComparable<ObservablePerson> {
-    public string? Firstname { get; set; }
-    public string? Lastname { get; set; }
+  public abstract class ObservablePerson: ObservableEntity, IComparable<ObservablePerson> {
+    public string Firstname { get; set; }
+    public string Lastname { get; set; }
     public DateTime? DateOfBirth { get; set; }
 
-    public string? Fullname => App.GetService<IDisplaySettingsService>().PersonsDisplayMode switch {
+    public string Fullname => App.GetService<IDisplaySettingsService>().PersonsDisplayMode switch {
       PersonsDisplayMode.LastnameFirstname => $"{Lastname}, {Firstname}",
       _ => $"{Firstname} {Lastname}"
     };
 
     #region CONSTRUCTORS
     public ObservablePerson() {
-      // empty...
+      Firstname = string.Empty;
+      Lastname = string.Empty;
     }
 
-    public ObservablePerson(PersonRecord record) {
-      Firstname = record.Firstname;
-      Lastname = record.Lastname;
-      DateOfBirth = record.DateOfBirth;
+    public ObservablePerson(IPerson person) : base(person) {
+      Firstname = person.Firstname;
+      Lastname = person.Lastname;
+      DateOfBirth = person.DateOfBirth;
     }
     #endregion CONSTRUCTORS
 
@@ -33,7 +33,7 @@ namespace SW.MB.UI.WinUI3.Models.Observables.Abstracts {
       }
 
       switch (App.GetService<IDisplaySettingsService>().PersonsOrderingMode) {
-        case Enumerations.PersonsOrderingMode.FirstnameLastnameBirthdate: {
+        case PersonsOrderingMode.FirstnameLastnameBirthdate: {
             if (string.Compare(Firstname, other.Firstname) == 0) {
               if (string.Compare(Lastname, other.Lastname) == 0) {
                 return DateTime.Compare(DateOfBirth ?? default, other.DateOfBirth ?? default);

@@ -20,7 +20,7 @@
     <None Remove="Styles\Thickness.xaml" />
     <None Remove="Views\Pages\CompositionsPage.xaml" />
     <None Remove="Views\Pages\HomePage.xaml" />
-    <None Remove="Views\Pages\MandantsPage.xaml" />
+    <None Remove="Views\Pages\MandatorsPage.xaml" />
     <None Remove="Views\Pages\MembersPage.xaml" />
     <None Remove="Views\Pages\MusiciansPage.xaml" />
     <None Remove="Views\Pages\ProgramsPage.xaml" />
@@ -112,7 +112,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Pages\MandantsPage.xaml">
+    <Page Update="Views\Pages\MandatorsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

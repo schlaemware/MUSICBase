@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace SW.MB.UI.WinUI3.Helpers {
+namespace SW.MB.UI.WinUI3.Commands {
   /// <summary>
   /// A command whose sole purpose is to relay its functionality 
   /// to other objects by invoking delegates. 
@@ -9,7 +9,7 @@ namespace SW.MB.UI.WinUI3.Helpers {
   /// <see cref="RaiseCanExecuteChanged"/> needs to be called whenever
   /// <see cref="CanExecute"/> is expected to return a different value.
   /// </summary>
-  public class RelayCommand : ICommand {
+  public class RelayCommand: ICommand {
     private readonly Action _Execute;
     private readonly Func<bool>? _CanExecute;
 

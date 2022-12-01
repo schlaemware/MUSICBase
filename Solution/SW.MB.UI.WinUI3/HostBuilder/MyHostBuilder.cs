@@ -44,8 +44,8 @@ namespace SW.MB.UI.WinUI3.HostBuilder {
       services.AddTransient<CompositionsViewModel>();
       services.AddTransient<HomePage>();
       services.AddTransient<HomeViewModel>();
-      services.AddTransient<MandantsPage>();
-      services.AddTransient<MandantsViewModel>();
+      services.AddTransient<MandatorsPage>();
+      services.AddTransient<MandatorsViewModel>();
       services.AddTransient<MembersPage>();
       services.AddTransient<MembersViewModel>();
       services.AddTransient<MusiciansPage>();

@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using SW.Framework.Extensions;
 using SW.MB.Domain.Contracts.Services;
+using SW.MB.UI.WinUI3.Commands;
 using SW.MB.UI.WinUI3.Models;
 using SW.MB.UI.WinUI3.Models.Observables;
 
-namespace SW.MB.UI.WinUI3.ViewModels {
-  public class MembersViewModel: ObservableRecipient {
+namespace SW.MB.UI.WinUI3.ViewModels
+{
+    public class MembersViewModel: ObservableRecipient {
     private bool _IsEditMode;
     private ObservableMember? _SelectedMember;
 
@@ -32,10 +34,10 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     }
 
     #region COMMANDS
-    public Helpers.RelayCommand CreateNewCommand { get; }
-    public Helpers.RelayCommand DeleteCommand { get; }
-    public Helpers.RelayCommand DiscardChangesCommand { get; }
-    public Helpers.RelayCommand SaveChangesCommand { get; }
+    public RelayCommand CreateNewCommand { get; }
+    public RelayCommand DeleteCommand { get; }
+    public RelayCommand DiscardChangesCommand { get; }
+    public RelayCommand SaveChangesCommand { get; }
     #endregion
 
     #region CONSTRUCTORS
@@ -43,10 +45,10 @@ namespace SW.MB.UI.WinUI3.ViewModels {
       LoadDataAsync();
 
       // Commands
-      CreateNewCommand = new Helpers.RelayCommand(() => CreateNewMemberCommand(), () => !IsEditMode);
-      DeleteCommand = new Helpers.RelayCommand(() => DeleteSelectedElement(), () => IsEditMode);
-      DiscardChangesCommand = new Helpers.RelayCommand(() => DiscardChanges(), () => IsEditMode);
-      SaveChangesCommand = new Helpers.RelayCommand(() => SaveChanges());
+      CreateNewCommand = new RelayCommand(() => CreateNewMemberCommand(), () => !IsEditMode);
+      DeleteCommand = new RelayCommand(() => DeleteSelectedElement(), () => IsEditMode);
+      DiscardChangesCommand = new RelayCommand(() => DiscardChanges(), () => IsEditMode);
+      SaveChangesCommand = new RelayCommand(() => SaveChanges());
     }
     #endregion CONSTRUCTORS
 
@@ -80,8 +82,9 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     }
 
     private void SaveChanges() {
-      if (!IsEditMode) {  // Invert because of timing. IsEditMode is set before execution of this function.
-        System.Diagnostics.Debug.WriteLine("Save changes...");
+      if (!IsEditMode && SelectedMember != null) {  // Invert because of timing. IsEditMode is set before execution of this function.
+        IMembersService membersService = App.GetService<IMembersService>();
+        membersService.UpdateRange(SelectedMember.ToRecord());
       }
     }
   }

@@ -1,5 +1,5 @@
 <Page
-    x:Class="SW.MB.UI.WinUI3.Views.Pages.MandantsPage"
+    x:Class="SW.MB.UI.WinUI3.Views.Pages.MandatorsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SW.MB.UI.WinUI3.Views.Pages"
@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
   <Page.Resources>
-    <DataTemplate x:Key="MandantListItemTemplate" x:DataType="observables:ObservableMandant">
+    <DataTemplate x:Key="MandantListItemTemplate" x:DataType="observables:ObservableMandator">
       <Grid Margin="0,12">
         <TextBlock VerticalAlignment="Center"
                    Text="{Binding Name}"
@@ -18,7 +18,7 @@
       </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="MandantDetailItemTemplate" x:DataType="observables:ObservableMandant">
+    <DataTemplate x:Key="MandantDetailItemTemplate" x:DataType="observables:ObservableMandator">
       <ScrollViewer Margin="20,-0,0,0"
                     VerticalScrollMode="Enabled"
                     HorizontalScrollMode="Disabled">
@@ -34,10 +34,10 @@
   </Page.Resources>
 
   <Grid>
-    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.MandantsCollection}" 
+    <controls:ListDetailsView ItemsSource="{x:Bind ViewModel.MandatorsCollection}" 
                               ItemTemplate="{StaticResource MandantListItemTemplate}"
                               DetailsTemplate="{StaticResource MandantDetailItemTemplate}"
-                              SelectedItem="{x:Bind ViewModel.SelectedMandant}"
+                              SelectedItem="{x:Bind ViewModel.SelectedMandator}"
                               Background="Transparent" />
   </Grid>
 </Page>

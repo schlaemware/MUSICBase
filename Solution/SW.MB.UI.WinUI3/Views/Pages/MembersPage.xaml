@@ -48,6 +48,96 @@
                      Style="{ThemeResource HeaderTextBlockStyle}"
                      Margin="0,0,0,20" />
 
+          <!-- ID -->
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="ID"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding ID, Mode=OneWay, UpdateSourceTrigger=LostFocus}"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True" />
+          </Grid>
+
+          <!-- Created -->
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Created"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding Created, Mode=OneWay, UpdateSourceTrigger=LostFocus}"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True" />
+          </Grid>
+
+          <!-- CreatedBy -->
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Created by"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding CreatedBy, Mode=OneWay, UpdateSourceTrigger=LostFocus}"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True" />
+          </Grid>
+
+          <!-- Updated -->
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Updated"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding Updated, Mode=OneWay, UpdateSourceTrigger=LostFocus}"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True" />
+          </Grid>
+
+          <!-- UpdatedBy -->
+          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100" />
+              <ColumnDefinition Width="40" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Updated by"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="2"
+                     Margin="-12,0,0,0"
+                     Text="{Binding UpdatedBy, Mode=OneWay, UpdateSourceTrigger=LostFocus}"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True" />
+          </Grid>
+
           <!-- Firstname -->
           <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
