@@ -123,6 +123,15 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>MUSICBase</value>
   </data>
+  <data name="EditAppBarToggleButton.Label" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="MembersPage_Header.Text" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="MusiciansPage_Header.Text" xml:space="preserve">
+    <value>Musicians</value>
+  </data>
   <data name="NavigationViewItem_Archive.Content" xml:space="preserve">
     <value>Archive</value>
   </data>

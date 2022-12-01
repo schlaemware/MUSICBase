@@ -43,13 +43,14 @@
               <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
           </StackPanel.Resources>
-          <TextBlock VerticalAlignment="Center"
+
+          <TextBlock Margin="0,0,0,20"
+                     VerticalAlignment="Center"
                      Text="{Binding Fullname, Mode=OneWay}"
-                     Style="{ThemeResource HeaderTextBlockStyle}"
-                     Margin="0,0,0,20" />
+                     Style="{ThemeResource HeaderTextBlockStyle}" />
 
           <!-- ID -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -67,7 +68,7 @@
           </Grid>
 
           <!-- Created -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -85,7 +86,7 @@
           </Grid>
 
           <!-- CreatedBy -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -103,7 +104,7 @@
           </Grid>
 
           <!-- Updated -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -121,7 +122,7 @@
           </Grid>
 
           <!-- UpdatedBy -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -139,7 +140,7 @@
           </Grid>
 
           <!-- Firstname -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -153,11 +154,11 @@
                      Margin="-12,0,0,0"
                      Text="{Binding Firstname, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                      VerticalAlignment="Center"
-                     IsReadOnly="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
+                     IsReadOnly="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
           </Grid>
 
           <!-- Lastname -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -171,7 +172,7 @@
                      Margin="-12,0,0,0"
                      Text="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                      VerticalAlignment="Center"
-                     IsReadOnly="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
+                     IsReadOnly="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
           </Grid>
 
           <!-- Instrument -->
@@ -189,14 +190,14 @@
                        Text="{Binding Instrument}"
                        Style="{ThemeResource BodyTextBlockStyle}"
                        VerticalAlignment="Center"
-                       Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}, ConverterParameter='true'}" />
+                       Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}, ConverterParameter='True'}" />
             <ComboBox Grid.Column="2"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Stretch"
                       SelectedIndex="0"
                       IsEditable="False"
                       Margin="-12,0,0,0"
-                      Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+                      Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
               <ComboBoxItem Content="Querflöte" />
               <ComboBoxItem Content="Klarinette" />
               <ComboBoxItem Content="Trompete" />
@@ -207,22 +208,34 @@
     </DataTemplate>
   </Page.Resources>
   
-  <Grid Margin="0,-60,0,0">
+  <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="320" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
+      <RowDefinition Height="20" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-    <CommandBar Grid.Row="0" Grid.Column="1">
+    <TextBlock x:Uid="MembersPage_Header"
+               Grid.Column="0" Grid.Row="0"
+               Grid.ColumnSpan="2"
+               Style="{ThemeResource SubheaderTextBlockStyle}"
+               VerticalAlignment="Center" />
+
+    <CommandBar Grid.Column="1" Grid.Row="0"
+                Grid.ColumnSpan="1"
+                VerticalAlignment="Center"
+                OverflowButtonVisibility="Collapsed">
       <AppBarButton Icon="Add" Label="Add"
                     Command="{x:Bind ViewModel.CreateNewCommand}" />
       <AppBarSeparator />
-      <AppBarToggleButton x:Name="EditButton"
-                          Icon="Edit" Label="Edit"
+      <AppBarToggleButton x:Uid="EditAppBarToggleButton"
+                          x:Name="EditAppBarToggleButton"
+                          Icon="Edit"
+                          ToolTipService.ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Label}"
                           IsChecked="{x:Bind ViewModel.IsEditMode, Mode=TwoWay}"
                           Command="{x:Bind ViewModel.SaveChangesCommand}"/>
       <AppBarButton x:Name="DiscardButton"
@@ -232,17 +245,16 @@
       <AppBarButton x:Name="DeleteButton"
                     Icon="Delete" Label="Delete"
                     Command="{x:Bind ViewModel.DeleteCommand}" />
-      <AppBarSeparator />
     </CommandBar>
 
-    <ListView Grid.Row="1" Grid.Column="0"
+    <ListView Grid.Column="0" Grid.Row="2"
               ItemsSource="{x:Bind ViewModel.MembersCollection}"
               SelectedItem="{x:Bind ViewModel.SelectedMember, Mode=TwoWay}"
               ItemTemplate="{StaticResource MembersListItemTemplate}"
               IsEnabled="{x:Bind ViewModel.IsEditMode, Mode=OneWay, Converter={StaticResource BooleanInverter}}"
               SelectionMode="Single" />
-    
-    <ContentPresenter Grid.Row="1" Grid.Column="1"
+
+    <ContentPresenter Grid.Column="1" Grid.Row="2"
                       Visibility="{x:Bind ViewModel.SelectedMember, Mode=OneWay, Converter={StaticResource NotNullToVisConverter}}"
                       Content="{x:Bind ViewModel.SelectedMember, Mode=OneWay}"
                       ContentTemplate="{StaticResource MembersDetailItemTemplate}" />

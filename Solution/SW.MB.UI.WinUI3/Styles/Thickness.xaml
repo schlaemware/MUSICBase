@@ -6,8 +6,10 @@
   <Thickness x:Key="SmallTopBottomMargin">0,12,0,12</Thickness>
 
   <Thickness x:Key="XSmallTopMargin">0,8,0,0</Thickness>
-  
-  <Thickness x:Key="NavigationViewPageContentMargin">56,24,56,0</Thickness>
+
+  <!-- Original
+  <Thickness x:Key="NavigationViewPageContentMargin">56,24,56,0</Thickness> -->
+  <Thickness x:Key="NavigationViewPageContentMargin">56,48,56,0</Thickness>
 
   <Thickness x:Key="SettingsPageHyperlinkButtonMargin">-12,4,0,0</Thickness>
 </ResourceDictionary>

@@ -32,9 +32,9 @@
                     IsBackButtonVisible="Visible"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                     SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-                    IsSettingsVisible="True" IsPaneOpen="False"
+                    IsSettingsVisible="True"
+                    IsPaneOpen="False"
                     ExpandedModeThresholdWidth="1280"
-                    Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
                     DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
                     PaneOpening="NavigationViewControl_PaneOpening"
                     PaneClosing="NavigationViewControl_PaneClosing">

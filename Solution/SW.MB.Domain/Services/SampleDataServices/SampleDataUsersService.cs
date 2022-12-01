@@ -10,6 +10,11 @@ namespace SW.MB.Domain.Services.SampleDataServices {
       List<UserRecord> users = new();
       for (int n = 0; n < numOfUsers; n++) {
         users.Add(new UserRecord() {
+          ID = n + 1,
+          Created = random.NextDateTimePast(),
+          CreatedBy = random.Next(),
+          Updated = random.NextDateTimePast(),
+          UpdatedBy = random.Next(),
           Firstname = random.NextFirstname(),
           Lastname = random.NextLastname(),
           DateOfBirth = random.NextDateTimePast(),

@@ -30,7 +30,11 @@ namespace SW.MB.UI.WinUI3.ViewModels
 
     public ObservableMember? SelectedMember {
       get => _SelectedMember;
-      set => SetProperty(ref _SelectedMember, value);
+      set {
+        if (SetProperty(ref _SelectedMember, value)) {
+          SaveChangesCommand.RaiseCanExecuteChanged();
+        }
+      }
     }
 
     #region COMMANDS
@@ -48,7 +52,7 @@ namespace SW.MB.UI.WinUI3.ViewModels
       CreateNewCommand = new RelayCommand(() => CreateNewMemberCommand(), () => !IsEditMode);
       DeleteCommand = new RelayCommand(() => DeleteSelectedElement(), () => IsEditMode);
       DiscardChangesCommand = new RelayCommand(() => DiscardChanges(), () => IsEditMode);
-      SaveChangesCommand = new RelayCommand(() => SaveChanges());
+      SaveChangesCommand = new RelayCommand(() => SaveChanges(), () => SelectedMember != null);
     }
     #endregion CONSTRUCTORS
 
