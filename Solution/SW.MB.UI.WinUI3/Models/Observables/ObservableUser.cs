@@ -6,7 +6,9 @@ namespace SW.MB.UI.WinUI3.Models.Observables {
     #region CONSTRUCTORS
     public ObservableUser() { }
 
-    public ObservableUser(UserRecord record) : base(record) { }
+    public ObservableUser(UserRecord record) : base(record) {
+
+    }
     #endregion CONSTRUCTORS
   }
 }

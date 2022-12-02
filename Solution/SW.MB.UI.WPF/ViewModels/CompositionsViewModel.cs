@@ -14,7 +14,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public CompositionsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-            IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
+            IMandatorsDataService.MandatorChanged += IMandatorsService_MandatorChanged;
         }
         #endregion CONSTRUCTORS
 
@@ -27,7 +27,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void LoadCompositions() {
-            if (ServiceProvider.GetService<ICompositionsService>() is ICompositionsService service) {
+            if (ServiceProvider.GetService<ICompositionsDataService>() is ICompositionsDataService service) {
                 Compositions.Clear();
 
                 foreach (CompositionRecord composition in service.GetAll(_Mandator)) {
@@ -37,7 +37,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void StoreCompositions() {
-            if (ServiceProvider.GetService<ICompositionsService>() is ICompositionsService service) {
+            if (ServiceProvider.GetService<ICompositionsDataService>() is ICompositionsDataService service) {
                 service.UpdateRange(Compositions.Select(x => x.ToRecord()).ToArray());
                 LoadCompositions();
             }

@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using SW.MB.Data.Contracts.Models;
 
 namespace SW.MB.UI.WinUI3.Models.Observables.Abstracts {
-  public class ObservableEntity : ObservableObject, IEntity {
+  public abstract class ObservableEntity : ObservableObject, IEntity {
     public int ID { get; set; }
     public DateTime Created { get; set; }
     public int CreatedBy { get; set; }

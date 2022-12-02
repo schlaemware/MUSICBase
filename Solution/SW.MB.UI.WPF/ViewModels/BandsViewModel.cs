@@ -23,7 +23,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public BandsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-            IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
+            IMandatorsDataService.MandatorChanged += IMandatorsService_MandatorChanged;
 
             BandsView = CreateView(Bands);
         }
@@ -46,7 +46,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void LoadBands() {
-            if (ServiceProvider.GetService<IBandsService>() is IBandsService service) {
+            if (ServiceProvider.GetService<IBandsDataService>() is IBandsDataService service) {
                 Bands.Clear();
 
                 foreach (BandRecord band in service.GetAll()) {

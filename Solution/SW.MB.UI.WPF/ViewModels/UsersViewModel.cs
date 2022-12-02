@@ -24,7 +24,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public UsersViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-            IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
+            IMandatorsDataService.MandatorChanged += IMandatorsService_MandatorChanged;
 
             UsersView = CreateView(Users);
         }
@@ -48,7 +48,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void LoadUsers() {
-            if (ServiceProvider.GetRequiredService<IUsersService>() is IUsersService service) {
+            if (ServiceProvider.GetRequiredService<IUsersDataService>() is IUsersDataService service) {
                 Users.Clear();
 
                 foreach (UserRecord user in service.GetAll(_Mandator)) {
@@ -58,7 +58,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void StoreUsers() {
-            if (ServiceProvider.GetService<IUsersService>() is IUsersService service) {
+            if (ServiceProvider.GetService<IUsersDataService>() is IUsersDataService service) {
                 service.UpdateRange(Users.Select(x => x.ToRecord()).ToArray());
                 LoadUsers();
             }

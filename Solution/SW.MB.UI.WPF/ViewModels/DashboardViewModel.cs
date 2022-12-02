@@ -14,7 +14,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public DashboardViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-            IMandatorsService.MandatorChanged +=IMandatorsService_MandatorChanged;
+            IMandatorsDataService.MandatorChanged +=IMandatorsService_MandatorChanged;
         }
         #endregion CONSTRUCTORS
 

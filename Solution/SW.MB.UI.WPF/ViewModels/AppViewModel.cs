@@ -31,7 +31,7 @@ namespace SW.MB.UI.WPF.ViewModels {
             UpdatesViewModel = serviceProvider.GetService<UpdatesViewModel>();
             UsersViewModel = serviceProvider.GetService<UsersViewModel>();
 
-            serviceProvider.GetRequiredService<IMandatorsService>().GetAll().ForEach(x => MandatorsCollection.Add(new ObservableMandator(x)));
+            serviceProvider.GetRequiredService<IMandatorsDataService>().GetAll().ForEach(x => MandatorsCollection.Add(new ObservableMandator(x)));
 
             if (DashboardViewModel != null) {
                 DashboardViewModel.IsActive = true;

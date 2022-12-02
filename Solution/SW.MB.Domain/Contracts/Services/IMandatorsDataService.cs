@@ -1,7 +1,7 @@
 ﻿using SW.MB.Domain.Models.Records;
 
 namespace SW.MB.Domain.Contracts.Services {
-    public interface IMandatorsService {
+    public interface IMandatorsDataService {
         public static event EventHandler<MandatorRecord>? MandatorChanged;
         public static event EventHandler? MandatorsChanged;
 

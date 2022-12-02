@@ -19,7 +19,7 @@ namespace SW.MB.Test.UnitTests.Services {
             Mock<IUnitOfWork> uowMock = new();
             uowMock.Setup(x => x.Compositions).Returns(() => GetQueryableMockDbSet(sourceList));
 
-            ICompositionsService service = new DefaultCompositionsService(uowMock.Object);
+            ICompositionsDataService service = new DefaultCompositionsDataService(uowMock.Object);
             IEnumerable<CompositionRecord> compositions = service.GetAll();
 
             Assert.IsNotNull(compositions);
@@ -31,7 +31,7 @@ namespace SW.MB.Test.UnitTests.Services {
             Mock<IUnitOfWork> uowMock = new();
             uowMock.Setup(x => x.Compositions).Returns(() => GetQueryableMockDbSet(new List<CompositionEntity>()));
 
-            ICompositionsService service = new DefaultCompositionsService(uowMock.Object);
+            ICompositionsDataService service = new DefaultCompositionsDataService(uowMock.Object);
             IEnumerable<CompositionRecord> compositions = service.GetAll();
 
             Assert.IsNotNull(compositions);

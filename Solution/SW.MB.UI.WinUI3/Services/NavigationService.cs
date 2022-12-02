@@ -77,8 +77,6 @@ namespace SW.MB.UI.WinUI3.Services {
       return false;
     }
 
-    // public void SetListDataItemForNextConnectedAnimation(object item) => Frame.SetListDataItemForNextConnectedAnimation(item);
-
     private void RegisterFrameEvents() {
       if (_Frame != null) {
         _Frame.Navigated += Frame_Navigated;

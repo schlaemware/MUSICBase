@@ -5,7 +5,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultUpdatesService: DataServiceBase, IUpdatesService {
+  internal class DefaultUpdatesDataService: DataServiceBase, IUpdatesDataService {
     public DateTime LastUpdatesCheck { get; private set; }
 
     public async Task<IEnumerable<ReleaseRecord>> CheckUpdatesAsync(string organization, string product, Version? installedVersion, params string[] extensions) {

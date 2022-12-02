@@ -126,11 +126,38 @@
   <data name="EditAppBarToggleButton.Label" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="HomePage_LoginHeader.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="HomePage_NameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="HomePage_PasswordLabel.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="HomePage_StoreLoginCheckBox.Content" xml:space="preserve">
+    <value>Store login?</value>
+  </data>
+  <data name="MandatorsPage_Header.Text" xml:space="preserve">
+    <value>Mandators</value>
+  </data>
+  <data name="MandatorsViewModel_DeleteDialogContent" xml:space="preserve">
+    <value>If you delete this mandator, you won't be able to recover it. Do you want to delete it?</value>
+  </data>
+  <data name="MandatorsViewModel_DeleteDialogTitle" xml:space="preserve">
+    <value>Delete mandator permanently?</value>
+  </data>
   <data name="MembersPage_Header.Text" xml:space="preserve">
     <value>Members</value>
   </data>
   <data name="MusiciansPage_Header.Text" xml:space="preserve">
     <value>Musicians</value>
+  </data>
+  <data name="MusiciansViewModel_DeleteDialogContent" xml:space="preserve">
+    <value>If you delete this musician, you won't be able to recover it. Do you want to delete it?</value>
+  </data>
+  <data name="MusiciansViewModel_DeleteDialogTitle" xml:space="preserve">
+    <value>Delete musician permanently?</value>
   </data>
   <data name="NavigationViewItem_Archive.Content" xml:space="preserve">
     <value>Archive</value>

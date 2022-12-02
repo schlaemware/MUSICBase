@@ -1,7 +1,7 @@
 ﻿using SW.MB.Domain.Models.Records;
 
 namespace SW.MB.Domain.Contracts.Services {
-    public interface ICompositionsService {
+    public interface ICompositionsDataService {
         public IEnumerable<CompositionRecord> GetAll(params MandatorRecord?[]? mandators);
 
         public void Update(CompositionRecord record);

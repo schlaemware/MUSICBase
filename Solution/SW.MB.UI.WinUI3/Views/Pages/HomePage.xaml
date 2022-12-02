@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
   <Grid>
-    
+    <TextBlock Style="{ThemeResource HeaderTextBlockStyle}">
+      <Run Text="Willkommen, " />
+      <Run Text="{x:Bind ViewModel.LoggedInUserName, Mode=OneWay}" />
+    </TextBlock>
   </Grid>
 </Page>

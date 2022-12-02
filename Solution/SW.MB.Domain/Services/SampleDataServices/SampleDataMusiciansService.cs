@@ -1,16 +1,21 @@
 ﻿using SW.Framework.Extensions;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
+using SW.MB.Domain.Services.SampleDataServices.Abstracts;
 
 namespace SW.MB.Domain.Services.SampleDataServices {
-  internal class SampleDataMusiciansService: IMusiciansService {
-    public IEnumerable<MusicianRecord> GetAll() {
-      Random random = new Random();
-      List<MusicianRecord> musicians = new();
+  internal class SampleDataMusiciansService: SampleDataServiceBase<MusicianRecord>, IMusiciansDataService {
+    #region CONSTRUCTORS
+    public SampleDataMusiciansService() : base() { }
+    #endregion CONSTRUCTORS
+
+    protected override void CreateSampleData() {
+      Random random = new();
       int numOfMusicians = random.Next(10, 100);
-      for (int n = 0; n < numOfMusicians; n++) {
-        musicians.Add(new MusicianRecord() {
-          ID = n + 1,
+
+      for (int n = 1; n <= numOfMusicians; n++) {
+        _RecordsDictionary.Add(n, new MusicianRecord() {
+          ID = n,
           Created = random.NextDateTimePast(),
           CreatedBy = random.Next(),
           Updated = random.NextDateTimePast(),
@@ -20,12 +25,6 @@ namespace SW.MB.Domain.Services.SampleDataServices {
           DateOfBirth = random.NextDateTimePast()
         });
       }
-
-      return musicians;
-    }
-
-    public void UpdateRange(params MusicianRecord[] records) {
-      throw new NotImplementedException();
     }
   }
 }

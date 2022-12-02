@@ -1,9 +1,10 @@
 ﻿using SW.Framework.Extensions;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
+using SW.MB.Domain.Services.SampleDataServices.Abstracts;
 
 namespace SW.MB.Domain.Services.SampleDataServices {
-  internal class SampleDataMembersService: IMembersService {
+  internal class SampleDataMembersService: SampleDataServiceBase<MemberRecord>, IMembersDataService {
     private static readonly string[] _INSTRUMENTS = new string[] {
             "Piccolo",
             "Flöte",
@@ -16,31 +17,16 @@ namespace SW.MB.Domain.Services.SampleDataServices {
             "Schlagwerk"
         };
 
-    private static readonly Dictionary<int, MemberRecord> _MemberRecordsDictionary = new();
+    #region CONSTRUCTORS
+    public SampleDataMembersService() : base() { }
+    #endregion CONSTRUCTORS
 
-    public SampleDataMembersService() {
-      if (!_MemberRecordsDictionary.Any()) {
-        CreateSampleData();
-      }
-    }
-
-    public IEnumerable<MemberRecord> GetAll(params MandatorRecord?[]? mandators) {
-      return _MemberRecordsDictionary.Values;
-    }
-
-    public void UpdateRange(params MemberRecord[] records) {
-      foreach (MemberRecord record in records) {
-        _MemberRecordsDictionary.Remove(record.ID);
-        _MemberRecordsDictionary.Add(record.ID, record);
-      }
-    }
-
-    private void CreateSampleData() {
+    protected override void CreateSampleData() {
       Random random = new();
       int numOfMusicians = random.Next(10, 100);
       
       for (int n = 1; n <= numOfMusicians; n++) {
-        _MemberRecordsDictionary.Add(n, new MemberRecord() {
+        _RecordsDictionary.Add(n, new MemberRecord() {
           ID = n,
           Created = random.NextDateTimePast(),
           CreatedBy = random.Next(),

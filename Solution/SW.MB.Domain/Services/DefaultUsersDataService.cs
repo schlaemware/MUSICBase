@@ -7,15 +7,16 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultUsersService: DataServiceBase, IUsersService {
+  internal class DefaultUsersDataService: DataServiceBase, IUsersDataService {
     private readonly IUnitOfWork _UnitOfWork;
 
     #region CONSTRUCTORS
-    public DefaultUsersService(IUnitOfWork uow) : base() {
+    public DefaultUsersDataService(IUnitOfWork uow) : base() {
       _UnitOfWork = uow;
     }
     #endregion CONSTRUCTORS
 
+    #region PUBLIC METHODS
     public IEnumerable<UserRecord> GetAll() {
       return _UnitOfWork.Users.Where(x => !x.Mandators.Any()).Select(x => x.ToRecord());
     }
@@ -36,9 +37,10 @@ namespace SW.MB.Domain.Services {
       return compositions;
     }
 
-    public UserRecord? GetLoggedInUser() {
-      // TODO
-      return default;
+    public bool TryLogIn(string name, string password, bool storeLogin, out UserRecord loggedInUser) {
+      loggedInUser = new UserRecord();
+
+      return true;
     }
 
     public void UpdateRange(params UserRecord[] records) {
@@ -52,6 +54,7 @@ namespace SW.MB.Domain.Services {
 
       _UnitOfWork.SaveChangesAsync();
     }
+    #endregion PUBLIC METHODS
 
     private IEnumerable<UserRecord> GetAllByMandator(MandatorRecord mandator) {
       MandatorEntity mandatorEntity = mandator.ToEntity();

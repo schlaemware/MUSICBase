@@ -32,7 +32,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
     #region CONSTRUCTORS
     public MusiciansViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-      IMandatorsService.MandatorChanged += IMandatorsService_MandatorChanged;
+      IMandatorsDataService.MandatorChanged += IMandatorsService_MandatorChanged;
 
       MusiciansView = CreateView(Musicians);
 
@@ -61,7 +61,7 @@ namespace SW.MB.UI.WPF.ViewModels {
     }
 
     private void LoadMusicians() {
-      if (ServiceProvider.GetService<IMusiciansService>() is IMusiciansService service) {
+      if (ServiceProvider.GetService<IMusiciansDataService>() is IMusiciansDataService service) {
         Musicians.Clear();
 
         foreach (MusicianRecord musician in service.GetAll()) {
@@ -85,7 +85,7 @@ namespace SW.MB.UI.WPF.ViewModels {
     }
 
     private void StoreMusicians() {
-      if (ServiceProvider.GetService<IMusiciansService>() is IMusiciansService service) {
+      if (ServiceProvider.GetService<IMusiciansDataService>() is IMusiciansDataService service) {
         service.UpdateRange(Musicians.Select(x => x.ToRecord()).ToArray());
         LoadMusicians();
       }

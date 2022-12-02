@@ -37,6 +37,7 @@ namespace SW.MB.UI.WinUI3.HostBuilder {
       services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
       services.AddSingleton<INavigationService, NavigationService>();
       services.AddSingleton<IPageService, PageService>();
+      services.AddSingleton<IPermissionsService, PermissionsService>();
       services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 
       // Views and ViewModels
@@ -44,6 +45,8 @@ namespace SW.MB.UI.WinUI3.HostBuilder {
       services.AddTransient<CompositionsViewModel>();
       services.AddTransient<HomePage>();
       services.AddTransient<HomeViewModel>();
+      services.AddTransient<LoginPage>();
+      services.AddTransient<LoginViewModel>();
       services.AddTransient<MandatorsPage>();
       services.AddTransient<MandatorsViewModel>();
       services.AddTransient<MembersPage>();

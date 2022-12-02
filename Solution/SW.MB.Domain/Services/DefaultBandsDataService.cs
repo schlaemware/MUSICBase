@@ -5,11 +5,11 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultBandsService : DataServiceBase, IBandsService {
+  internal class DefaultBandsDataService : DataServiceBase, IBandsDataService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS
-        public DefaultBandsService(IUnitOfWork uow) : base() {
+        public DefaultBandsDataService(IUnitOfWork uow) : base() {
             _UnitOfWork = uow;
         }
         #endregion CONSTRUCTORS

@@ -1,3 +1,4 @@
+using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -23,7 +24,7 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
       App.MainWindow.SetTitleBar(AppTitleBar);
       App.MainWindow.Activated += MainWindow_Activated;
 
-      AppTitleBarIcon.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
+      //AppTitleBarIcon.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
       AppTitleBarText.Text = "AppDisplayName".GetLocalized();
       AppTitleBarText.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
     }
@@ -34,8 +35,7 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
 
     private void MainWindow_Activated(object sender, WindowActivatedEventArgs args) {
       string resource = args.WindowActivationState == WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
-
-      AppTitleBarText.Foreground = (SolidColorBrush)App.Current.Resources[resource];
+      AppTitleBarText.Foreground = (SolidColorBrush)Application.Current.Resources[resource];
     }
 
     private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args) {
@@ -48,12 +48,12 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
     }
 
     private void NavigationViewControl_PaneOpening(NavigationView sender, object args) {
-      AppTitleBarIcon.Visibility = Visibility.Visible;
+      //AppTitleBarIcon.Visibility = Visibility.Visible;
       AppTitleBarText.Visibility = Visibility.Visible;
     }
 
     private void NavigationViewControl_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args) {
-      AppTitleBarIcon.Visibility = Visibility.Collapsed;
+      //AppTitleBarIcon.Visibility = Visibility.Collapsed;
       AppTitleBarText.Visibility = Visibility.Collapsed;
     }
   }

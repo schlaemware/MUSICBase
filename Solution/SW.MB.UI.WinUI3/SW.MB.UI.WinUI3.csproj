@@ -20,6 +20,7 @@
     <None Remove="Styles\Thickness.xaml" />
     <None Remove="Views\Pages\CompositionsPage.xaml" />
     <None Remove="Views\Pages\HomePage.xaml" />
+    <None Remove="Views\Pages\LoginPage.xaml" />
     <None Remove="Views\Pages\MandatorsPage.xaml" />
     <None Remove="Views\Pages\MembersPage.xaml" />
     <None Remove="Views\Pages\MusiciansPage.xaml" />
@@ -28,6 +29,7 @@
     <None Remove="Views\Pages\ShellPage.xaml" />
     <None Remove="Views\Pages\UpdatesPage.xaml" />
     <None Remove="Views\Pages\UsersPage.xaml" />
+    <None Remove="Views\Pages\znxck2nd.r31~" />
     <None Remove="Views\Windows\MainWindow.xaml" />
   </ItemGroup>
 
@@ -67,6 +69,9 @@
     <None Update="Assets\LightIcon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\Pages\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Styles\Thickness.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

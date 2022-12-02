@@ -15,6 +15,7 @@ namespace SW.MB.UI.WinUI3.Services {
     public PageService() {
       Configure<CompositionsViewModel, CompositionsPage>();
       Configure<HomeViewModel, HomePage>();
+      Configure<LoginViewModel, LoginPage>();
       Configure<MandatorsViewModel, MandatorsPage>();
       Configure<MembersViewModel, MembersPage>();
       Configure<MusiciansViewModel, MusiciansPage>();

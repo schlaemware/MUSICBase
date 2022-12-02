@@ -42,7 +42,7 @@
                      Style="{ThemeResource HeaderTextBlockStyle}" />
 
           <!-- ID -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -60,7 +60,7 @@
           </Grid>
 
           <!-- Created -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -78,7 +78,7 @@
           </Grid>
 
           <!-- CreatedBy -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -96,7 +96,7 @@
           </Grid>
 
           <!-- Updated -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -114,7 +114,7 @@
           </Grid>
 
           <!-- UpdatedBy -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -132,7 +132,7 @@
           </Grid>
 
           <!-- Firstname -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -146,11 +146,11 @@
                      Margin="-12,0,0,0"
                      Text="{Binding Firstname, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                      VerticalAlignment="Center"
-                     IsReadOnly="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
+                     IsReadOnly="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
           </Grid>
 
           <!-- Lastname -->
-          <Grid Visibility="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
+          <Grid Visibility="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="100" />
               <ColumnDefinition Width="40" />
@@ -164,7 +164,7 @@
                      Margin="-12,0,0,0"
                      Text="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                      VerticalAlignment="Center"
-                     IsReadOnly="{Binding ElementName=EditButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
+                     IsReadOnly="{Binding ElementName=EditAppBarToggleButton, Path=IsChecked, Converter={StaticResource BooleanInverter}}" />
           </Grid>
         </StackPanel>
       </ScrollViewer>
@@ -192,28 +192,32 @@
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
                 OverflowButtonVisibility="Visible">
-      <AppBarButton Icon="Add" Label="Add" />
+      <AppBarButton Icon="Add" Label="Add"
+                    Command="{x:Bind ViewModel.CreateCommand}" />
       <AppBarSeparator />
       <AppBarToggleButton x:Uid="EditAppBarToggleButton"
                           x:Name="EditAppBarToggleButton"
                           Icon="Edit"
                           ToolTipService.ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Label}"
-                          IsChecked="{x:Bind ViewModel.IsEditMode, Mode=TwoWay}" />
-      <AppBarButton Icon="Cancel" Label="Discard" />
+                          IsChecked="{x:Bind ViewModel.IsEditMode, Mode=TwoWay}"
+                          Command="{x:Bind ViewModel.SaveCommand}" />
+      <AppBarButton Icon="Cancel" Label="Discard"
+                    Command="{x:Bind ViewModel.DiscardCommand}" />
       <AppBarSeparator />
-      <AppBarButton Icon="Delete" Label="Delete" />
+      <AppBarButton Icon="Delete" Label="Delete"
+                    Command="{x:Bind ViewModel.DeleteCommand}" />
     </CommandBar>
 
     <ListView Grid.Column="0" Grid.Row="2"
-              ItemsSource="{x:Bind ViewModel.MusiciansCollection}"
-              SelectedItem="{x:Bind ViewModel.SelectedMusician, Mode=TwoWay}"
+              ItemsSource="{x:Bind ViewModel.EntitiesCollection}"
+              SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
               ItemTemplate="{StaticResource MusiciansListItemTemplate}"
               IsEnabled="{x:Bind ViewModel.IsEditMode, Mode=OneWay, Converter={StaticResource BooleanInverter}}"
               SelectionMode="Single" />
 
     <ContentPresenter Grid.Column="1" Grid.Row="2"
-                      Visibility="{x:Bind ViewModel.SelectedMusician, Mode=OneWay, Converter={StaticResource NotNullToVisConverter}}"
-                      Content="{x:Bind ViewModel.SelectedMusician, Mode=OneWay}"
+                      Visibility="{x:Bind ViewModel.Selected, Mode=OneWay, Converter={StaticResource NotNullToVisConverter}}"
+                      Content="{x:Bind ViewModel.Selected, Mode=OneWay}"
                       ContentTemplate="{StaticResource MusiciansDetailItemTemplate}" />
   </Grid>
 </Page>

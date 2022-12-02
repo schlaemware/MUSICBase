@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using SW.Framework.Extensions;
+﻿using SW.Framework.Extensions;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
 
 namespace SW.MB.Domain.Services.SampleDataServices {
-  internal class SampleDataUpdatesService: IUpdatesService {
+  internal class SampleDataUpdatesService: IUpdatesDataService {
     public Task<IEnumerable<ReleaseRecord>> CheckUpdatesAsync(string organization, string product, Version? installedVersion, params string[] extensions) {
       List<ReleaseRecord> records = new();
       Random random = new();

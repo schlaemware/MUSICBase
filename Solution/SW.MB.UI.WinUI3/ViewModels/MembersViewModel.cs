@@ -77,7 +77,7 @@ namespace SW.MB.UI.WinUI3.ViewModels
     }
 
     private void LoadData() {
-      IEnumerable<ObservableMember> members = App.GetService<IMembersService>().GetAll().Select(x => new ObservableMember(x));
+      IEnumerable<ObservableMember> members = App.GetService<IMembersDataService>().GetAll().Select(x => new ObservableMember(x));
       App.Dispatcher.TryEnqueue(() => members.ForEach(x => MembersCollection.Add(x)));
     }
 
@@ -87,7 +87,7 @@ namespace SW.MB.UI.WinUI3.ViewModels
 
     private void SaveChanges() {
       if (!IsEditMode && SelectedMember != null) {  // Invert because of timing. IsEditMode is set before execution of this function.
-        IMembersService membersService = App.GetService<IMembersService>();
+        IMembersDataService membersService = App.GetService<IMembersDataService>();
         membersService.UpdateRange(SelectedMember.ToRecord());
       }
     }

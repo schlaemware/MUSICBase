@@ -126,6 +126,21 @@
   <data name="EditAppBarToggleButton.Label" xml:space="preserve">
     <value>Bearbeiten</value>
   </data>
+  <data name="HomePage_LoginHeader.Text" xml:space="preserve">
+    <value>Anmeldung</value>
+  </data>
+  <data name="HomePage_NameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="HomePage_PasswordLabel.Text" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="HomePage_StoreLoginCheckBox.Content" xml:space="preserve">
+    <value>Anmeldung speichern?</value>
+  </data>
+  <data name="MandatorsPage_Header.Text" xml:space="preserve">
+    <value>Mandanten</value>
+  </data>
   <data name="MembersPage_Header.Text" xml:space="preserve">
     <value>Mitglieder</value>
   </data>

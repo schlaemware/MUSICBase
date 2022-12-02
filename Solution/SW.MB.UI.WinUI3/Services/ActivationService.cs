@@ -14,7 +14,7 @@ namespace SW.MB.UI.WinUI3.Services {
     private readonly ActivationHandler<LaunchActivatedEventArgs> _DefaultHandler;
     private readonly IEnumerable<IActivationHandler> _ActivationHandlers;
 
-    private UIElement? _Shell = null;
+    private UIElement? _Shell;
 
     #region CONSTRUCTORS
     public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers) {

@@ -7,11 +7,11 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultMembersService : DataServiceBase, IMembersService {
+  internal class DefaultMembersDataService : DataServiceBase, IMembersDataService {
         private readonly IUnitOfWork _UnitOfWork;
 
         #region CONSTRUCTORS
-        public DefaultMembersService(IUnitOfWork uow) : base() {
+        public DefaultMembersDataService(IUnitOfWork uow) : base() {
             _UnitOfWork = uow;
         }
         #endregion CONSTRUCTORS

@@ -19,7 +19,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
         #endregion CONSTRUCTORS
 
         private async void LoadReleasesAsync() {
-            IUpdatesService updatesService = App.GetService<IUpdatesService>();
+            IUpdatesDataService updatesService = App.GetService<IUpdatesDataService>();
             IEnumerable<ReleaseRecord> releases = await updatesService.CheckUpdatesAsync("Schlaemware", "MUSICBase", Assembly.GetExecutingAssembly().GetName().Version, "msix");
             releases.Select(x => new ObservableRelease(x)).OrderByDescending(x => x.Version).ForEach(x => App.Dispatcher.TryEnqueue(() => ReleasesCollection.Add(x)));
         }

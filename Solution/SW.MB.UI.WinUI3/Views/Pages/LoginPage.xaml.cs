@@ -5,11 +5,11 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
   /// <summary>
   /// An empty page that can be used on its own or navigated to within a Frame.
   /// </summary>
-  public sealed partial class HomePage: Page {
-    public HomeViewModel ViewModel { get; }
+  public sealed partial class LoginPage: Page {
+    public LoginViewModel ViewModel { get; }
 
-    public HomePage() {
-      ViewModel = App.GetService<HomeViewModel>();
+    public LoginPage() {
+      ViewModel = App.GetService<LoginViewModel>();
 
       InitializeComponent();
     }

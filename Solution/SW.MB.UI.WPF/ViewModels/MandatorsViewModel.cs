@@ -27,7 +27,7 @@ namespace SW.MB.UI.WPF.ViewModels {
             set {
                 if (SetProperty(ref _ActiveMandator, value)) {
                     if (_ActiveMandator is not null) {
-                        IMandatorsService.RaiseMandatorChanged(_ActiveMandator.ToRecord());
+                        IMandatorsDataService.RaiseMandatorChanged(_ActiveMandator.ToRecord());
                     }
                 }
             }
@@ -35,7 +35,7 @@ namespace SW.MB.UI.WPF.ViewModels {
 
         #region CONSTRUCTORS
         public MandatorsViewModel(IServiceProvider serviceProvider) : base(serviceProvider) {
-            IMandatorsService.MandatorsChanged += new EventHandler((_, _) => Initialize());
+            IMandatorsDataService.MandatorsChanged += new EventHandler((_, _) => Initialize());
             MandatorsView = CreateView(Mandators);
         }
         #endregion CONSTRUCTORS
@@ -54,7 +54,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void LoadMandators() {
-            if (ServiceProvider.GetService<IMandatorsService>() is IMandatorsService service) {
+            if (ServiceProvider.GetService<IMandatorsDataService>() is IMandatorsDataService service) {
                 Mandators.Clear();
                 foreach (MandatorRecord mandator in service.GetAll()) {
                     Mandators.Add(new ObservableMandator(mandator));
@@ -63,7 +63,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void StoreMandators() {
-            if (ServiceProvider.GetService<IMandatorsService>() is IMandatorsService service) {
+            if (ServiceProvider.GetService<IMandatorsDataService>() is IMandatorsDataService service) {
                 service.UpdateRange(Mandators.Select(x => x.ToRecord()).ToArray());
                 LoadMandators();
             }
