@@ -21,7 +21,8 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     }
 
     protected override void Save() {
-      if (!IsEditMode && Selected != null) {  // Invert "IsEditMode" because of timing. IsEditMode is set before execution of this function.
+      if (!IsEditMode && Selected != null) { 
+        // Invert "IsEditMode" because of timing. IsEditMode is set before execution of this function.
         IMusiciansDataService musiciansService = App.GetService<IMusiciansDataService>();
         musiciansService.UpdateRange(Selected.ToRecord());
       }

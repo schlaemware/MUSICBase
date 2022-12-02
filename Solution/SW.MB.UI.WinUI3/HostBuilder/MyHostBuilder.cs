@@ -41,28 +41,28 @@ namespace SW.MB.UI.WinUI3.HostBuilder {
       services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 
       // Views and ViewModels
-      services.AddTransient<CompositionsPage>();
-      services.AddTransient<CompositionsViewModel>();
-      services.AddTransient<HomePage>();
-      services.AddTransient<HomeViewModel>();
-      services.AddTransient<LoginPage>();
-      services.AddTransient<LoginViewModel>();
-      services.AddTransient<MandatorsPage>();
-      services.AddTransient<MandatorsViewModel>();
-      services.AddTransient<MembersPage>();
-      services.AddTransient<MembersViewModel>();
-      services.AddTransient<MusiciansPage>();
-      services.AddTransient<MusiciansViewModel>();
-      services.AddTransient<ProgramsPage>();
-      services.AddTransient<ProgramsViewModel>();
-      services.AddTransient<SettingsPage>();
-      services.AddTransient<SettingsViewModel>();
-      services.AddTransient<ShellPage>();
-      services.AddTransient<ShellViewModel>();
-      services.AddTransient<UpdatesPage>();
-      services.AddTransient<UpdatesViewModel>();
-      services.AddTransient<UsersPage>();
-      services.AddTransient<UsersViewModel>();
+      services.AddSingleton<CompositionsPage>();
+      services.AddSingleton<CompositionsViewModel>();
+      services.AddSingleton<HomePage>();
+      services.AddSingleton<HomeViewModel>();
+      services.AddSingleton<LoginPage>();
+      services.AddSingleton<LoginViewModel>();
+      services.AddSingleton<MandatorsPage>();
+      services.AddSingleton<MandatorsViewModel>();
+      services.AddSingleton<MembersPage>();
+      services.AddSingleton<MembersViewModel>();
+      services.AddSingleton<MusiciansPage>();
+      services.AddSingleton<MusiciansViewModel>();
+      services.AddSingleton<ProgramsPage>();
+      services.AddSingleton<ProgramsViewModel>();
+      services.AddSingleton<SettingsPage>();
+      services.AddSingleton<SettingsViewModel>();
+      services.AddSingleton<ShellPage>();
+      services.AddSingleton<ShellViewModel>();
+      services.AddSingleton<UpdatesPage>();
+      services.AddSingleton<UpdatesViewModel>();
+      services.AddSingleton<UsersPage>();
+      services.AddSingleton<UsersViewModel>();
     });
   }
 }

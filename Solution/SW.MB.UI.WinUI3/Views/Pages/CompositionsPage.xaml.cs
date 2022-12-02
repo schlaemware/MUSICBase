@@ -10,6 +10,7 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
 
     public CompositionsPage() {
       ViewModel = App.GetService<CompositionsViewModel>();
+
       InitializeComponent();
     }
   }

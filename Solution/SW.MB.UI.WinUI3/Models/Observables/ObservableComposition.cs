@@ -4,10 +4,12 @@ using SW.MB.UI.WinUI3.Models.Observables.Abstracts;
 
 namespace SW.MB.UI.WinUI3.Models.Observables {
   public class ObservableComposition: ObservableEntity, IComparable<ObservableComposition> {
-    public string? Title { get; set; }
+    public string Title { get; set; }
 
     #region CONSTRUCTORS
-    public ObservableComposition() { }
+    public ObservableComposition() {
+      Title = string.Empty;
+    }
 
     public ObservableComposition(CompositionRecord record) : base(record) {
       Title = record.Title;
@@ -20,6 +22,17 @@ namespace SW.MB.UI.WinUI3.Models.Observables {
       }
 
       return string.Compare(Title, other.Title);
+    }
+
+    public CompositionRecord ToRecord() {
+      return new CompositionRecord() {
+        ID = ID,
+        Created = Created,
+        CreatedBy = CreatedBy,
+        Updated = Updated,
+        UpdatedBy = UpdatedBy,
+        Title = Title
+      };
     }
   }
 }

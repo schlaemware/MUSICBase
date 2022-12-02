@@ -33,7 +33,8 @@ namespace SW.MB.Domain {
 
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
       services.AddTransient<IBandsDataService, DefaultBandsDataService>();
-      services.AddTransient<ICompositionsDataService, DefaultCompositionsDataService>();
+      //services.AddTransient<ICompositionsDataService, DefaultCompositionsDataService>();
+      services.AddTransient<ICompositionsDataService, SampleCompositionsDataService>();
       services.AddTransient<IFileService, FileService>();
       //services.AddTransient<IMandatorsService, DefaultMandatorsService>();
       services.AddTransient<IMandatorsDataService, SampleDataMandatorsService>();
