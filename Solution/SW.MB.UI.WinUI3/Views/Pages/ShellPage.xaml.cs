@@ -1,4 +1,3 @@
-using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -7,10 +6,10 @@ using SW.MB.UI.WinUI3.Helpers;
 using SW.MB.UI.WinUI3.ViewModels;
 
 namespace SW.MB.UI.WinUI3.Views.Pages {
-  /// <summary>
-  /// An empty page that can be used on its own or navigated to within a Frame.
-  /// </summary>
-  public sealed partial class ShellPage: Page {
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class ShellPage: Page {
     public ShellViewModel ViewModel { get; }
 
     public ShellPage(ShellViewModel viewModel) {
@@ -25,7 +24,7 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
       App.MainWindow.Activated += MainWindow_Activated;
 
       //AppTitleBarIcon.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
-      AppTitleBarText.Text = "AppDisplayName".GetLocalized();
+      AppTitleBarText.Text = "AppDisplayName".GetLocalizedString();
       AppTitleBarText.Visibility = NavigationViewControl.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
     }
 

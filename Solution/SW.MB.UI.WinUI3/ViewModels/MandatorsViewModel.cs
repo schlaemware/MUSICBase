@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CommunityToolkit.WinUI;
 using SW.Framework.Extensions;
 using SW.MB.Domain.Contracts.Services;
+using SW.MB.UI.WinUI3.Extensions;
 using SW.MB.UI.WinUI3.Models.Observables;
 using SW.MB.UI.WinUI3.ViewModels.Abstracts;
 
 namespace SW.MB.UI.WinUI3.ViewModels {
-  public class MandatorsViewModel: EntityMasterDetailViewModel<ObservableMandator> {
-    protected override string DeleteDialogContent { get; } = "MandatorsViewModel_DeleteDialogContent".GetLocalized();
-    protected override string DeleteDialogTitle { get; } = "MandatorsViewModel_DeleteDialogTitle".GetLocalized();
+    public class MandatorsViewModel: EntityMasterDetailViewModel<ObservableMandator> {
+    protected override string DeleteDialogContent { get; } = "MandatorsViewModel_DeleteDialogContent".GetLocalizedString();
+    protected override string DeleteDialogTitle { get; } = "MandatorsViewModel_DeleteDialogTitle".GetLocalizedString();
 
     #region CONSTRUCTORS
     public MandatorsViewModel() : base() { }
