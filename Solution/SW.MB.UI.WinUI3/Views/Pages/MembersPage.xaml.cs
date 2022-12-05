@@ -1,3 +1,4 @@
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SW.MB.UI.WinUI3.ViewModels;
 
@@ -10,7 +11,14 @@ namespace SW.MB.UI.WinUI3.Views.Pages {
 
     public MembersPage() {
       ViewModel = App.GetService<MembersViewModel>();
+
       InitializeComponent();
+    }
+
+    private void ListView_Loaded(object sender, RoutedEventArgs e) {
+      if (sender is ListView listView && ViewModel.SelectedMember != null) {
+        listView.ScrollIntoView(ViewModel.SelectedMember);
+      }
     }
   }
 }

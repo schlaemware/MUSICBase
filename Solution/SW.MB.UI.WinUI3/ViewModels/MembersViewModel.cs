@@ -13,6 +13,7 @@ namespace SW.MB.UI.WinUI3.ViewModels
     public class MembersViewModel: ObservableRecipient {
     private bool _IsEditMode;
     private ObservableMember? _SelectedMember;
+    private ObservableMember? _DisplayedMember;
 
     public bool IsEditMode {
       get => _IsEditMode;
@@ -32,6 +33,17 @@ namespace SW.MB.UI.WinUI3.ViewModels
       get => _SelectedMember;
       set {
         if (SetProperty(ref _SelectedMember, value)) {
+          if (value != null) {
+            DisplayedMember = value;
+          }
+        }
+      }
+    }
+
+    public ObservableMember? DisplayedMember {
+      get => _DisplayedMember;
+      set {
+        if (SetProperty(ref _DisplayedMember, value)) {
           SaveChangesCommand.RaiseCanExecuteChanged();
         }
       }

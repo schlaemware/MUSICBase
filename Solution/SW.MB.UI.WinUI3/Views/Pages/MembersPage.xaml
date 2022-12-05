@@ -248,15 +248,18 @@
     </CommandBar>
 
     <ListView Grid.Column="0" Grid.Row="2"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
               ItemsSource="{x:Bind ViewModel.MembersCollection}"
               SelectedItem="{x:Bind ViewModel.SelectedMember, Mode=TwoWay}"
               ItemTemplate="{StaticResource MembersListItemTemplate}"
               IsEnabled="{x:Bind ViewModel.IsEditMode, Mode=OneWay, Converter={StaticResource BooleanInverter}}"
-              SelectionMode="Single" />
+              SelectionMode="Single"
+              Loaded="ListView_Loaded" />
 
     <ContentPresenter Grid.Column="1" Grid.Row="2"
-                      Visibility="{x:Bind ViewModel.SelectedMember, Mode=OneWay, Converter={StaticResource NotNullToVisConverter}}"
-                      Content="{x:Bind ViewModel.SelectedMember, Mode=OneWay}"
+                      Visibility="{x:Bind ViewModel.DisplayedMember, Mode=OneWay, Converter={StaticResource NotNullToVisConverter}}"
+                      Content="{x:Bind ViewModel.DisplayedMember, Mode=OneWay}"
                       ContentTemplate="{StaticResource MembersDetailItemTemplate}" />
   </Grid>
 </Page>
