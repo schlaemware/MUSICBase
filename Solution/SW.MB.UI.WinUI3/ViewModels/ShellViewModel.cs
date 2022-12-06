@@ -86,8 +86,6 @@ namespace SW.MB.UI.WinUI3.ViewModels {
       NavigationService.Navigated += NavigationService_Navigated;
       NavigationViewService = navigationViewService;
 
-      App.LoggedInUserChanged += App_LoggedInUserChanged;
-
       NavigationService.NavigateTo(typeof(HomeViewModel).FullName!);
     }
     #endregion CONSTRUCTORS
@@ -95,7 +93,13 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     protected override void OnActivated() {
       base.OnActivated();
 
+      Messenger.Register<ShellViewModel, LoggedInUserChangedMessage>(this, (r, m) => r.LoggedInUserChanged(m.LoggedInUser));
       Messenger.Register<ShellViewModel, PermissionsChangedMessage>(this, (r, _) => r.Receive());
+    }
+
+    private void LoggedInUserChanged(ObservableUser? user) {
+      IsUserLoggedIn = user != null;
+      LoggedInUserName = user?.Fullname;
     }
 
     private void Receive() {
@@ -110,11 +114,6 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     }
 
     #region CALLBACKS
-    private void App_LoggedInUserChanged(object? sender, UserRecord e) {
-      IsUserLoggedIn = e != null;
-      LoggedInUserName = new ObservableUser(e).Fullname;
-    }
-
     private void NavigationService_Navigated(object sender, NavigationEventArgs e) {
       IsBackEnabled = NavigationService.CanGoBack;
 

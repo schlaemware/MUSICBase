@@ -1,4 +1,5 @@
-﻿using SW.MB.Data.Contracts.UnitsOfWork;
+﻿using SW.Framework.Security;
+using SW.MB.Data.Contracts.UnitsOfWork;
 using SW.MB.Data.Models.Entities;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Extensions.EntityExtensions;
@@ -7,11 +8,11 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.Abstracts;
 
 namespace SW.MB.Domain.Services {
-  internal class DefaultUsersDataService: DataServiceBase, IUsersDataService {
+  internal class DefaultUsersService: DataServiceBase, IUsersService {
     private readonly IUnitOfWork _UnitOfWork;
 
     #region CONSTRUCTORS
-    public DefaultUsersDataService(IUnitOfWork uow) : base() {
+    public DefaultUsersService(IUnitOfWork uow) : base() {
       _UnitOfWork = uow;
     }
     #endregion CONSTRUCTORS
@@ -37,12 +38,6 @@ namespace SW.MB.Domain.Services {
       return compositions;
     }
 
-    public bool TryLogIn(string name, string password, bool storeLogin, out UserRecord loggedInUser) {
-      loggedInUser = new UserRecord();
-
-      return true;
-    }
-
     public void UpdateRange(params UserRecord[] records) {
       foreach (UserRecord record in records) {
         if (_UnitOfWork.Users.SingleOrDefault(x => x.ID == record.ID) is UserEntity entity) {
@@ -53,6 +48,24 @@ namespace SW.MB.Domain.Services {
       }
 
       _UnitOfWork.SaveChangesAsync();
+    }
+
+    public bool VerifyPassword(string identifier, string password, out UserRecord? loggedInUser) {
+      UserEntity? entity = _UnitOfWork.Users.FirstOrDefault(x => x.Username == identifier);
+      entity ??= _UnitOfWork.Users.FirstOrDefault(x => x.Mail == identifier);
+
+      if (entity != null && !string.IsNullOrEmpty(entity.PasswordHash)) {
+        PasswordHasher hasher = new(new HashingOptions(DateTime.UtcNow.Year + DateTime.UtcNow.Month + DateTime.UtcNow.Day));
+        (bool verified, bool needsUpdate) = hasher.Check(entity.PasswordHash, password);
+
+        loggedInUser = verified ? entity.ToRecord() : null;
+
+        return verified;
+      }
+
+      loggedInUser = null;
+
+      return false;
     }
     #endregion PUBLIC METHODS
 

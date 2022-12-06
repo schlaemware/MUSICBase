@@ -15,7 +15,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     private bool _IsEditMode;
     private string? _SearchText;
     private ObservableComposition? _Selected;
-    private IEnumerable<ObservableComposition> _Compositions;
+    private IEnumerable<ObservableComposition>? _Compositions;
 
     public bool IsEditMode {
       get => _IsEditMode;
@@ -69,7 +69,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
 
     private void Create() {
       ObservableComposition newEntity = new();
-      _Compositions.Append(newEntity);
+      _Compositions?.Append(newEntity);
       SearchText = string.Empty;
       Selected = newEntity;
       IsEditMode = true;
@@ -95,9 +95,9 @@ namespace SW.MB.UI.WinUI3.ViewModels {
       IEnumerable<CompositionsGroupList> groups;
 
       if (string.IsNullOrEmpty(SearchText)) {
-        groups = CreateGrouping(_Compositions);
+        groups = CreateGrouping(_Compositions!);
       } else {
-        groups = CreateGrouping(_Compositions.Where(x => SearchText.Length >= 3
+        groups = CreateGrouping(_Compositions!.Where(x => SearchText.Length >= 3
           ? x.Title.ToLower().Contains(SearchText.ToLower())
           : x.Title.ToLower().StartsWith(SearchText.ToLower())));
       }

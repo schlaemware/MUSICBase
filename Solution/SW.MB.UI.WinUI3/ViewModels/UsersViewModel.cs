@@ -25,7 +25,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
         #endregion CONSTRUCTORS
 
         private void LoadData() {
-            IEnumerable<ObservableUser> users = App.GetService<IUsersDataService>().GetAll().Select(x => new ObservableUser(x));
+            IEnumerable<ObservableUser> users = App.GetService<IUsersService>().GetAll().Select(x => new ObservableUser(x));
             App.Dispatcher.TryEnqueue(() => users.ForEach(x => UsersCollection.Add(x)));
         }
 

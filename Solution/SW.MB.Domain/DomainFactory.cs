@@ -45,7 +45,7 @@ namespace SW.MB.Domain {
       //services.AddTransient<IUpdatesService, DefaultUpdatesService>();
       services.AddTransient<IUpdatesDataService, SampleDataUpdatesService>();
       //services.AddTransient<IUsersService, DefaultUsersService>();
-      services.AddTransient<IUsersDataService, SampleDataUsersService>();
+      services.AddTransient<IUsersService, SampleUsersService>();
     }
   }
 }

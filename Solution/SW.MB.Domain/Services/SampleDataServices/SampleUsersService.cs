@@ -4,22 +4,25 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.SampleDataServices.Abstracts;
 
 namespace SW.MB.Domain.Services.SampleDataServices {
-  internal class SampleDataUsersService: SampleDataServiceBase<UserRecord>, IUsersDataService {
+  internal class SampleUsersService: SampleDataServiceBase<UserRecord>, IUsersService {
     public UserRecord? LoggedInUser { get; private set; }
 
     #region CONSTRUCTORS
-    public SampleDataUsersService() : base() { }
+    public SampleUsersService() : base() {
+
+    }
     #endregion CONSTRUCTORS
 
-    public bool TryLogIn(string name, string password, bool storeLogin, out UserRecord loggedInUser) {
-      Random random = new();
-      if (true) {
-        loggedInUser = _RecordsDictionary.Values.ElementAt(random.Next(_RecordsDictionary.Count));
+    public bool VerifyPassword(string identifier, string password, out UserRecord? loggedInUser) {
+      Task.Delay(3000).Wait();
+
+      if (!string.IsNullOrEmpty(identifier) && !string.IsNullOrEmpty(password) && password.Length >= 3) {
+        loggedInUser = _RecordsDictionary.ElementAt(new Random().Next(_RecordsDictionary.Count)).Value;
 
         return true;
       }
 
-      loggedInUser = new();
+      loggedInUser = null;
 
       return false;
     }

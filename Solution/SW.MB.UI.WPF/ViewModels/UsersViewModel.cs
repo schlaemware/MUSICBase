@@ -48,7 +48,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void LoadUsers() {
-            if (ServiceProvider.GetRequiredService<IUsersDataService>() is IUsersDataService service) {
+            if (ServiceProvider.GetRequiredService<IUsersService>() is IUsersService service) {
                 Users.Clear();
 
                 foreach (UserRecord user in service.GetAll(_Mandator)) {
@@ -58,7 +58,7 @@ namespace SW.MB.UI.WPF.ViewModels {
         }
 
         private void StoreUsers() {
-            if (ServiceProvider.GetService<IUsersDataService>() is IUsersDataService service) {
+            if (ServiceProvider.GetService<IUsersService>() is IUsersService service) {
                 service.UpdateRange(Users.Select(x => x.ToRecord()).ToArray());
                 LoadUsers();
             }

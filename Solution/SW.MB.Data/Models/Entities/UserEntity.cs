@@ -7,5 +7,7 @@ namespace SW.MB.Data.Models.Entities {
     public virtual ICollection<MandatorEntity> Mandators { get; set; } = new List<MandatorEntity>();
 
     public string? Mail { get; set; }
+    public string? PasswordHash { get; set; }
+    public string? Username { get; set; }
   }
 }

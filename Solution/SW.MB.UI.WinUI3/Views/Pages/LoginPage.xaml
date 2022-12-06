@@ -19,6 +19,7 @@
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="12" />
+        <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
@@ -48,6 +49,21 @@
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
+
+      <CommandBar Grid.Column="3" Grid.Row="0"
+                  Grid.RowSpan="2"
+                  OverflowButtonVisibility="Collapsed">
+        <AppBarButton Icon="Switch" Label="Switch user">
+          <ToolTipService.ToolTip>
+            <ToolTip Content="Switch user" />
+          </ToolTipService.ToolTip>
+        </AppBarButton>
+        <AppBarButton Icon="BlockContact" Label="Logout">
+          <ToolTipService.ToolTip>
+            <ToolTip Content="Delete stored credentials" />
+          </ToolTipService.ToolTip>
+        </AppBarButton>
+      </CommandBar>
     </Grid>
     
     <!-- Login screen -->
@@ -92,7 +108,7 @@
                    Grid.Column="0" Grid.Row="0"
                    VerticalAlignment="Center"/>
         <TextBox Grid.Column="1" Grid.Row="0"
-                 Text="{x:Bind ViewModel.LoginName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{x:Bind ViewModel.LoginIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{x:Bind ViewModel.IsLoggingIn, Mode=OneWay, Converter={StaticResource BoolInverter}}" />
 
         <TextBlock x:Uid="HomePage_PasswordLabel"

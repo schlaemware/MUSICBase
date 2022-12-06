@@ -20,11 +20,7 @@ namespace SW.MB.UI.WinUI3.Activation {
     }
 
     protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args) {
-      if (App.IsUserLoggedIn) {
-        _NavigationService.NavigateTo(typeof(HomeViewModel).FullName!, args.Arguments);
-      } else {
-        _NavigationService.NavigateTo(typeof(LoginViewModel).FullName!, args.Arguments);
-      }
+      _NavigationService.NavigateTo(typeof(LoginViewModel).FullName!, args.Arguments);
 
       await Task.CompletedTask;
     }
