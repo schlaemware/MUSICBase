@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.WinUI.UI.Controls.TextToolbarSymbols;
 using SW.MB.Domain.Contracts.Services;
 using SW.MB.Domain.Models.Records;
 using SW.MB.UI.WinUI3.Commands;
 using SW.MB.UI.WinUI3.Contracts.Services;
+using SW.MB.UI.WinUI3.Extensions;
 using SW.MB.UI.WinUI3.Models.Messages;
 using SW.MB.UI.WinUI3.Models.Observables;
 using SW.MB.UI.WinUI3.ViewModels.Abstracts;
@@ -16,7 +16,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
     private const string _STORED_CREDENTIALS_IDENTIFIER_KEY = "StoredCredentialsIdentifierKey";
     private const string _STORED_CREDENTIALS_PASSWORD_KEY = "StoredCredentialsPasswordKey";
 
-    private static string _LoginMessage = "Bitte loggen Sie sich ein.";
+    private static string _LoginMessage = "LoginViewModel_LoginMessage_Standard".GetLocalizedString();
 
     private readonly INavigationService _NavigationService;
     private readonly IPermissionsService _PermissionsService;
@@ -103,7 +103,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
       string? storedPassword = await localSettingsService.ReadSettingAsync<string>(_STORED_CREDENTIALS_IDENTIFIER_KEY);
       if (!string.IsNullOrEmpty(storedIdentifier) && !string.IsNullOrEmpty(storedPassword)) {
         App.Dispatcher.TryEnqueue(() => {
-          LoginMessage = "Automatischer Login...";
+          LoginMessage = "LoginViewModel_LoginMessage_AutomaticLogin".GetLocalizedString();
           IsLoggingIn = true;
         });
         
@@ -120,7 +120,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
           });
         } else {
           App.Dispatcher.TryEnqueue(() => {
-            LoginMessage = "Automatischer Login fehlgeschlagen...";
+            LoginMessage = "LoginViewModel_LoginMessage_AutomaticLoginFailed".GetLocalizedString();
             IsLoggingIn = false;
           });
         }
@@ -165,7 +165,7 @@ namespace SW.MB.UI.WinUI3.ViewModels {
         // Login failed...
         App.Dispatcher.TryEnqueue(() => {
           LoginPassword = string.Empty;
-          LoginMessage = "Login fehlgeschlagen!";
+          LoginMessage = "LoginViewModel_LoginMessage_LoginFailed".GetLocalizedString();
 
           IsLoggingIn = false;
         });

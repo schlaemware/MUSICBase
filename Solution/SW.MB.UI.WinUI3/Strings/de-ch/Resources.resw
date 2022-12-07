@@ -141,6 +141,18 @@
   <data name="HomePage_StoreLoginCheckBox.Content" xml:space="preserve">
     <value>Anmeldung speichern?</value>
   </data>
+  <data name="LoginViewModel_LoginMessage_AutomaticLogin" xml:space="preserve">
+    <value>Automatische Anmeldung...</value>
+  </data>
+  <data name="LoginViewModel_LoginMessage_AutomaticLoginFailed" xml:space="preserve">
+    <value>Automatische Anmeldung fehlgeschlagen!</value>
+  </data>
+  <data name="LoginViewModel_LoginMessage_LoginFailed" xml:space="preserve">
+    <value>Anmeldung fehlgeschlagen!</value>
+  </data>
+  <data name="LoginViewModel_LoginMessage_Standard" xml:space="preserve">
+    <value>Bitte melden Sie sich an.</value>
+  </data>
   <data name="MandatorsPage_Header.Text" xml:space="preserve">
     <value>Mandanten</value>
   </data>

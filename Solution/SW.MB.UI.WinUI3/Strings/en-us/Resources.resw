@@ -141,6 +141,18 @@
   <data name="HomePage_StoreLoginCheckBox.Content" xml:space="preserve">
     <value>Store login?</value>
   </data>
+  <data name="LoginViewModel_LoginMessage_AutomaticLogin" xml:space="preserve">
+    <value>Automatic login...</value>
+  </data>
+  <data name="LoginViewModel_LoginMessage_AutomaticLoginFailed" xml:space="preserve">
+    <value>Automatic login failed!</value>
+  </data>
+  <data name="LoginViewModel_LoginMessage_LoginFailed" xml:space="preserve">
+    <value>Login failed!</value>
+  </data>
+  <data name="LoginViewModel_LoginMessage_Standard" xml:space="preserve">
+    <value>Please log in.</value>
+  </data>
   <data name="MandatorsPage_Header.Text" xml:space="preserve">
     <value>Mandators</value>
   </data>
