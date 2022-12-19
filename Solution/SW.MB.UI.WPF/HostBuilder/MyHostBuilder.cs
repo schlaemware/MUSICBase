@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +20,12 @@ namespace SW.MB.UI.WPF.HostBuilder {
       .Build();
 
     private static IHostBuilder ConfigureMyUserSecrets(this IHostBuilder hostBuilder) => hostBuilder.ConfigureAppConfiguration((context, configuration) => {
-      //configuration.AddUserSecrets<AppViewModel>(true, true);
+      configuration.AddInMemoryCollection(new Dictionary<string, string?>() {
+        { "AppVersion", Assembly.GetExecutingAssembly().GetName().Version?.ToString() },
+        { "AppDirectory", App.ApplicationDirectoryPath },
+      });
+
+      configuration.AddUserSecrets<AppViewModel>(true, true);
       configuration.AddJsonFile(Path.Combine(App.ApplicationDirectoryPath, LICENSE_FILE_NAME), true);
     });
 

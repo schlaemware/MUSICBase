@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject>SW.MB.UI.WPF.App</StartupObject>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.0.0</Version>
+    <Version>0.0.1</Version>
     <UserSecretsId>bf59f205-18dd-440c-9d46-464c7f708af4</UserSecretsId>
     <Company>Schlæmware</Company>
     <Product>MUSICBase</Product>

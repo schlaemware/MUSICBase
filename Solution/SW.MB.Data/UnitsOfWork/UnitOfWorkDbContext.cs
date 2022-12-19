@@ -7,15 +7,20 @@ namespace SW.MB.Data.UnitsOfWork {
   internal class UnitOfWorkDbContext: BaseDbContext, IUnitOfWork, IBackupUnitOfWork {
     public DbSet<BandEntity>? Bands { get; set; }
     public DbSet<CompositionEntity>? Compositions { get; set; }
+    public DbSet<ConcertProgramEntity>? ConcertPrograms { get; set; }
     public DbSet<FormationEntity>? Formations { get; set; }
     public DbSet<MandatorEntity>? Mandators { get; set; }
     public DbSet<MemberEntity>? Members { get; set; }
     public DbSet<MusicianEntity>? Musicians { get; set; }
+    public DbSet<RepertoireProgramEntity>? RepertoirePrograms { get; set; }
     public DbSet<UserEntity>? Users { get; set; }
 
     #region IUNITOFWORK
     DbSet<BandEntity> IUnitOfWork.Bands => Bands
         ?? throw new ApplicationException($"{GetType().Name}.{nameof(Bands)} not initialized!");
+
+    DbSet<ConcertProgramEntity> IUnitOfWork.ConcertPrograms => ConcertPrograms
+      ?? throw new ApplicationException($"{GetType().Name}.{nameof(ConcertPrograms)} not initialized!");
 
     DbSet<CompositionEntity> IUnitOfWork.Compositions => Compositions
         ?? throw new ApplicationException($"{GetType().Name}.{nameof(Compositions)} not initialized!");
@@ -29,13 +34,18 @@ namespace SW.MB.Data.UnitsOfWork {
     DbSet<MusicianEntity> IUnitOfWork.Musicians => Musicians
         ?? throw new ApplicationException($"{GetType().Name}.{nameof(Musicians)} not initialized!");
 
+    DbSet<RepertoireProgramEntity> IUnitOfWork.RepertoirePrograms => RepertoirePrograms
+      ?? throw new ApplicationException($"{GetType().Name}.{nameof(RepertoirePrograms)} not initialized!");
+
     DbSet<UserEntity> IUnitOfWork.Users => Users
         ?? throw new ApplicationException($"{GetType().Name}.{nameof(Users)} not initialized!");
     #endregion IUNITOFWORK
 
     #region CONSTRUCTORS
     public UnitOfWorkDbContext(DbContextOptions<UnitOfWorkDbContext> options) : base(options) {
-      
+      if (Database.IsSqlite()) {
+        Database.EnsureCreated();
+      }
     }
     #endregion CONSTRUCTORS
 

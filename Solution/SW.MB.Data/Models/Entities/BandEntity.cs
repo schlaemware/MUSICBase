@@ -6,6 +6,7 @@ namespace SW.MB.Data.Models.Entities {
   public class BandEntity: Entity {
     public virtual ICollection<MusicianEntity> Musicians { get; set; } = new List<MusicianEntity>();
 
+    [Column(Order = 5, TypeName = "varchar(50)")]
     public string Name { get; set; }
   }
 }

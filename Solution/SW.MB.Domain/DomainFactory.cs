@@ -34,13 +34,13 @@ namespace SW.MB.Domain {
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
       services.AddTransient<IFileService, FileService>();
 
-      services.AddTransient<IBandsDataService, SampleDataBandsService>();
-      services.AddTransient<ICompositionsDataService, SampleDataCompositionsService>();
-      services.AddTransient<IMandatorsDataService, SampleDataMandatorsService>();
-      services.AddTransient<IMembersDataService, SampleDataMembersService>();
-      services.AddTransient<IMusiciansDataService, SampleDataMusiciansService>();
-      services.AddTransient<IUpdatesDataService, SampleDataUpdatesService>();
-      services.AddTransient<IUsersService, SampleUsersService>();
+      //services.AddTransient<IBandsDataService, SampleDataBandsService>();
+      //services.AddTransient<ICompositionsDataService, SampleDataCompositionsService>();
+      //services.AddTransient<IMandatorsDataService, SampleDataMandatorsService>();
+      //services.AddTransient<IMembersDataService, SampleDataMembersService>();
+      //services.AddTransient<IMusiciansDataService, SampleDataMusiciansService>();
+      //services.AddTransient<IUpdatesDataService, SampleDataUpdatesService>();
+      //services.AddTransient<IUsersService, SampleUsersService>();
       
       services.AddTransient<IBandsDataService, DefaultBandsDataService>();
       services.AddTransient<ICompositionsDataService, DefaultCompositionsDataService>();
