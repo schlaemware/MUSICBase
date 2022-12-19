@@ -4,13 +4,13 @@ using SW.MB.Data.Contracts.Models;
 using SW.MB.Data.Models.Entities.Abstracts;
 
 namespace SW.MB.Data.Models.Entities {
-  [Table("ConcertPrograms")]
-  public class ConcertProgramEntity: ProgramEntity, IProgram {
-    [Column(Order = 6, TypeName = "date")]
-    public DateTime ShowDate { get; set; }
+    [Table("ConcertPrograms")]
+    public class ConcertProgramEntity : ProgramEntity, IProgram {
+        [Column(Order = 7, TypeName = "date")]
+        public DateTime ShowDate { get; set; }
 
-    #region IPROGRAM
-    DateTime IProgram.Date => ShowDate;
-    #endregion IPROGRAM
-  }
+        #region IPROGRAM
+        DateTime IProgram.Date => ShowDate;
+        #endregion IPROGRAM
+    }
 }
