@@ -32,20 +32,23 @@ namespace SW.MB.Domain {
     #endregion CONSTRUCTORS
 
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration) {
-      services.AddTransient<IBandsDataService, DefaultBandsDataService>();
-      //services.AddTransient<ICompositionsDataService, DefaultCompositionsDataService>();
-      services.AddTransient<ICompositionsDataService, SampleCompositionsDataService>();
       services.AddTransient<IFileService, FileService>();
-      //services.AddTransient<IMandatorsService, DefaultMandatorsService>();
+
+      services.AddTransient<IBandsDataService, SampleDataBandsService>();
+      services.AddTransient<ICompositionsDataService, SampleDataCompositionsService>();
       services.AddTransient<IMandatorsDataService, SampleDataMandatorsService>();
-      //services.AddTransient<IMembersService, DefaultMembersService>();
       services.AddTransient<IMembersDataService, SampleDataMembersService>();
-      //services.AddTransient<IMusiciansService, DefaultMusiciansService>();
       services.AddTransient<IMusiciansDataService, SampleDataMusiciansService>();
-      //services.AddTransient<IUpdatesService, DefaultUpdatesService>();
       services.AddTransient<IUpdatesDataService, SampleDataUpdatesService>();
-      //services.AddTransient<IUsersService, DefaultUsersService>();
       services.AddTransient<IUsersService, SampleUsersService>();
+      
+      services.AddTransient<IBandsDataService, DefaultBandsDataService>();
+      services.AddTransient<ICompositionsDataService, DefaultCompositionsDataService>();
+      services.AddTransient<IMandatorsDataService, DefaultMandatorsDataService>();
+      services.AddTransient<IMembersDataService, DefaultMembersDataService>();
+      services.AddTransient<IMusiciansDataService, DefaultMusiciansDataService>();
+      services.AddTransient<IUpdatesDataService, DefaultUpdatesDataService>();
+      services.AddTransient<IUsersService, DefaultUsersService>();
     }
   }
 }

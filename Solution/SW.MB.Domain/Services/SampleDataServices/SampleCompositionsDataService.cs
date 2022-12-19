@@ -4,7 +4,7 @@ using SW.MB.Domain.Models.Records;
 using SW.MB.Domain.Services.SampleDataServices.Abstracts;
 
 namespace SW.MB.Domain.Services.SampleDataServices {
-  internal class SampleCompositionsDataService: SampleDataServiceBase<CompositionRecord>, ICompositionsDataService {
+  internal class SampleDataCompositionsService: SampleDataServiceBase<CompositionRecord>, ICompositionsDataService {
     public void Update(CompositionRecord record) {
       throw new NotImplementedException();
     }
