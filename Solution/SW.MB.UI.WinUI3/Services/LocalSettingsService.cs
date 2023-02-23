@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using SW.Framework.Models;
 using SW.MB.Domain.Contracts.Services;
-using SW.MB.Domain.Helpers;
 using SW.MB.UI.WinUI3.Contracts.Services;
 using SW.MB.UI.WinUI3.Helpers;
 using SW.MB.UI.WinUI3.Models;
@@ -41,13 +41,13 @@ namespace SW.MB.UI.WinUI3.Services {
     public async Task<T?> ReadSettingAsync<T>(string key) {
       if (RuntimeHelper.IsMSIX) {
         if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj)) {
-          return await MyJsonConverter.ToObjectAsync<T>((string)obj);
+          return await JsonConverter.ToObjectAsync<T>((string)obj);
         }
       } else {
         await InitializeAsync();
 
         if (_Settings != null && _Settings.TryGetValue(key, out var obj)) {
-          return await MyJsonConverter.ToObjectAsync<T>((string)obj);
+          return await JsonConverter.ToObjectAsync<T>((string)obj);
         }
       }
 
@@ -60,10 +60,10 @@ namespace SW.MB.UI.WinUI3.Services {
 
     public async Task SaveSettingAsync<T>(string key, T value) {
       if (RuntimeHelper.IsMSIX) {
-        ApplicationData.Current.LocalSettings.Values[key] = await MyJsonConverter.StringifyAsync(value);
+        ApplicationData.Current.LocalSettings.Values[key] = await JsonConverter.StringifyAsync(value);
       } else {
         await InitializeAsync();
-        _Settings[key] = await MyJsonConverter.StringifyAsync(value);
+        _Settings[key] = await JsonConverter.StringifyAsync(value);
         await Task.Run(() => _FileService.Save(_ApplicationDataFolder, _LocalSettingsFile, _Settings));
       }
     }
