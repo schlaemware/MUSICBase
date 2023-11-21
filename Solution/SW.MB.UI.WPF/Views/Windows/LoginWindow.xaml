@@ -1,0 +1,124 @@
+﻿<Window x:Class="SW.MB.UI.WPF.Views.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
+        xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="LoginWindow"
+        Height="550" Width="800"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        d:DataContext="{d:DesignInstance vms:LoginViewModel, IsDesignTimeCreatable=True}">
+
+  <Window.DataContext>
+    <vms:LoginViewModel />
+  </Window.DataContext>
+
+  <Window.Resources>
+    <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+  </Window.Resources>
+
+  <Border CornerRadius="12">
+    <Border.Background>
+      <ImageBrush ImageSource="pack://application:,,,/Assets/Images/background2.jpg" Stretch="UniformToFill" />
+    </Border.Background>
+
+    <Border CornerRadius="10"
+            BorderThickness="0">
+      <Border.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" Opacity="0.95">
+          <GradientStop Color="#FFFCFAD2" Offset="0"/>
+          <GradientStop Color="#FFBAE470" Offset="0.25"/>
+          <GradientStop Color="#FF599E2B" Offset="0.62"/>
+          <GradientStop Color="#FF006221" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.Background>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="32" />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="8,0,0,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="48" />
+            <ColumnDefinition Width="48" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Text="LOGIN"
+                     Style="{StaticResource BaseTextBlockStyle}"
+                     Foreground="Black"
+                     FontWeight="Light"
+                     Padding="4,4,4,4"
+                     Grid.Column="0" />
+
+          <Button x:Name="btnMinimize"
+                  Style="{StaticResource MinimizeButtonStyle}"
+                  Grid.Column="1"
+                  Click="btnMinimize_Click" />
+
+          <Button x:Name="btnClose"
+                  Style="{StaticResource CloseButtonStyle}"
+                  Grid.Column="2"
+                  Click="btnClose_Click" />
+        </Grid>
+
+        <StackPanel Width="400"
+                    Grid.Row="1"
+                    Orientation="Vertical"
+                    Margin="0,35,0,0">
+          <Image Source="pack://application:,,,/Assets/Images/logo.png"
+                 Width="100" Height="100" />
+
+          <TextBlock Text="MUSICBase"
+                     Style="{StaticResource BaseTextBlockStyle}"
+                     Foreground="Black"
+                     TextAlignment="Center"
+                     FontSize="24" />
+
+          <TextBlock Text="Applikation zur Organisation der Literatur eines Orchesters, Musikvereins, Chors oder einer Band."
+                     Style="{StaticResource BaseTextBlockStyle}"
+                     Foreground="Black"
+                     TextWrapping="Wrap"
+                     TextAlignment="Center"
+                     Margin="0,8,0,0" />
+
+          <TextBlock Text="Username"
+                     Style="{StaticResource BaseTextBlockStyle}"
+                     Foreground="Black"
+                     Margin="0,32,0,0" />
+          <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                   Style="{StaticResource BaseTextBoxStyle}"
+                   Foreground="Black"
+                   Margin="0,8" />
+          
+          <TextBlock Text="Password"
+                     Style="{StaticResource BaseTextBlockStyle}"
+                     Foreground="Black"
+                     Margin="0,12,0,0" />
+          <PasswordBox x:Name="pwbPassword"
+                       PasswordChanged="pwbPassword_PasswordChanged"
+                       Margin="0,8"
+                       Foreground="Black" />
+
+          <Button Content="LOGIN"
+                  Command="{Binding LoginCommand}"
+                  Style="{StaticResource BaseButtonStyle}"
+                  Margin="0,32,0,0"/>
+
+          <Button Content="Forgott Password?"
+                  Style="{StaticResource JustTextButtonStyle}"
+                  Margin="0,12,0,0"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+  </Border>
+</Window>

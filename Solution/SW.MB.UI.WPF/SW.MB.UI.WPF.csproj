@@ -2,63 +2,30 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <StartupObject>SW.MB.UI.WPF.App</StartupObject>
-    <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.0.1</Version>
-    <UserSecretsId>bf59f205-18dd-440c-9d46-464c7f708af4</UserSecretsId>
-    <Company>Schlæmware</Company>
-    <Product>MUSICBase</Product>
-    <Authors></Authors>
-    <AssemblyVersion></AssemblyVersion>
-    <FileVersion></FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-    <PackageReference Include="Serilog" Version="2.12.0" />
-    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="SW.Framework" Version="0.0.3" />
+    <None Remove="Assets\Images\background.jpg" />
+    <None Remove="Assets\Images\background2.jpg" />
+    <None Remove="Assets\Images\key-icon.png" />
+    <None Remove="Assets\Images\logo.png" />
+    <None Remove="Assets\Images\user-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SW.MB.Domain\SW.MB.Domain.csproj" />
+    <Resource Include="Assets\Images\background.jpg" />
+    <Resource Include="Assets\Images\background2.jpg" />
+    <Resource Include="Assets\Images\key-icon.png" />
+    <Resource Include="Assets\Images\logo.png" />
+    <Resource Include="Assets\Images\user-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
   </ItemGroup>
 
 </Project>

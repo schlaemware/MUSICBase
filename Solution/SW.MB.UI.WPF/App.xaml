@@ -1,19 +1,23 @@
 ﻿<Application x:Class="SW.MB.UI.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SW.MB.UI.WPF"
+             StartupUri="Views/Windows/LoginWindow.xaml">
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Views/Templates/BandDetailTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/MandatorDetailTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/MemberDetailTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/MusicianDetailOriginTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/MusicianDetailPseudonymTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/MusicianListOriginTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/MusicianListPseudonymTemplate.xaml" />
-        <ResourceDictionary Source="Views/Templates/ReleaseTemplates.xaml" />
-        <ResourceDictionary Source="Views/Templates/UserDetailTemplate.xaml" />
+        <!-- THEMES -->
+        <ResourceDictionary Source="Themes/GreenDarkTheme.xaml" />
+
+        <!-- DEFINITIONS -->
+        <ResourceDictionary Source="Styles/Brushes.xaml" />
+        <ResourceDictionary Source="Styles/Controls.xaml" />
+
+        <!-- STYLES -->
+        <ResourceDictionary Source="Styles/Buttons.xaml" />
+        <ResourceDictionary Source="Styles/PasswordBoxes.xaml" />
+        <ResourceDictionary Source="Styles/TextBlocks.xaml" />
+        <ResourceDictionary Source="Styles/TextBoxes.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>
