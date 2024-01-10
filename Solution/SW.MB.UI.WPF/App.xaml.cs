@@ -1,6 +1,5 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using SW.MB.UI.WPF.Views.Windows;
 
 namespace SW.MB.UI.WPF
 {
@@ -9,5 +8,17 @@ namespace SW.MB.UI.WPF
     /// </summary>
     public partial class App : Application
     {
+        public App() : base()
+        {
+
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            LoginWindow loginWindow = new();
+            loginWindow.Show();
+        }
     }
 }

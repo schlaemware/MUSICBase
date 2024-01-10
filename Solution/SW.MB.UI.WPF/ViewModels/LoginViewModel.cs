@@ -1,21 +1,20 @@
-﻿using System.Security;
+﻿using System.Text.RegularExpressions;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using SW.MB.UI.WPF.ViewModels.Abstracts;
 
 namespace SW.MB.UI.WPF.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public partial class LoginViewModel : BaseViewModel
     {
-        private string? _Username = string.Empty;
-        private string? _Password = default;
+        private string? _UserInput = string.Empty;
+        private string? _Password = string.Empty;
 
-        public string? Username {
-            get => _Username;
+        public string? UserInput {
+            get => _UserInput;
             set {
-                if (SetProperty(ref _Username, value)) {
-                    System.Diagnostics.Debug.WriteLine($"Username: {value}");
-                    CommandManager.InvalidateRequerySuggested();
+                if (SetProperty(ref _UserInput, value)) {
+                    LoginCommand.NotifyCanExecuteChanged();
                 }
             }
         }
@@ -24,28 +23,44 @@ namespace SW.MB.UI.WPF.ViewModels
             get => _Password;
             set {
                 if (SetProperty(ref _Password, value)) {
-                    System.Diagnostics.Debug.WriteLine($"Password: {value}");
-                    CommandManager.InvalidateRequerySuggested();
+                    LoginCommand.NotifyCanExecuteChanged();
                 }
             }
         }
 
-        public ICommand LoginCommand { get; }
+        public IAsyncRelayCommand LoginCommand { get; }
 
+        #region CONSTRUCTORS
         public LoginViewModel() : base()
         {
-            LoginCommand = new RelayCommand(LoginCommandExecute, LoginCommandCanExecute);
+            LoginCommand = new AsyncRelayCommand(LoginCommandExecute, LoginCommandCanExecute);
         }
+        #endregion CONSTRUCTORS
+
+        [GeneratedRegex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")]
+        private static partial Regex ValidateMailRegex();
+
+        /// <summary>
+        /// String must have at least 3 characters validation.
+        /// </summary>
+        /// <remarks>
+        /// Username must have at least 3 characters.
+        /// </remarks>
+        /// <returns></returns>
+        [GeneratedRegex("[A-Za-z0-9]{3,}")]
+        private static partial Regex AtLeastThreeCharactersRegex();
 
         private bool LoginCommandCanExecute()
         {
-            return !string.IsNullOrEmpty(Username) && Username.Length >= 3
-                && Password != null && Password.Length >= 3;
+            return !string.IsNullOrEmpty(UserInput) && !string.IsNullOrEmpty(Password)
+                && (UserInput.Contains('@') ? ValidateMailRegex().IsMatch(UserInput) : AtLeastThreeCharactersRegex().IsMatch(UserInput))
+                && AtLeastThreeCharactersRegex().IsMatch(Password);
         }
 
-        private void LoginCommandExecute()
+        private async Task LoginCommandExecute()
         {
-            System.Diagnostics.Debug.WriteLine($"LOGIN {Username}: {Password}");
-        }
+            await Task.Delay(3000);
+            System.Diagnostics.Debug.WriteLine($"LOGIN {UserInput}: {Password}");
+        }        
     }
 }

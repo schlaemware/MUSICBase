@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF", "SW.MB.UI.WPF\SW.MB.UI.WPF.csproj", "{CA19FB0D-6C24-4661-BF38-E21303A756D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.MB.UI.WPF", "SW.MB.UI.WPF\SW.MB.UI.WPF.csproj", "{CA19FB0D-6C24-4661-BF38-E21303A756D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.Processing", "SW.MB.Processing\SW.MB.Processing.csproj", "{A2C36936-74B6-4100-8595-696B189879A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CA19FB0D-6C24-4661-BF38-E21303A756D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA19FB0D-6C24-4661-BF38-E21303A756D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA19FB0D-6C24-4661-BF38-E21303A756D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C36936-74B6-4100-8595-696B189879A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C36936-74B6-4100-8595-696B189879A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C36936-74B6-4100-8595-696B189879A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C36936-74B6-4100-8595-696B189879A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

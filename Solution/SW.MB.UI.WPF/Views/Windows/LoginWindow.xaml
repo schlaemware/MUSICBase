@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
+        xmlns:p="clr-namespace:SW.MB.UI.WPF.Properties"
+        xmlns:converters="clr-namespace:SW.MB.UI.WPF.Converters"
         xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
         mc:Ignorable="d"
         Title="LoginWindow"
@@ -13,15 +15,15 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        MouseDown="Window_MouseDown"
-        d:DataContext="{d:DesignInstance vms:LoginViewModel, IsDesignTimeCreatable=True}">
+        MouseDown="Window_MouseDown">
 
   <Window.DataContext>
     <vms:LoginViewModel />
   </Window.DataContext>
 
   <Window.Resources>
-    <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    <converters:InvertBooleanConverter x:Key="BoolInverter" />
+    <converters:StringToUpperConverter x:Key="UpperStringConverter" />
   </Window.Resources>
 
   <Border CornerRadius="12">
@@ -53,28 +55,32 @@
             <ColumnDefinition Width="48" />
           </Grid.ColumnDefinitions>
 
-          <TextBlock Text="LOGIN"
+          <TextBlock Text="{Binding Source={x:Static p:Resources.LoginString}, Converter={StaticResource UpperStringConverter}}"
                      Style="{StaticResource BaseTextBlockStyle}"
                      Foreground="Black"
                      FontWeight="Light"
                      Padding="4,4,4,4"
                      Grid.Column="0" />
 
-          <Button x:Name="btnMinimize"
+          <Button x:Name="MinimizeButton"
                   Style="{StaticResource MinimizeButtonStyle}"
                   Grid.Column="1"
-                  Click="btnMinimize_Click" />
+                  Click="MinimizeButton_Click" />
 
-          <Button x:Name="btnClose"
+          <Button x:Name="CloseButton"
                   Style="{StaticResource CloseButtonStyle}"
                   Grid.Column="2"
-                  Click="btnClose_Click" />
+                  Click="CloseButton_Click" />
         </Grid>
 
         <StackPanel Width="400"
                     Grid.Row="1"
                     Orientation="Vertical"
                     Margin="0,35,0,0">
+          <StackPanel.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource LoginPasswordBoxStyle}" />
+          </StackPanel.Resources>
+          
           <Image Source="pack://application:,,,/Assets/Images/logo.png"
                  Width="100" Height="100" />
 
@@ -91,30 +97,35 @@
                      TextAlignment="Center"
                      Margin="0,8,0,0" />
 
-          <TextBlock Text="Username"
-                     Style="{StaticResource BaseTextBlockStyle}"
+          <TextBlock Style="{StaticResource BaseTextBlockStyle}"
                      Foreground="Black"
-                     Margin="0,32,0,0" />
-          <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0,32,0,0">
+            <Run Text="{Binding Source={x:Static p:Resources.UsernameString}, Mode=OneTime}" />
+            <Run Text=" / " />
+            <Run Text="{Binding Source={x:Static p:Resources.MailString}, Mode=OneTime}" />
+          </TextBlock>
+          <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}"
                    Style="{StaticResource BaseTextBoxStyle}"
+                   IsEnabled="{Binding LoginCommand.IsRunning, Converter={StaticResource BoolInverter}}"
                    Foreground="Black"
                    Margin="0,8" />
           
-          <TextBlock Text="Password"
+          <TextBlock Text="{Binding Source={x:Static p:Resources.PasswordString}}"
                      Style="{StaticResource BaseTextBlockStyle}"
                      Foreground="Black"
                      Margin="0,12,0,0" />
-          <PasswordBox x:Name="pwbPassword"
-                       PasswordChanged="pwbPassword_PasswordChanged"
+          <PasswordBox x:Name="LoginPasswordBox"
+                       PasswordChanged="LoginPasswordBox_PasswordChanged"
                        Margin="0,8"
                        Foreground="Black" />
 
-          <Button Content="LOGIN"
+          <Button x:Name="LoginButton"
+                  Content="{Binding Source={x:Static p:Resources.LoginString}}"
                   Command="{Binding LoginCommand}"
                   Style="{StaticResource BaseButtonStyle}"
-                  Margin="0,32,0,0"/>
+                  Margin="0,32,0,0" />
 
-          <Button Content="Forgott Password?"
+          <Button Content="{Binding Source={x:Static p:Resources.ForgottPasswordString}}"
                   Style="{StaticResource JustTextButtonStyle}"
                   Margin="0,12,0,0"/>
         </StackPanel>

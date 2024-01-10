@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using SW.MB.UI.WPF.ViewModels;
 
 namespace SW.MB.UI.WPF.Views.Windows
@@ -25,16 +14,18 @@ namespace SW.MB.UI.WPF.Views.Windows
         public LoginWindow()
         {
             InitializeComponent();
+
+            ViewModel.LoginCommand.PropertyChanged += LoginCommand_PropertyChanged;
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -42,9 +33,19 @@ namespace SW.MB.UI.WPF.Views.Windows
             DragMove();
         }
 
-        private void pwbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        private void LoginCommand_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            ViewModel.Password = pwbPassword.Password;
+            switch(e.PropertyName) {
+                case nameof(LoginViewModel.LoginCommand.IsRunning):
+                    if (!ViewModel.LoginCommand.IsRunning) {
+                        LoginPasswordBox.Clear();
+                    }
+                    break;
+            }
+        }
+
+        private void LoginPasswordBox_PasswordChanged(object sender, RoutedEventArgs e) {
+            ViewModel.Password = LoginPasswordBox.Password;
         }
     }
 }
