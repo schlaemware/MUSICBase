@@ -11,6 +11,8 @@ namespace SW.MB.UI.WPF.Views.Windows
     {
         private LoginViewModel ViewModel => (LoginViewModel)DataContext;
 
+        public event Action? LoggedInEvent;
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -46,6 +48,11 @@ namespace SW.MB.UI.WPF.Views.Windows
 
         private void LoginPasswordBox_PasswordChanged(object sender, RoutedEventArgs e) {
             ViewModel.Password = LoginPasswordBox.Password;
+        }
+
+        private void RaiseLoggedInEvent()
+        {
+            LoggedInEvent?.Invoke();
         }
     }
 }
