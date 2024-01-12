@@ -7,10 +7,10 @@
         <ResourceDictionary Source="Themes/Definitions.xaml" />
         <ResourceDictionary Source="Themes/GreenDarkTheme.xaml" />
         <ResourceDictionary Source="Themes/GreenLightTheme.xaml" />
-        
+
         <ResourceDictionary Source="Styles/Brushes.xaml" />
         <ResourceDictionary Source="Styles/Controls.xaml" />
-        
+
         <ResourceDictionary Source="Styles/Buttons.xaml" />
         <ResourceDictionary Source="Styles/TextBlocks.xaml" />
         <ResourceDictionary Source="Styles/TextBoxes.xaml" />

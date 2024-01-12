@@ -1,4 +1,8 @@
 ﻿using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using SW.MB.UI.WPF.Commands;
+using SW.MB.UI.WPF.Interfaces;
+using SW.MB.UI.WPF.Stores;
 using SW.MB.UI.WPF.ViewModels;
 using SW.MB.UI.WPF.Views.Windows;
 
@@ -9,6 +13,10 @@ namespace SW.MB.UI.WPF
     /// </summary>
     public partial class App : Application
     {
+        public static new App Current => (App)Application.Current;
+
+        public IServiceProvider ServiceProvider { get; } = BuildServiceProvider();
+
         public App() : base()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -19,10 +27,24 @@ namespace SW.MB.UI.WPF
         {
             base.OnStartup(e);
 
-            MainWindow = new AppWindow() {
-                DataContext = new AppViewModel()
-            };
+            MainWindow = ServiceProvider.GetRequiredService<AppWindow>();
             MainWindow.Show();
+        }
+
+        private static ServiceProvider BuildServiceProvider()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            services.AddTransient(typeof(INavigateCommand<>), typeof(NavigateCommand<>));
+            services.AddSingleton<INavigationStore, NavigationStore>();
+
+            services.AddSingleton<AppViewModel>();
+            services.AddSingleton<CompositionsViewModel>();
+            services.AddSingleton<DashboardViewModel>();
+
+            services.AddTransient<AppWindow>();
+
+            return services.BuildServiceProvider();
         }
 
         #region CALLBACKS

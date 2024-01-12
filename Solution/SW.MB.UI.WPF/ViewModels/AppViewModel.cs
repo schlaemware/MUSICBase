@@ -1,7 +1,37 @@
-﻿namespace SW.MB.UI.WPF.ViewModels
+﻿using Microsoft.Extensions.DependencyInjection;
+using SW.MB.UI.WPF.Interfaces;
+
+namespace SW.MB.UI.WPF.ViewModels
 {
     public class AppViewModel : BaseViewModel
     {
-        public string Titel => "MUSICBase";
+        private readonly INavigationStore _NavigationStore;
+
+        public INavigableObject? CurrentViewModel => _NavigationStore.CurrentViewModel;
+
+        public INavigateCommand NavigateToCompositionsCommand { get; } 
+            = App.Current.ServiceProvider.GetRequiredService<INavigateCommand<CompositionsViewModel>>();
+
+        public INavigateCommand NavigateToDashboardCommand { get; }
+            = App.Current.ServiceProvider.GetRequiredService<INavigateCommand<DashboardViewModel>>();
+
+        public AppViewModel(INavigationStore navigationStore) : base()
+        {
+            _NavigationStore = navigationStore;
+            _NavigationStore.PropertyChanged += NavigationStore_PropertyChanged;
+
+            if (NavigateToDashboardCommand.CanExecute()) {
+                NavigateToDashboardCommand.Execute();
+            }
+        }
+
+        private void NavigationStore_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName) {
+                case nameof(CurrentViewModel):
+                    OnPropertyChanged(nameof(CurrentViewModel));
+                    break;
+            }
+        }
     }
 }

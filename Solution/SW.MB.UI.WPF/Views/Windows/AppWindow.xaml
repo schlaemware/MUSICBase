@@ -5,17 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SW.MB.UI.WPF.Views.Windows"
         xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
+        xmlns:cntrls="clr-namespace:SW.MB.UI.WPF.Views.Controls"
+        xmlns:cnvrtrs="clr-namespace:SW.MB.UI.WPF.Converters"
         mc:Ignorable="d"
         Title="MUSICBase"
-        Height="450" Width="800"
+        Height="800" Width="1200"
         WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
-  <Grid>
-    <TextBlock Text="{Binding Titel}"
-               Style="{StaticResource BaseTextBlockStyle}"
-               FontSize="48"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center" />
-  </Grid>
+  <Window.Resources>
+    <cnvrtrs:NavigationViewModelConverter x:Key="NavVMConverter" />
+
+    <DataTemplate DataType="{x:Type vms:CompositionsViewModel}">
+      <cntrls:CompositionsOverviewControl />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vms:DashboardViewModel}">
+      <cntrls:DashboardControl />
+    </DataTemplate>
+  </Window.Resources>
+
+  <DockPanel LastChildFill="True">
+    <Grid DockPanel.Dock="Left">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <StackPanel Grid.Row="0"
+                  Orientation="Vertical">
+        <RadioButton Content="Home"
+                     IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:DashboardViewModel}}"
+                     Command="{Binding NavigateToDashboardCommand}" />
+        <RadioButton Content="Compositions"
+                     IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:CompositionsViewModel}}"
+                     Command="{Binding NavigateToCompositionsCommand}" />
+      </StackPanel>
+    </Grid>
+    
+    <ContentControl Content="{Binding CurrentViewModel}" />
+  </DockPanel>
 </Window>

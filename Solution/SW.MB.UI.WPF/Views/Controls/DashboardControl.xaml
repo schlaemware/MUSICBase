@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SW.MB.UI.WPF.Views.Controls.CompositionsOverviewControl"
+﻿<UserControl x:Class="SW.MB.UI.WPF.Views.Controls.DashboardControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,18 +7,25 @@
              xmlns:vms="clr-namespace:SW.MB.UI.WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance vms:CompositionsViewModel, IsDesignTimeCreatable=False}">
-  
+             d:DataContext="{d:DesignInstance vms:DashboardViewModel, IsDesignTimeCreatable=False}">
+
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-
+    
     <TextBlock Text="{Binding ModelName}"
                Style="{StaticResource BaseTextBlockStyle}"
                FontSize="48"
                VerticalAlignment="Center"
                HorizontalAlignment="Center" />
+
+    <Button Content="To Compositions"
+            Grid.Row="1"
+            Padding="20,8"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Command="{Binding NavigateToCompositionsCommand}" />
   </Grid>
 </UserControl>
