@@ -1,0 +1,22 @@
+﻿<Application x:Class="SW.MB.UI.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Themes/Definitions.xaml" />
+        <ResourceDictionary Source="Themes/GreenDarkTheme.xaml" />
+        <ResourceDictionary Source="Themes/GreenLightTheme.xaml" />
+        
+        <ResourceDictionary Source="Styles/Brushes.xaml" />
+        <ResourceDictionary Source="Styles/Controls.xaml" />
+        
+        <ResourceDictionary Source="Styles/Buttons.xaml" />
+        <ResourceDictionary Source="Styles/TextBlocks.xaml" />
+        <ResourceDictionary Source="Styles/TextBoxes.xaml" />
+
+        <ResourceDictionary Source="Views/Templates/CompositionTemplate.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
