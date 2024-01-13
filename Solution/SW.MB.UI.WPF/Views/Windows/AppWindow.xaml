@@ -17,10 +17,13 @@
     <cnvrtrs:NavigationViewModelConverter x:Key="NavVMConverter" />
 
     <DataTemplate DataType="{x:Type vms:CompositionsViewModel}">
-      <cntrls:CompositionsOverviewControl />
+      <cntrls:CompositionControl />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vms:DashboardViewModel}">
       <cntrls:DashboardControl />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vms:MusiciansViewModel}">
+      <cntrls:MusicianControl />
     </DataTemplate>
   </Window.Resources>
 
@@ -39,9 +42,12 @@
         <RadioButton Content="Compositions"
                      IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:CompositionsViewModel}}"
                      Command="{Binding NavigateToCompositionsCommand}" />
+        <RadioButton Content="Musicians"
+                     IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:MusiciansViewModel}}"
+                     Command="{Binding NavigateToMusiciansCommand}" />
       </StackPanel>
     </Grid>
-    
+
     <ContentControl Content="{Binding CurrentViewModel}" />
   </DockPanel>
 </Window>

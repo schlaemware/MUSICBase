@@ -13,15 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SW.MB.UI.WPF.Views.Controls
-{
+namespace SW.MB.UI.WPF.Views.Controls {
     /// <summary>
-    /// Interaction logic for CompositionsOverviewControl.xaml
+    /// Interaction logic for MusicianControl.xaml
     /// </summary>
-    public partial class CompositionsOverviewControl : UserControl
-    {
-        public CompositionsOverviewControl()
-        {
+    public partial class MusicianControl : UserControl {
+        public MusicianControl() {
             InitializeComponent();
         }
     }

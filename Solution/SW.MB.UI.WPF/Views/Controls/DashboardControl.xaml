@@ -14,7 +14,7 @@
       <RowDefinition Height="*" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    
+
     <TextBlock Text="{Binding ModelName}"
                Style="{StaticResource BaseTextBlockStyle}"
                FontSize="48"

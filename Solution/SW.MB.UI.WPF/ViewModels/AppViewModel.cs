@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SW.MB.UI.WPF.Interfaces;
+using SW.MB.UI.WPF.Models;
 
 namespace SW.MB.UI.WPF.ViewModels
 {
@@ -10,10 +11,13 @@ namespace SW.MB.UI.WPF.ViewModels
         public INavigableObject? CurrentViewModel => _NavigationStore.CurrentViewModel;
 
         public INavigateCommand NavigateToCompositionsCommand { get; } 
-            = App.Current.ServiceProvider.GetRequiredService<INavigateCommand<CompositionsViewModel>>();
+            = App.ServiceProvider.GetRequiredService<INavigateCommand<CompositionsViewModel>>();
 
         public INavigateCommand NavigateToDashboardCommand { get; }
-            = App.Current.ServiceProvider.GetRequiredService<INavigateCommand<DashboardViewModel>>();
+            = App.ServiceProvider.GetRequiredService<INavigateCommand<DashboardViewModel>>();
+
+        public INavigateCommand NavigateToMusiciansCommand { get; }
+            = App.ServiceProvider.GetRequiredService<INavigateCommand<MusiciansViewModel>>();
 
         public AppViewModel(INavigationStore navigationStore) : base()
         {

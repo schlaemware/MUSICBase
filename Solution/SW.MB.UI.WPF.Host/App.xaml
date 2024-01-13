@@ -1,0 +1,22 @@
+﻿<Application x:Class="SW.MB.UI.WPF.Host.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Themes/Definitions.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Themes/GreenDarkTheme.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Themes/GreenLightTheme.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Styles/Brushes.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Styles/Controls.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Styles/Buttons.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Styles/TextBlocks.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Styles/TextBoxes.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/SW.MB.UI.WPF;component/Views/Templates/CompositionTemplate.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
