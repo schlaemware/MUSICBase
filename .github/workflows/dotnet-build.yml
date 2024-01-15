@@ -63,16 +63,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Install the GitTools extension
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0
-      with:
-        preferLatestVersion: true
-
-    # Determine version with GitVersion  
-    - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v0   
-
     # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v3
@@ -101,6 +91,16 @@ jobs:
       with:
         fetch-depth: 0
 
+    # Install the GitTools extension
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0
+      with:
+        preferLatestVersion: true
+
+    # Determine version with GitVersion  
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0
+      
     # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v3
