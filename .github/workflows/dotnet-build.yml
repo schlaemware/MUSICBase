@@ -40,7 +40,7 @@ jobs:
     needs: calculate-version
 
     env:
-      SemVersion: ${{ needs.calculate-version.outputs.semVer }}
+      SEMVERSION: ${{ needs.calculate-version.outputs.semVer }}
     
     strategy:
       matrix:
@@ -69,8 +69,9 @@ jobs:
       shell: pwsh
       run: |
         $content = Get-Content "Solution\SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj" -Raw
-        $content = $content -replace '<Version>0.0.0</Version>', '<Version>$SemVersion</Version>'
+        $content = $content -replace '<Version>0.0.0</Version>', '<Version>${{ env.SEMVERSION }}</Version>'
         $content | Set-Content "Solution\SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj"
+        echo Version $content
 
     # Build the solution
     - name: Build the solution
