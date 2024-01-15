@@ -5,8 +5,10 @@ using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels
 {
-    public class MusiciansViewModel : DataViewModel<ObservableMusician, MusicianRecord, int>, INavigableObject {
-        public MusiciansViewModel(IMapper mapper) : base(mapper) {
+    public class MembersViewModel : DataViewModel<ObservableMusician, MusicianRecord, int>, INavigableObject
+    {
+        public MembersViewModel(IMapper mapper) : base(mapper)
+        {
 
         }
     }
