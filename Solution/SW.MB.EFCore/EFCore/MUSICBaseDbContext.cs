@@ -30,7 +30,7 @@ namespace SW.MB.EFCore.EFCore {
                 optionsBuilder.UseMySql(_configuration.MySQLConnectionString, SERVER_VERSION);
             }
             else {
-                optionsBuilder.UseSqlite($"DataSource = {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MUSICBase.db")}");
+                optionsBuilder.UseSqlite($"DataSource = {Path.Combine(_configuration.ApplicationDirectory.FullName, "MUSICBase.db")}");
             }
             
             base.OnConfiguring(optionsBuilder);

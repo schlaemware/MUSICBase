@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.IO;
+using System.Reflection;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,10 +55,12 @@ namespace SW.MB.UI.WPF.Host {
         }
 
         private static ServiceProvider BuildServiceProvider() {
-            ServiceCollection services = new ServiceCollection();
+            ServiceCollection services = new();
 
+            // Configuration
             IConfigurationRoot config = BuildConfiguration();
             services.AddSingleton(new MUSICBaseConfiguration {
+                ApplicationDirectory = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MUSICBase")),
                 MySQLConnectionString = config.GetConnectionString("MySQL")
             });
 
