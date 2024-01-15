@@ -69,19 +69,21 @@ jobs:
       with:
         dotnet-version: 8.x
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    # Execute all unit tests in the solution
-    - name: Execute unit tests
+    # Execute all tests in the solution
+    - name: Execute tests
       run: dotnet test $env:Solution_Path -c $env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration
+    # Restore the solution
+    - name: Restore the solution
+      run: dotnet restore $env:Solution_Path -c $env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    # Build the solution
+    - name: Build the solution
+      run: dotnet build $env:Solution_Path -c $env:Configuration --no-restore
       env:
         Configuration: ${{ matrix.configuration }}
 
@@ -92,6 +94,16 @@ jobs:
         $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Restore the application
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+    
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
       run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
