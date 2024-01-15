@@ -53,7 +53,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: "Solution/MUSICBase.sln"
+      Solution_Path: "Solution/MUSICBase.sln"
       Wap_Project_Directory: "Solution/SW.MB.UI.WPF.Package"
       Wap_Project_Path: "Solution/SW.MB.UI.WPF.Package/SW.MB.UI.WPF.Package.wapproj"
 
@@ -75,13 +75,13 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test -c $env:Configuration
+      run: dotnet test $env:Solution_Path -c $env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
