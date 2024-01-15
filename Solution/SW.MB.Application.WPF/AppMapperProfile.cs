@@ -8,6 +8,9 @@ namespace SW.MB.Application.WPF {
             CreateMap<Composition, CompositionRecord>()
                 .ReverseMap();
 
+            CreateMap<Member, MemberRecord>()
+                .ReverseMap();
+
             CreateMap<Musician, MusicianRecord>()
                 .ReverseMap();
         }

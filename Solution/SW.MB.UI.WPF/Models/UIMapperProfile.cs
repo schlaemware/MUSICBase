@@ -8,6 +8,9 @@ namespace SW.MB.UI.WPF.Models {
             CreateMap<CompositionRecord, ObservableComposition>()
                 .ReverseMap();
 
+            CreateMap<MemberRecord, ObservableMember>()
+                .ReverseMap();
+
             CreateMap<MusicianRecord, ObservableMusician>()
                 .ReverseMap();
         }
