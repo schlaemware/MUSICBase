@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.Application.Contracts", "SW.MB.Application.Contracts\SW.MB.Application.Contracts.csproj", "{6661AE79-369C-4F2D-B757-60A00B4C1058}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF.Host", "SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj", "{7F803BF6-641F-49AB-82F1-05ACAB2C5C70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.Domain", "SW.MB.Domain\SW.MB.Domain.csproj", "{C88B880B-729B-4F45-8CA2-488E62D30296}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.Application.Contracts", "SW.MB.Application.Contracts\SW.MB.Application.Contracts.csproj", "{6661AE79-369C-4F2D-B757-60A00B4C1058}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.Domain.Shared", "SW.MB.Domain.Shared\SW.MB.Domain.Shared.csproj", "{FAB2681D-135C-4C57-AA52-CBF825080466}"
 EndProject
@@ -18,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.Test.UnitTests", "SW.MB.Test.UnitTests\SW.MB.Test.UnitTests.csproj", "{C0E694E9-2978-4AED-9C85-86FBAFA7A8AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.DbMigrator", "SW.MB.DbMigrator\SW.MB.DbMigrator.csproj", "{DEAA7EE4-A003-4E67-A239-A0EB346CE11C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF.Host", "SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj", "{7F803BF6-641F-49AB-82F1-05ACAB2C5C70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.MB.UI.WPF", "SW.MB.UI.WPF\SW.MB.UI.WPF.csproj", "{EA1635D8-8F19-4E34-B651-2F17F5CAF69A}"
 EndProject
