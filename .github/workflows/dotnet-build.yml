@@ -45,6 +45,13 @@ jobs:
     - name: Restore the solution
       run: dotnet restore $env:Solution_Path
 
+    - name: Update version
+      shell: pwsh
+      run: |
+        $content = Get-Content "Solution\SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj" -Raw
+        $content = $content -replace '<Version>0.0.0</Version>', '<Version>$</Version>'
+        $content | Set-Content "Solution\SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj"
+
     # Build the solution
     - name: Build the solution
       run: dotnet build $env:Solution_Path -c $env:Configuration --no-restore
@@ -56,3 +63,38 @@ jobs:
       run: dotnet test $env:Solution_Path -c $env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
+
+    # Decode the base 64 encoded pfx and save the Signing_Certificate
+    - name: Decode the pfx
+      run: |
+        a
+
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Restore the application
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+    
+    # Create the app package by building and packaging the Windows Application Packaging project
+    - name: Create the app package
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      env:
+        Appx_Bundle: Always
+        Appx_Bundle_Platforms: x86|x64
+        Appx_Package_Build_Mode: StoreUpload
+        Configuration: ${{ matrix.configuration }}
+
+    # Remove the pfx
+    - name: Remove the pfx
+      run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
+
+    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MSIX Package
+        path: ${{ env.Wap_Project_Directory }}\AppPackages
