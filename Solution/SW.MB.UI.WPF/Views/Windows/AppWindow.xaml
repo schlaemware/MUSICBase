@@ -13,41 +13,47 @@
         WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vms:AppViewModel, IsDesignTimeCreatable=False}">
 
-  <Window.Resources>
-    <cnvrtrs:NavigationViewModelConverter x:Key="NavVMConverter" />
+    <Window.Resources>
+        <cnvrtrs:NavigationViewModelConverter x:Key="NavVMConverter" />
 
-    <DataTemplate DataType="{x:Type vms:CompositionsViewModel}">
-      <cntrls:CompositionControl />
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type vms:DashboardViewModel}">
-      <cntrls:DashboardControl />
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type vms:MusiciansViewModel}">
-      <cntrls:MusicianControl />
-    </DataTemplate>
-  </Window.Resources>
+        <DataTemplate DataType="{x:Type vms:CompositionsViewModel}">
+            <cntrls:CompositionControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:DashboardViewModel}">
+            <cntrls:DashboardControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:MembersViewModel}">
+            <cntrls:MemberControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:MusiciansViewModel}">
+            <cntrls:MusicianControl />
+        </DataTemplate>
+    </Window.Resources>
 
-  <DockPanel LastChildFill="True">
-    <Grid DockPanel.Dock="Left">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-      <StackPanel Grid.Row="0"
+            <StackPanel Grid.Row="0"
                   Orientation="Vertical">
-        <RadioButton Content="Home"
-                     IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:DashboardViewModel}}"
-                     Command="{Binding NavigateToDashboardCommand}" />
-        <RadioButton Content="Compositions"
-                     IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:CompositionsViewModel}}"
-                     Command="{Binding NavigateToCompositionsCommand}" />
-        <RadioButton Content="Musicians"
-                     IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:MusiciansViewModel}}"
-                     Command="{Binding NavigateToMusiciansCommand}" />
-      </StackPanel>
-    </Grid>
+                <RadioButton Content="Home"
+                             IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:DashboardViewModel}}"
+                             Command="{Binding NavigateToDashboardCommand}" />
+                <RadioButton Content="Compositions"
+                             IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:CompositionsViewModel}}"
+                             Command="{Binding NavigateToCompositionsCommand}" />
+                <RadioButton Content="Musicians"
+                             IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:MusiciansViewModel}}"
+                             Command="{Binding NavigateToMusiciansCommand}" />
+                <RadioButton Content="Members"
+                             IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource NavVMConverter}, ConverterParameter={x:Type vms:MembersViewModel}}"
+                             Command="{Binding NavigateToMembersCommand}" />
+            </StackPanel>
+        </Grid>
 
-    <ContentControl Content="{Binding CurrentViewModel}" />
-  </DockPanel>
+        <ContentControl Content="{Binding CurrentViewModel}" />
+    </DockPanel>
 </Window>

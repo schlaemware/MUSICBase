@@ -2,7 +2,8 @@
 
 namespace SW.MB.UI.WPF.Models.Observables
 {
-    public class ObservableMusician : ObservablePerson<MusicianRecord, int> {
+    public class ObservableMember : ObservablePerson<MemberRecord, int>
+    {
 
     }
 }

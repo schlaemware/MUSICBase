@@ -16,6 +16,9 @@ namespace SW.MB.UI.WPF.ViewModels
         public INavigateCommand NavigateToDashboardCommand { get; }
             = App.ServiceProvider.GetRequiredService<INavigateCommand<DashboardViewModel>>();
 
+        public INavigateCommand NavigateToMembersCommand { get; }
+            = App.ServiceProvider.GetRequiredService<INavigateCommand<MembersViewModel>>();
+
         public INavigateCommand NavigateToMusiciansCommand { get; }
             = App.ServiceProvider.GetRequiredService<INavigateCommand<MusiciansViewModel>>();
 

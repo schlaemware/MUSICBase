@@ -1,6 +1,6 @@
 ﻿namespace SW.MB.Domain.Shared.Interfaces
 {
-    public interface IMusician : IPerson<int> {
+    public interface IMember : IPerson<int> {
 
     }
 }

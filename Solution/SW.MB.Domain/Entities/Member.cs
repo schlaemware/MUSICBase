@@ -2,7 +2,8 @@
 
 namespace SW.MB.Domain.Entities
 {
-    public class Musician : Person<int>, IMusician {
+    public class Member : Person<int>, IMember
+    {
 
     }
 }

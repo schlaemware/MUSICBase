@@ -5,7 +5,7 @@ using SW.MB.UI.WPF.Models.Observables;
 
 namespace SW.MB.UI.WPF.ViewModels
 {
-    public class MembersViewModel : DataViewModel<ObservableMusician, MusicianRecord, int>, INavigableObject
+    public class MembersViewModel : DataViewModel<ObservableMember, MemberRecord, int>, INavigableObject
     {
         public MembersViewModel(IMapper mapper) : base(mapper)
         {

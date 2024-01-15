@@ -2,7 +2,8 @@
 
 namespace SW.MB.Application.Contracts.Records
 {
-    public record class MusicianRecord : PersonRecord<int>, IMusician {
+    public record class MemberRecord : PersonRecord<int>, IMember
+    {
 
     }
 }

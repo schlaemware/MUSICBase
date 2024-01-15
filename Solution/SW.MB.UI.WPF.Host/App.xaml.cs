@@ -73,6 +73,7 @@ namespace SW.MB.UI.WPF.Host {
             // Application.WPF
             services.AddAutoMapper(typeof(AppMapperProfile));
             services.AddTransient(typeof(IDataService<CompositionRecord, int>), typeof(DataService<CompositionRecord, Composition, int>));
+            services.AddTransient(typeof(IDataService<MemberRecord, int>), typeof(DataService<MemberRecord, Member, int>));
             services.AddTransient(typeof(IDataService<MusicianRecord, int>), typeof(DataService<MusicianRecord, Musician, int>));
 
             // UI
@@ -84,6 +85,7 @@ namespace SW.MB.UI.WPF.Host {
             services.AddSingleton<AppViewModel>();
             services.AddSingleton<CompositionsViewModel>();
             services.AddSingleton<DashboardViewModel>();
+            services.AddSingleton<MembersViewModel>();
             services.AddSingleton<MusiciansViewModel>();
 
             // Views

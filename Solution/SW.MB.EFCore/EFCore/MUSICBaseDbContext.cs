@@ -11,6 +11,8 @@ namespace SW.MB.EFCore.EFCore {
 
         public DbSet<Composition> Compositions { get; set; }
 
+        public DbSet<Member> Members { get; set; }
+
         public DbSet<Musician> Musicians { get; set; }
 
         public MUSICBaseDbContext(DbContextOptions<MUSICBaseDbContext> options, MUSICBaseConfiguration configuration) : base(options) {
