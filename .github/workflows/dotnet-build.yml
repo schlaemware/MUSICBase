@@ -67,7 +67,6 @@ jobs:
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0
       with:
-        versionSpec: '0.x'
         preferLatestVersion: true
 
     # Determine version with GitVersion  
