@@ -44,19 +44,20 @@ on:
   pull_request:
     branches: [ "develop", "master", "release/*" ]
 
+env:
+  Solution_Path: "Solution/MUSICBase.sln"
+  Wap_Project_Directory: "Solution/SW.MB.UI.WPF.Package"
+  Wap_Project_Path: "Solution/SW.MB.UI.WPF.Package/SW.MB.UI.WPF.Package.wapproj"
+
 jobs:
   test:
+    name: Test
     runs-on: windows-latest
     
     strategy:
       matrix:
         configuration: [ Release ]
-        dotnet-version: [ '8.0.x' ]
-
-    env:
-      Solution_Path: "Solution/MUSICBase.sln"
-      Wap_Project_Directory: "Solution/SW.MB.UI.WPF.Package"
-      Wap_Project_Path: "Solution/SW.MB.UI.WPF.Package/SW.MB.UI.WPF.Package.wapproj"
+        dotnet-version: [ '8.0.x', '8.x' ]
 
     steps:
     - name: Checkout
@@ -77,18 +78,14 @@ jobs:
         Configuration: ${{ matrix.configuration }}
         
   build:
+    name: Build
     needs: test
     runs-on: windows-latest
     
     strategy:
       matrix:
         configuration: [ Release ]
-        dotnet-version: [ '8.0.x' ]
-
-    env:
-      Solution_Path: "Solution/MUSICBase.sln"
-      Wap_Project_Directory: "Solution/SW.MB.UI.WPF.Package"
-      Wap_Project_Path: "Solution/SW.MB.UI.WPF.Package/SW.MB.UI.WPF.Package.wapproj"
+        dotnet-version: [ '8.x' ]
 
     steps:
     - name: Checkout
@@ -113,18 +110,14 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
   deploy:
+    name: Deploy
     needs: build
     runs-on: windows-latest
     
     strategy:
       matrix:
         configuration: [ Release ]
-        dotnet-version: [ '8.0.x' ]
-
-    env:
-      Solution_Path: "Solution/MUSICBase.sln"
-      Wap_Project_Directory: "Solution/SW.MB.UI.WPF.Package"
-      Wap_Project_Path: "Solution/SW.MB.UI.WPF.Package/SW.MB.UI.WPF.Package.wapproj"
+        dotnet-version: [ '8.x' ]
 
     steps:
     - name: Checkout
