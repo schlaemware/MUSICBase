@@ -9,22 +9,20 @@ on:
 env:
   Solution_Path: "Solution/MUSICBase.sln"
 
-jobs:        
-  build:
-    name: Build & Test
-    runs-on: windows-latest
-    
-    strategy:
-      matrix:
-        configuration: [ Release ]
-        dotnet-version: [ '8.x' ]
+jobs:
+  calculate-version:
+    name: Calculate version
+    runs-on: ubuntu-latest
+    outputs:
+      semVer: ${{ steps.gitversion.outputs.semVer }}
 
     steps:
+    # Checkout repository
     - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-
+        
     # Install the GitTools extension
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0
@@ -33,7 +31,28 @@ jobs:
 
     # Determine version with GitVersion  
     - name: Determine Version
+      id: gitversion
       uses: gittools/actions/gitversion/execute@v0
+      
+  build:
+    name: Build & Test
+    runs-on: windows-latest
+    needs: calculate-version
+
+    env:
+      SemVersion: ${{ nees.calculate-version.outputs.semVer }}
+    
+    strategy:
+      matrix:
+        configuration: [ Release ]
+        dotnet-version: [ '8.x' ]
+
+    steps:
+    # Checkout repository
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
       
     # Install the .NET Core workload
     - name: Install .NET Core
@@ -45,11 +64,12 @@ jobs:
     - name: Restore the solution
       run: dotnet restore $env:Solution_Path
 
+    # Update version tag
     - name: Update version
       shell: pwsh
       run: |
         $content = Get-Content "Solution\SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj" -Raw
-        $content = $content -replace '<Version>0.0.0</Version>', '<Version>$</Version>'
+        $content = $content -replace '<Version>0.0.0</Version>', '<Version>$SemVersion</Version>'
         $content | Set-Content "Solution\SW.MB.UI.WPF.Host\SW.MB.UI.WPF.Host.csproj"
 
     # Build the solution
@@ -67,7 +87,9 @@ jobs:
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
       run: |
-        a
+        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
+        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
